@@ -1,31 +1,25 @@
 import React from "react";
-import { ReactComponent as Search } from './img/svg/search.svg';
-import { ReactComponent as Auth } from './img/svg/person.svg';
-import { ReactComponent as Basket } from './img/svg/basket_1.svg';
-
-
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Layout } from "./components/Layout";
+import { Main } from "./pages/Main.jsx";
+import { About } from "./pages/About.jsx";
+import { Delivery } from "./pages/Delivery.jsx";
+import { Shop } from "./pages/Shop.jsx";
+import { NoPage } from "./pages/NoPage.jsx";
 
 function App() {
   return (
-    <div className="App">
-      <header>
-        <div className="header__wrapper">
-          <div className="header__logo">OLGA YUDINA</div>
-          <div className="header__navi">
-            <a href="/#">collection</a>
-            <a href="/#">about</a>
-            <a href="/#">delivery</a>
-          </div>
-          <div className="header__icons">
-            <a href="/#"><Search className="header__icons__item" width="30" height="30" /></a>
-            <a href="/#"><Auth className="header__icons__item" width="30" height="30" /></a>
-            <a href="/#"><Basket className="header__icons__item" width="30" height="30" /></a>
-
-          </div>
-        </div>
-      </header>
-
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Main />} />
+          <Route path="about" element={<About />} />
+          <Route path="delivery" element={<Delivery />} />
+          <Route path="shop" element={<Shop />} />
+          <Route path="*" element={<NoPage />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 

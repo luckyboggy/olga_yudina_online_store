@@ -47,13 +47,27 @@ header {
       max-width: 1100px;
     }
     @include breakpoint(xl) {
-      max-width: 1400px;
+      //max-width: 1400px;
+    }
+  }
+
+  .header__burger {
+    margin-left: 0.5rem;
+    fill: $header_fc;
+    @include breakpoint(lg) {
+      display: none;
+    }
+
+    .header__burger__icon {
+      fill: $header_fc;
     }
   }
 
   .header__logo {
+    //margin-left: calc(50% - 85px);
+
     padding: 1rem;
-    font-size: 24px;
+    font-size: 22px;
     color: $header_fc;
     @include breakpoint(md) {
       font-size: 30px;
@@ -73,11 +87,13 @@ header {
   }
 
   .header__icons {
-    font-size: 16px;
+    margin-right: 0.5rem;
     a {
-      padding: 0 0.5rem;
+      padding: 0 0.2rem;
     }
     .header__icons__item {
+      height: 24px;
+      width: 24px;
       fill: $header_fc;
     }
   }
@@ -86,4 +102,23 @@ header {
     text-decoration: none;
     color: $header_fc;
   }
+}
+
+footer {
+  padding: 0 1rem;
+  background-color: $haeder_bc;
+  color: $header_fc;
+  .footer__wrapper {
+    height: 100%;
+    text-align: center;
+    padding: 0.5rem;
+    .footer__copyright {
+      font-size: 0.75rem;
+    }
+  }
+}
+
+main {
+  min-height: calc(100vh - 58px - 31px);
+  padding: 1rem;
 }
