@@ -138,3 +138,29 @@ main {
 .activeMenu {
   left: 0;
 }
+
+
+
+// Auth
+.auth {
+  padding: 1rem;
+  .auth_choose {
+    display:flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+
+    .auth_choose_btn {
+      border: none;
+      background: transparent;
+      font-size: 20px;
+      color: $haeder_bc;
+
+      cursor: pointer;
+    }
+
+    .auth_choose_btn_active {
+      font-weight: 700;
+      color:rgb(13, 22, 22)
+    }
+  }
+}
