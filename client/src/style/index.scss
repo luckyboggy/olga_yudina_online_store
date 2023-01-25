@@ -33,92 +33,67 @@ $header_fc: #ffe4c4;
 
 header {
   background-color: $haeder_bc;
-  width: 100%;
+  a {
+    text-decoration: none;
+    color: $header_fc;
+  }
 
   .header__wrapper {
     display: flex;
-    justify-content: space-between;
+    flex-direction: row;
+    justify-content: center;
     align-items: center;
-    margin: auto;
-    @include breakpoint(md) {
-      max-width: 800px;
-    }
-    @include breakpoint(lg) {
-      max-width: 1100px;
-    }
-    @include breakpoint(xl) {
-      //max-width: 1400px;
-    }
+    padding: 5px 8px;
   }
 
   .header__burger {
-    margin-left: 0.5rem;
-    fill: $header_fc;
-    @include breakpoint(lg) {
-      display: none;
-    }
+    flex-basis: 25%;
+    display: flex;
 
     .header__burger__icon {
+      width: 34px;
+      height: 34px;
       fill: $header_fc;
     }
   }
 
   .header__logo {
-    //margin-left: calc(50% - 85px);
-
-    padding: 1rem;
-    font-size: 22px;
-    color: $header_fc;
-    @include breakpoint(md) {
-      font-size: 30px;
-    }
+    //background-color: green;
+    flex-basis: 50%;
+    font-size: 20px;
+    text-align: center;
   }
 
   .header__navi {
-    font-size: 24px;
     display: none;
-    @include breakpoint(lg) {
-      display: inline;
-    }
-
-    a {
-      padding: 0 1rem;
-    }
   }
 
   .header__icons {
-    margin-right: 0.5rem;
-    a {
-      padding: 0 0.2rem;
-    }
-    .header__icons__item {
-      height: 24px;
-      width: 24px;
-      fill: $header_fc;
-    }
+    //background-color: blue;
+    flex-basis: 25%;
+    display: flex;
+    justify-content: space-around;
   }
-
-  a {
-    text-decoration: none;
-    color: $header_fc;
+  .header__icons__item {
+    height: 22px;
+    width: 22px;
+    fill: $header_fc;
   }
 }
 
 footer {
-  padding: 0 1rem;
   background-color: $haeder_bc;
   color: $header_fc;
   .footer__wrapper {
-    height: 100%;
     text-align: center;
-    padding: 0.5rem;
     .footer__copyright {
-      font-size: 0.75rem;
+      padding: 10px;
+      font-size: 10px;
     }
   }
 }
 
 main {
-  min-height: calc(100vh - 58px - 31px);
+  min-height: calc(100vh - 44px - 31px);
   padding: 1rem;
 }
