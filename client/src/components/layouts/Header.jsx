@@ -5,12 +5,15 @@ import { ReactComponent as Auth } from "../../img/svg/person.svg";
 import { ReactComponent as Basket } from "../../img/svg/basket.svg";
 import { ReactComponent as Burger } from "../../img/svg/burger.svg";
 
-const Header = () => {
+const Header = ({ setMobileMenu }) => {
   return (
     <header>
       <div className="header__wrapper">
         <div className="header__burger">
-          <Burger className="header__burger__icon" />
+          <Burger
+            className="header__burger__icon"
+            onClick={() => setMobileMenu(true)}
+          />
         </div>
         <div className="header__navi"></div>
         <div className="header__logo">

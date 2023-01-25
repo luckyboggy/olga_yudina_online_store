@@ -97,3 +97,26 @@ main {
   min-height: calc(100vh - 44px - 31px);
   padding: 1rem;
 }
+
+.mobileMenu {
+  background-color: coral;
+  position: fixed;
+  min-width: 100vw;
+  min-height: 100vh;
+  padding: 5px 8px;
+  transition: 0.5s;
+  transform: translateX(-100%);
+
+  .mobileMenu__header {
+    display: flex;
+    justify-content: space-between;
+    .mobileMenu__close {
+      width: 34px;
+      height: 34px;
+      fill: $header_fc;
+    }
+  }
+}
+.activeMenu {
+  transform: translateX(0%);
+}
