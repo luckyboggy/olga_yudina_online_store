@@ -99,24 +99,42 @@ main {
 }
 
 .mobileMenu {
-  background-color: coral;
+  background-color: white;
   position: fixed;
   min-width: 100vw;
   min-height: 100vh;
   padding: 5px 8px;
-  transition: 0.5s;
-  transform: translateX(-100%);
+  left: -100vw;
+  transition: 0.2s ease-in-out;
 
   .mobileMenu__header {
     display: flex;
     justify-content: space-between;
-    .mobileMenu__close {
+    margin-bottom: 5px;
+    .mobileMenu__close,
+    .mobileMenu__search {
       width: 34px;
       height: 34px;
-      fill: $header_fc;
+      fill: $haeder_bc;
     }
   }
+  hr {
+    fill: $haeder_bc;
+  }
+  .mobileMenu__navi {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    a {
+      text-decoration: none;
+      font-size: 24px;
+      padding: 14px 0;
+      color: $haeder_bc;
+    }
+  }
+  
 }
+
 .activeMenu {
-  transform: translateX(0%);
+  left: 0;
 }

@@ -5,7 +5,7 @@ import { ReactComponent as Auth } from "../../img/svg/person.svg";
 import { ReactComponent as Basket } from "../../img/svg/basket.svg";
 import { ReactComponent as Burger } from "../../img/svg/burger.svg";
 
-const Header = ({ setMobileMenu }) => {
+const Header = ({ setMobileMenu}) => {
   return (
     <header>
       <div className="header__wrapper">
@@ -25,9 +25,11 @@ const Header = ({ setMobileMenu }) => {
           <Link to="delivery">delivery</Link>
         </div>
         <div className="header__icons">
+
           <Search className="header__icons__item" />
-          <Auth className="header__icons__item" />
-          <Basket className="header__icons__item" />
+          <Link to="auth"><Auth className="header__icons__item" /></Link>
+          <Link to="basket"><Basket className="header__icons__item" /></Link>
+          
         </div>
       </div>
     </header>
