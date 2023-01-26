@@ -1,0 +1,11 @@
+$haeder_bc: lightslategrey;
+$header_fc: #ffe4c4;
+
+.customButton {
+  width: 100%;
+  padding: 12px;
+  font-size: 18px;
+  background-color: $haeder_bc;
+  color: $header_fc;
+  border: none;
+}

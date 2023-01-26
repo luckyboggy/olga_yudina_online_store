@@ -1,17 +1,15 @@
 import React from "react";
+import { CustomInput } from "./UI/input/CustomInput";
+import { CustomButton } from "./UI/button/CustomButton";
 
 const SignUpForm = () => {
   return (
-    <form action="#" className="form form_singup">
-      <input type="text" className="form__input" placeholder="Логин" />
-      <input type="email" className="form__input" placeholder="Email" />
-      <input type="password" className="form__input" placeholder="Пароль" />
-      <input
-        type="password"
-        className="form__input"
-        placeholder="Поддвердите пароль"
-      />
-      <button class="form__btn form__btn_signup">Зарегестрироваться</button>
+    <form>
+      <CustomInput type="text" placeholder="Логин" />
+      <CustomInput type="email" placeholder="Email" />
+      <CustomInput type="password" placeholder="Пароль" />
+      <CustomInput type="password" placeholder="Поддвердите пароль" />
+      <CustomButton>Зарегестрироваться</CustomButton>
     </form>
   );
 };

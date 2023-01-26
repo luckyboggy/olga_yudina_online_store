@@ -29,12 +29,7 @@ const Auth = () => {
           вход
         </button>
       </div>
-
-      {/* Форма регистрации */}
-      <SignUpForm />
-
-      {/* Форма входа */}
-      <SignInForm />
+      <div className="authForm">{signUp ? <SignUpForm /> : <SignInForm />}</div>
     </div>
   );
 };

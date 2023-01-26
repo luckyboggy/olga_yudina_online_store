@@ -1,16 +1,16 @@
 import React from "react";
+import { CustomInput } from "./UI/input/CustomInput";
+import { CustomButton } from "./UI/button/CustomButton";
 
 const SignInForm = () => {
   return (
-    <form action="#" class="form form_signin">
-      <input type="text" class="form__input" placeholder="Логин" />
-      <input type="password" class="form__input" placeholder="Пароль" />
-      <button class="form__btn">Войти</button>
-      <a href="/#" class="form__forgot">
-        Восстановить пароль
-      </a>
+    <form>
+      <CustomInput type="text" placeholder="Логин" />
+      <CustomInput type="password" placeholder="Пароль" />
+      <CustomButton>Войти</CustomButton>
+      <a href="/#">Восстановить пароль</a>
     </form>
-  )
+  );
 };
 
 export { SignInForm };

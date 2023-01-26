@@ -1,0 +1,12 @@
+$haeder_bc: lightslategrey;
+$header_fc: #ffe4c4;
+
+.customInput {
+  width: 100%;
+  padding: 12px;
+  font-size: 18px;
+  margin: 15px 0;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid $haeder_bc;
+}
