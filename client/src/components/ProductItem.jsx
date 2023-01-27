@@ -1,5 +1,5 @@
 import React from "react";
-import { CustomButton } from "../components/UI/button/CustomButton.jsx";
+
 
 const ProductItem = () => {
   return (
@@ -7,10 +7,8 @@ const ProductItem = () => {
       <div className="productImg"></div>
       <div className="productContent">
         <div className="productName">Охуенный продукт</div>
-        <div className="productPrice">10000</div>
-        <div className="productBtn">
-          <CustomButton>в корзину</CustomButton>
-        </div>
+        <div className="productPrice">10000 р.</div>
+        <button className="productBtn">в корзину</button>
       </div>
     </div>
   );

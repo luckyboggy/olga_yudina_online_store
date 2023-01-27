@@ -194,7 +194,7 @@ main {
 }
 
 .shop__productItem {
-  border: 1px solid black;
+  margin-bottom: 15px;
   .productImg {
     min-width: 150px;
     min-height: 200px;
@@ -208,9 +208,19 @@ main {
       grid-column-start: 1;
       grid-column-end: 3;
       padding: 10px 0;
+      font-size: 18px;
     }
     .productPrice {
-      padding: 10px 0;
+      margin: auto 0;
+      font-size: 18px;
+    }
+    .productBtn {
+      width: 100%;
+      padding: 6px;
+      font-size: 14px;
+      background-color: $haeder_bc;
+      color: $header_fc;
+      border: none;
     }
   }
 }
