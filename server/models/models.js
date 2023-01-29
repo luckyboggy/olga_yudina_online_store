@@ -8,7 +8,7 @@ const User = sequelize.define('user', {
     surename: { type: DataTypes.STRING, },
     phone: { type: DataTypes.STRING, unique: true },
     email: { type: DataTypes.STRING, unique: true },
-    passwod: { type: DataTypes.STRING },
+    password: { type: DataTypes.STRING },
     role: { type: DataTypes.STRING, defaultValue: 'USER' },
 });
 
@@ -57,7 +57,7 @@ const Product = sequelize.define('product', {
 
 const ProductInfo = sequelize.define('product_info', {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
-    title: { type: DataTypes.STRING, unique: true, allowNull: false },
+    title: { type: DataTypes.STRING, allowNull: false },
     description: { type: DataTypes.STRING, allowNull: false }
     // product_id
 });

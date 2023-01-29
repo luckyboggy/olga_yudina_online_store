@@ -47,7 +47,7 @@ class ProductController {
     }
   }
   async getAll(req, res) {
-    const { typeId, limit, page } = req.query;
+    let { typeId, limit, page } = req.query;
     limit = limit || 8;
     page = page || 1;
     let offset = limit * page - limit;
