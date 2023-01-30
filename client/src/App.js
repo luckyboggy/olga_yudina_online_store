@@ -1,18 +1,13 @@
 import React, { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Layout } from "./components/Layout";
-import { Main } from "./pages/Main.jsx";
-import { About } from "./pages/About.jsx";
-import { Delivery } from "./pages/Delivery.jsx";
-import { Shop } from "./pages/Shop.jsx";
-import {Auth} from './pages/Auth.jsx'
-import {Basket} from './pages/Basket.jsx'
-import { NoPage } from "./pages/NoPage.jsx";
 import { MobileMenu } from "./components/MobileMenu";
+
+import { authRoutes, publicRoutes } from "./routes.js";
 
 function App() {
   const [mobileMenu, setMobileMenu] = useState(false);
-
+  const isAuth = true;
 
   return (
     <BrowserRouter>
@@ -20,13 +15,13 @@ function App() {
 
       <Routes>
         <Route path="/" element={<Layout setMobileMenu={setMobileMenu} />}>
-          <Route index element={<Main />} />
-          <Route path="about" element={<About />} />
-          <Route path="delivery" element={<Delivery />} />
-          <Route path="shop" element={<Shop />} />
-          <Route path="auth" element={<Auth />} />
-          <Route path="basket" element={<Basket />} />
-          <Route path="*" element={<NoPage />} />
+          {isAuth &&
+            authRoutes.map(({ path, Element }) => (
+              <Route path={path} element={<Element />} key={path} />
+            ))}
+          {publicRoutes.map(({ path, Element }) => (
+            <Route path={path} element={<Element />} key={path} />
+          ))}
         </Route>
       </Routes>
     </BrowserRouter>
