@@ -8,11 +8,12 @@ import {NoPage} from "./pages/NoPage.jsx";
 
 import {
   ADMIN_ROUTE,
-  AUTH_ROUTE,
   BASKET_ROUTE,
+  LOGIN_ROUTE,
   MAIN_ROUTE,
   NOPAGE_ROUTE,
   PRODUCT_ROUTE,
+  REGISTRATION_ROUTE,
   SHOP_ROUTE,
 } from "./utils/consts";
 
@@ -41,7 +42,11 @@ const publicRoutes = [
     Element: Product,
   },
   {
-    path: AUTH_ROUTE,
+    path: REGISTRATION_ROUTE,
+    Element: Auth,
+  },
+  {
+    path: LOGIN_ROUTE,
     Element: Auth,
   },
   {

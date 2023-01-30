@@ -1,13 +1,17 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Layout } from "./components/Layout";
 import { MobileMenu } from "./components/MobileMenu";
 
 import { authRoutes, publicRoutes } from "./routes.js";
+import { Context } from "./index.js";
 
 function App() {
   const [mobileMenu, setMobileMenu] = useState(false);
-  const isAuth = true;
+
+  const {user} = useContext(Context);
+
+  console.log(user)
 
   return (
     <BrowserRouter>
@@ -15,7 +19,7 @@ function App() {
 
       <Routes>
         <Route path="/" element={<Layout setMobileMenu={setMobileMenu} />}>
-          {isAuth &&
+          {user.isAuth &&
             authRoutes.map(({ path, Element }) => (
               <Route path={path} element={<Element />} key={path} />
             ))}
