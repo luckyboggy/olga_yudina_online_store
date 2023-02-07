@@ -11,7 +11,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Context.Provider value={{
     user: new UserStore(),
-    product: new ProductStore()
+    product: new ProductStore(),
   }}>
     <App />
   </Context.Provider>

@@ -5,8 +5,8 @@ import { CustomButton } from "./UI/button/CustomButton";
 const SignInForm = () => {
   return (
     <form>
-      <CustomInput type="text" placeholder="Логин" />
-      <CustomInput type="password" placeholder="Пароль" />
+      <CustomInput type="text" placeholder="логин" />
+      <CustomInput type="password" placeholder="пароль" />
       <CustomButton>Войти</CustomButton>
       <a href="/#">Восстановить пароль</a>
     </form>

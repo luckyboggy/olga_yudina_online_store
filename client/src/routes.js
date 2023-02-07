@@ -1,14 +1,18 @@
-import {Admin} from "./pages/Admin.jsx";
-import {Basket} from "./pages/Basket.jsx";
-import {Shop} from "./pages/Shop.jsx";
-import {Product} from "./pages/Product.jsx";
-import {Main} from "./pages/Main.jsx";
-import {Auth} from "./pages/Auth.jsx";
-import {NoPage} from "./pages/NoPage.jsx";
+import { Admin } from "./pages/Admin.jsx";
+import { Basket } from "./pages/Basket.jsx";
+import { Shop } from "./pages/Shop.jsx";
+import { Product } from "./pages/Product.jsx";
+import { Main } from "./pages/Main.jsx";
+import { Auth } from "./pages/Auth.jsx";
+import { NoPage } from "./pages/NoPage.jsx";
+import { About } from "./pages/About.jsx";
+import { Delivery } from "./pages/Delivery.jsx";
 
 import {
+  ABOUT_ROUTE,
   ADMIN_ROUTE,
   BASKET_ROUTE,
+  DELIVERY_ROUTE,
   LOGIN_ROUTE,
   MAIN_ROUTE,
   NOPAGE_ROUTE,
@@ -48,6 +52,14 @@ const publicRoutes = [
   {
     path: LOGIN_ROUTE,
     Element: Auth,
+  },
+  {
+    path: ABOUT_ROUTE,
+    Element: About,
+  },
+  {
+    path: DELIVERY_ROUTE,
+    Element: Delivery,
   },
   {
     path: NOPAGE_ROUTE,

@@ -11,8 +11,6 @@ function App() {
 
   const {user} = useContext(Context);
 
-  console.log(user)
-
   return (
     <BrowserRouter>
       <MobileMenu mobileMenu={mobileMenu} setMobileMenu={setMobileMenu} />

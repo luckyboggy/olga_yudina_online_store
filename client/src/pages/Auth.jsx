@@ -1,35 +1,42 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { SignInForm } from "../components/SignInForm";
 import { SignUpForm } from "../components/SignUpForm";
+import { Context } from "../index.js";
+import { LOGIN_ROUTE, REGISTRATION_ROUTE } from "../utils/consts";
 
 const Auth = () => {
-  const [signUp, setSignUp] = useState(true);
+  const { user } = useContext(Context);
+  const location = useLocation();
+  const isLogin = location.pathname.substring(1) === "login";
 
   return (
     <div className="auth">
       <div className="auth_choose">
-        <button
+        <Link
           className={
-            signUp
+            isLogin
               ? "auth_choose_btn auth_choose_btn_active"
               : "auth_choose_btn"
           }
-          onClick={() => setSignUp(true)}
+          to={"../" + LOGIN_ROUTE}
         >
-          регистрация
-        </button>
-        <button
+          вход
+        </Link>
+        <Link
           className={
-            signUp
+            isLogin
               ? "auth_choose_btn"
               : "auth_choose_btn auth_choose_btn_active"
           }
-          onClick={() => setSignUp(false)}
+          to={"../" + REGISTRATION_ROUTE}
         >
-          вход
-        </button>
+          регистрация
+        </Link>
       </div>
-      <div className="authForm">{signUp ? <SignUpForm /> : <SignInForm />}</div>
+      <div className="authForm">
+        {isLogin ? <SignInForm /> : <SignUpForm />}
+      </div>
     </div>
   );
 };

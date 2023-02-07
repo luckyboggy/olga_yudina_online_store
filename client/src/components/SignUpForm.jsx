@@ -5,10 +5,10 @@ import { CustomButton } from "./UI/button/CustomButton";
 const SignUpForm = () => {
   return (
     <form>
-      <CustomInput type="text" placeholder="Логин" />
-      <CustomInput type="email" placeholder="Email" />
-      <CustomInput type="password" placeholder="Пароль" />
-      <CustomInput type="password" placeholder="Поддвердите пароль" />
+      <CustomInput type="text" placeholder="логин" />
+      <CustomInput type="email" placeholder="email" />
+      <CustomInput type="password" placeholder="пароль" />
+      <CustomInput type="password" placeholder="поддвердите пароль" />
       <CustomButton>Зарегестрироваться</CustomButton>
     </form>
   );

@@ -27,7 +27,7 @@ const Header = ({ setMobileMenu}) => {
         <div className="header__icons">
 
           <Search className="header__icons__item" />
-          <Link to="auth"><Auth className="header__icons__item" /></Link>
+          <Link to="login"><Auth className="header__icons__item" /></Link>
           <Link to="basket"><Basket className="header__icons__item" /></Link>
           
         </div>
