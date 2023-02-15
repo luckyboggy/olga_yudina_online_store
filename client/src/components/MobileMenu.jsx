@@ -1,9 +1,14 @@
-import React from "react";
+import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { ReactComponent as Close } from "../img/svg/close.svg";
 import { ReactComponent as Search } from "../img/svg/search.svg";
+import { ReactComponent as Arrow } from "../img/svg/arrow.svg";
+import { Context } from "../index.js";
 
 const MobileMenu = ({ mobileMenu, setMobileMenu }) => {
+  const [collection, setCollection] = useState(false);
+  const { product } = useContext(Context);
+
   return (
     <div className={mobileMenu ? "mobileMenu activeMenu" : "mobileMenu"}>
       <div className="mobileMenu__header">
@@ -11,14 +16,59 @@ const MobileMenu = ({ mobileMenu, setMobileMenu }) => {
           className="mobileMenu__close"
           onClick={() => setMobileMenu(false)}
         />
-        <Search className="mobileMenu__search"/>
+        <Search className="mobileMenu__search" />
       </div>
       <hr />
-      <div className="mobileMenu__navi">
-          <Link to="shop" onClick={() => setMobileMenu(false)}>collection</Link>
-          <Link to="about" onClick={() => setMobileMenu(false)}>about</Link>
-          <Link to="delivery" onClick={() => setMobileMenu(false)}>delivery</Link>
+      <div className="mobileMenu__content">
+        <div
+          className="mobileMenu__item"
+          onClick={() => setCollection(!collection)}
+        >
+          <div className="mobileMenu__item_title">
+            <div>collection</div>
+            <Arrow className={`dropArrow ${collection ? "active" : ""}`} />
+          </div>
+          {collection && (
+            <div className="mobileMenu__dropDown">
+              <Link
+                className="mobileMenu__ddItem"
+                to="shop"
+                onClick={() => setMobileMenu(false)}
+              >
+                watch all
+              </Link>
+              {product.types.map((type) => (
+                <Link
+                  key={type.name}
+                  className="mobileMenu__ddItem"
+                  to="shop"
+                  onClick={() => setMobileMenu(false)}
+                >
+                  {type.name}
+                </Link>
+              ))}
+            </div>
+          )}
         </div>
+        <div className="mobileMenu__item">
+          <Link
+            className="mobileMenu__item_title"
+            to="about"
+            onClick={() => setMobileMenu(false)}
+          >
+            about
+          </Link>
+        </div>
+        <div className="mobileMenu__item">
+          <Link
+            className="mobileMenu__item_title"
+            to="delivery"
+            onClick={() => setMobileMenu(false)}
+          >
+            delivery
+          </Link>
+        </div>
+      </div>
       <div className="mobileMenu__nav"></div>
     </div>
   );

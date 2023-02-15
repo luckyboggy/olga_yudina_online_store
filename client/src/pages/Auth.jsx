@@ -1,12 +1,12 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import { SignInForm } from "../components/SignInForm";
 import { SignUpForm } from "../components/SignUpForm";
-import { Context } from "../index.js";
+
 import { LOGIN_ROUTE, REGISTRATION_ROUTE } from "../utils/consts";
 
 const Auth = () => {
-  const { user } = useContext(Context);
+
   const location = useLocation();
   const isLogin = location.pathname.substring(1) === "login";
 

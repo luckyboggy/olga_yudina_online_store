@@ -135,15 +135,42 @@ main {
   hr {
     fill: $haeder_bc;
   }
-  .mobileMenu__navi {
-    display: flex;
+  .mobileMenu__content {
+    /* display: flex;
     flex-direction: column;
-    align-items: center;
-    a {
-      text-decoration: none;
-      font-size: 24px;
-      padding: 14px 0;
-      color: $haeder_bc;
+    align-items: center; */
+    .mobileMenu__item {
+      width: 100%;
+      .mobileMenu__item_title {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        text-decoration: none;
+        font-size: 24px;
+        padding: 14px 0;
+        color: $haeder_bc;
+      }
+      .dropArrow {
+        margin-left: 1rem;
+        width: 18px;
+        height: 18px;
+        fill: $haeder_bc;
+        transform: rotate(180deg);
+      }
+      .active {
+        transform: rotate(0deg);
+      }
+      .mobileMenu__dropDown {
+        //margin: 0.5rem 0;
+        padding-left: 1rem;
+        .mobileMenu__ddItem {
+          display: block;
+          text-decoration: none;
+          font-size: 22px;
+          padding: 14px 0;
+          color: $haeder_bc;
+        }
+      }
     }
   }
 }

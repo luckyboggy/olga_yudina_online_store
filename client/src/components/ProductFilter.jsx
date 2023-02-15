@@ -7,8 +7,6 @@ const ProductFilter = () => {
   return (
     <div>
       <CustomAccordion title={'Типы'} items={product.types}/>
-      <CustomAccordion title={'Типы'} items={product.types}/>
-      <CustomAccordion title={'Типы'} items={product.types}/>
     </div>
   );
 };
