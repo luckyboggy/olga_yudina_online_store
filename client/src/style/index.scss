@@ -226,6 +226,11 @@ main {
   justify-content: space-between;
 }
 
+.shop__toolbar__selected {
+  font-size: 20px;
+  color: $haeder_bc;
+}
+
 .shop__toolbar__sort,
 .shop__toolbar__filter {
   font-size: 20px;
@@ -270,4 +275,8 @@ main {
       border: none;
     }
   }
+}
+
+.product {
+  
 }

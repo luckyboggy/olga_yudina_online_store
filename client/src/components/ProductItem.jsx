@@ -1,13 +1,21 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
+import { PRODUCT_ROUTE } from "../utils/consts.js";
 
+const ProductItem = ({ item }) => {
+  const { id, name, price } = item;
+  const navigate = useNavigate();
+  console.log(navigate);
 
-const ProductItem = () => {
   return (
-    <div className="shop__productItem">
+    <div
+      className="shop__productItem"
+      onClick={() => navigate("../" + PRODUCT_ROUTE + "/" + id)}
+    >
       <div className="productImg"></div>
       <div className="productContent">
-        <div className="productName">Охуенный продукт</div>
-        <div className="productPrice">10000 р.</div>
+        <div className="productName">{name}</div>
+        <div className="productPrice">{price} р.</div>
         <button className="productBtn">в корзину</button>
       </div>
     </div>

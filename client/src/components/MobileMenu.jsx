@@ -33,7 +33,10 @@ const MobileMenu = ({ mobileMenu, setMobileMenu }) => {
               <Link
                 className="mobileMenu__ddItem"
                 to="shop"
-                onClick={() => setMobileMenu(false)}
+                onClick={() => {
+                  product.setSelectedType({ name: "all" });
+                  setMobileMenu(false);
+                }}
               >
                 watch all
               </Link>
@@ -42,7 +45,10 @@ const MobileMenu = ({ mobileMenu, setMobileMenu }) => {
                   key={type.name}
                   className="mobileMenu__ddItem"
                   to="shop"
-                  onClick={() => setMobileMenu(false)}
+                  onClick={() => {
+                    product.setSelectedType(type);
+                    setMobileMenu(false);
+                  }}
                 >
                   {type.name}
                 </Link>

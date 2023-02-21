@@ -8,7 +8,7 @@ export class ProductStore {
       { id: 3, name: "Броши" },
       { id: 4, name: "Сумки" },
     ];
-    this._product = [
+    this._items = [
       { id: 1, name: "Серьги_1", price: 5000 },
       { id: 2, name: "Серьги_2", price: 5500 },
       { id: 3, name: "Серьги_3", price: 6000 },
@@ -22,8 +22,9 @@ export class ProductStore {
       { id: 11, name: "Брошь_3", price: 4500 },
       { id: 12, name: "Брошь_4", price: 4500 },
       { id: 13, name: "Сумка_1", price: 10000 },
-      { id: 14, name: "Сумка_1", price: 15000 },
+      { id: 14, name: "Сумка_2", price: 15000 },
     ];
+    this._selectedType = { name: "all" };
     makeAutoObservable(this);
   }
 
@@ -31,14 +32,21 @@ export class ProductStore {
     this._types = types;
   }
 
-  setProduct(product) {
-    this._product = product;
+  setProduct(items) {
+    this._items = items;
+  }
+
+  setSelectedType(selectedType) {
+    this._selectedType = selectedType;
   }
 
   get types() {
     return this._types;
   }
-  get product() {
-    return this._product;
+  get items() {
+    return this._items;
+  }
+  get selectedType() {
+    return this._selectedType;
   }
 }
