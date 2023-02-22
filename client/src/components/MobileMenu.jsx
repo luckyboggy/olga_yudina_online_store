@@ -50,11 +50,20 @@ const MobileMenu = ({ mobileMenu, setMobileMenu }) => {
                     setMobileMenu(false);
                   }}
                 >
-                  {type.name}
+                  {type.name.toLowerCase()}
                 </Link>
               ))}
             </div>
           )}
+        </div>
+        <div className="mobileMenu__item">
+          <Link
+            className="mobileMenu__item_title"
+            to="about"
+            onClick={() => setMobileMenu(false)}
+          >
+            favorites
+          </Link>
         </div>
         <div className="mobileMenu__item">
           <Link

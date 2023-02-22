@@ -5,7 +5,6 @@ import { PRODUCT_ROUTE } from "../utils/consts.js";
 const ProductItem = ({ item }) => {
   const { id, name, price } = item;
   const navigate = useNavigate();
-  console.log(navigate);
 
   return (
     <div
