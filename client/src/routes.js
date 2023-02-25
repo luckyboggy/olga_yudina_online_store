@@ -2,11 +2,12 @@ import { Admin } from "./pages/Admin.jsx";
 import { Basket } from "./pages/Basket.jsx";
 import { Shop } from "./pages/Shop.jsx";
 import { Product } from "./pages/Product.jsx";
-import { Main } from "./pages/Main.jsx";
+import { MainPage } from "./pages/MainPage.jsx";
 import { Auth } from "./pages/Auth.jsx";
 import { NoPage } from "./pages/NoPage.jsx";
 import { About } from "./pages/About.jsx";
 import { Delivery } from "./pages/Delivery.jsx";
+import { User } from "./pages/User.jsx";
 
 import {
   ABOUT_ROUTE,
@@ -14,7 +15,8 @@ import {
   BASKET_ROUTE,
   DELIVERY_ROUTE,
   LOGIN_ROUTE,
-  MAIN_ROUTE,
+  MAINPAGE_ROUTE,
+  USER_ROUTE,
   NOPAGE_ROUTE,
   PRODUCT_ROUTE,
   REGISTRATION_ROUTE,
@@ -27,6 +29,10 @@ const authRoutes = [
     Element: Admin,
   },
   {
+    path: USER_ROUTE,
+    Element: User,
+  },
+  {
     path: BASKET_ROUTE,
     Element: Basket,
   },
@@ -34,8 +40,8 @@ const authRoutes = [
 
 const publicRoutes = [
   {
-    path: MAIN_ROUTE,
-    Element: Main,
+    path: MAINPAGE_ROUTE,
+    Element: MainPage,
   },
   {
     path: SHOP_ROUTE,

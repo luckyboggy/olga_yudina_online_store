@@ -71,6 +71,15 @@ const MobileMenu = ({ mobileMenu, setMobileMenu }) => {
             to="about"
             onClick={() => setMobileMenu(false)}
           >
+            workshops
+          </Link>
+          </div>
+        <div className="mobileMenu__item">
+          <Link
+            className="mobileMenu__item_title"
+            to="about"
+            onClick={() => setMobileMenu(false)}
+          >
             about
           </Link>
         </div>

@@ -1,11 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { ReactComponent as Search } from "../../img/svg/search.svg";
 import { ReactComponent as Auth } from "../../img/svg/person.svg";
 import { ReactComponent as Basket } from "../../img/svg/basket.svg";
 import { ReactComponent as Burger } from "../../img/svg/burger.svg";
+import { Context } from "../../index.js";
 
 const Header = ({ setMobileMenu }) => {
+  const { user } = useContext(Context);
+  
+
   return (
     <header>
       <div className="header__wrapper">
@@ -26,9 +30,23 @@ const Header = ({ setMobileMenu }) => {
         </div>
         <div className="header__icons">
           <Search className="header__icons__item" />
-          <Link to="login">
-            <Auth className="header__icons__item" />
-          </Link>
+          {user.isAuth && user.user.role === "ADMIN" && (
+            <Link to="admin">
+              <Auth className="header__icons__item" />
+            </Link>
+          )}
+          {user.isAuth && user.user.role === "USER" && (
+            <Link to="user">
+              <Auth className="header__icons__item" />
+            </Link>
+          )}
+
+          {!user.isAuth && (
+            <Link to="login">
+              <Auth className="header__icons__item" />
+            </Link>
+          )}
+
           <Link to="basket">
             <Basket className="header__icons__item" />
           </Link>

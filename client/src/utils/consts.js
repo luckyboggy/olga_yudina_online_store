@@ -6,7 +6,8 @@ export const PRODUCT_ROUTE = "product";
 
 export const REGISTRATION_ROUTE = "registration";
 export const LOGIN_ROUTE = "login";
-export const MAIN_ROUTE = "";
+export const MAINPAGE_ROUTE = "";
+export const USER_ROUTE = "user";
 
 export const ABOUT_ROUTE = "about";
 export const DELIVERY_ROUTE = "delivery";
