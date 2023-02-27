@@ -8,7 +8,7 @@ const CustomSelect = ({ options, onChange }) => {
       {options.map((option) => 
         <option
           className={classes.cSelect}
-          key={option.value}
+          key={option.name}
           value={option.value}
         >
           {option.name}

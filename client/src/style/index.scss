@@ -1,5 +1,6 @@
 $haeder_bc: lightslategrey;
 $header_fc: #ffe4c4;
+$font: rgb(54, 62, 70);
 
 @mixin breakpoint($point) {
   @if $point == sm {
@@ -58,7 +59,6 @@ header {
   }
 
   .header__logo {
-    //background-color: green;
     flex-basis: 50%;
     font-size: 20px;
     text-align: center;
@@ -69,7 +69,6 @@ header {
   }
 
   .header__icons {
-    //background-color: blue;
     flex-basis: 25%;
     display: flex;
     justify-content: space-around;
@@ -164,7 +163,6 @@ main {
         transform: rotate(0deg);
       }
       .mobileMenu__dropDown {
-        //margin: 0.5rem 0;
         padding-left: 1rem;
         .mobileMenu__ddItem {
           display: block;
@@ -317,10 +315,12 @@ main {
   .admin__menu {
     display: flex;
     justify-content: center;
+    padding: 0 2rem;
   }
 
   .admin__content {
-    .admin__category {
+    .admin__category,
+    .admin__products {
       padding: 0 0.5rem;
       .admin__category_new {
         border: 1px solid $haeder_bc;
@@ -330,7 +330,8 @@ main {
         display: grid;
         grid-template-columns: 2fr 1.25fr;
         gap: 1rem;
-        color: $haeder_bc;
+        color: $font;
+        font-size: 20px;
         .admin__category_input {
           padding-top: 0.5rem;
         }
@@ -357,7 +358,7 @@ main {
           border: 1px solid $haeder_bc;
           border-radius: 1rem;
           font-size: 24px;
-          color: $haeder_bc;
+          color: $font;
 
           .removeBtn {
             stroke: $haeder_bc;
@@ -367,15 +368,47 @@ main {
         }
       }
 
-      .admin__category_add {
+      .admin__category_add,
+      .admin__products_add {
         display: flex;
         justify-content: center;
         align-items: center;
         padding: 3px;
-        .admin__category_addItem {
+        .admin__category_addItem,
+        .admin__products_addItem {
           stroke: $haeder_bc;
           height: 50px;
           width: 50px;
+        }
+      }
+      .admin__products_new {
+        border: 1px solid $haeder_bc;
+        border-radius: 1rem;
+        padding: 1rem;
+        margin: 0.5rem 0;
+        color: $font;
+        font-size: 20px;
+        text-align: center;
+
+        .admin__products_input {
+          display: grid;
+          grid-template-columns: 1fr 2fr;
+          gap: 1rem;
+          align-items: center;
+          text-align: left;
+        }
+
+        .admin__products_btns {
+          margin-top: 1rem;
+          display: flex;
+          justify-content: space-around;
+          align-items: center;
+          .acceptBtn,
+          .closeBtn {
+            width: 44px;
+            height: 44px;
+            fill: $haeder_bc;
+          }
         }
       }
     }
