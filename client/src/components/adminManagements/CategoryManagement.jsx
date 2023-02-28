@@ -26,7 +26,7 @@ const CategoryManagement = () => {
         <form className="admin__category_new">
           <div className="admin__category_input">
             Новая категория
-            <CustomInput placeholder={'категория'}/>
+            <CustomInput placeholder={"категория"} />
           </div>
           <div className="admin__category_btns">
             <Accept type="submit" className="acceptBtn" />

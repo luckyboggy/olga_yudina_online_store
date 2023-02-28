@@ -2,11 +2,9 @@ import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import { SignInForm } from "../components/SignInForm";
 import { SignUpForm } from "../components/SignUpForm";
-
 import { LOGIN_ROUTE, REGISTRATION_ROUTE } from "../utils/consts";
 
 const Auth = () => {
-
   const location = useLocation();
   const isLogin = location.pathname.substring(1) === "login";
 
@@ -35,7 +33,11 @@ const Auth = () => {
         </Link>
       </div>
       <div className="authForm">
-        {isLogin ? <SignInForm /> : <SignUpForm />}
+        {isLogin ? (
+          <SignInForm isLogin={isLogin} />
+        ) : (
+          <SignUpForm isLogin={isLogin} />
+        )}
       </div>
     </div>
   );

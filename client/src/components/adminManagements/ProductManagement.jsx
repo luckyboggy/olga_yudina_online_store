@@ -1,7 +1,6 @@
 import React, { useContext, useState } from "react";
 import { Context } from "../../index.js";
 import { ReactComponent as Add } from "../../img/svg/add.svg";
-import { ReactComponent as Remove } from "../../img/svg/delete.svg";
 import { ReactComponent as Accept } from "../../img/svg/accept.svg";
 import { ReactComponent as Close } from "../../img/svg/close.svg";
 import { CustomInput } from "../UI/input/CustomInput.jsx";
@@ -36,8 +35,9 @@ const ProductManagement = () => {
           </div>
           <div className="admin__products_input">
             <div>Категория</div>
-            <CustomSelect options={product.types}/>
+            <CustomSelect options={product.types} onChange={() => {}} />
           </div>
+          <CustomInput type="file" />
           <div className="admin__products_btns">
             <Accept type="submit" className="acceptBtn" />
             <Close className="closeBtn" onClick={() => setNewProduct(false)} />

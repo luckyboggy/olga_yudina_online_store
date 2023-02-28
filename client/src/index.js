@@ -5,9 +5,11 @@ import { ProductStore } from './store/productStore.js';
 import { UserStore } from './store/userStore.js';
 import './style/index.scss';
 
+
 export const Context = createContext(null);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
 root.render(
   <Context.Provider value={{
     user: new UserStore(),
@@ -15,6 +17,6 @@ root.render(
   }}>
     <App />
   </Context.Provider>
-  
+
 );
 
