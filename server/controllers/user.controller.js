@@ -66,21 +66,21 @@ class UserController {
       user.surename,
       user.email,
       user.phone,
-      user.role);
+      user.role
+    );
     try {
       return res.json({ jsonWebToken });
-    } catch (error) { }
-
+    } catch (error) {}
   }
   async check(req, res, next) {
-    console.log(4)
+
     const jsonWebToken = generateJwt(
-      user.id,
-      user.name,
-      user.surename,
-      user.email,
-      user.phone,
-      user.role
+      req.user.id,
+      req.user.name,
+      req.user.surename,
+      req.user.email,
+      req.user.phone,
+      req.user.role
     );
 
     return res.json({ jsonWebToken });

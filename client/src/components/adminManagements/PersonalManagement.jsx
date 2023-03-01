@@ -9,6 +9,7 @@ const PersonalManagement = () => {
   const navigate = useNavigate();
 
   const exit = () => {
+    user.setUser({});
     user.setIsAuth(false);
     navigate("../" + LOGIN_ROUTE);
   };

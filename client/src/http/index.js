@@ -2,22 +2,21 @@
 import axios from "axios";
 
 const $host = axios.create({
-    baseURL: process.env.REACT_APP_API_URL
-})
+  baseURL: process.env.REACT_APP_API_URL,
+});
 
 const $authHost = axios.create({
-    baseURL: process.env.REACT_APP_API_URL
-})
+  baseURL: process.env.REACT_APP_API_URL,
+});
 
 const authInterceptor = (config) => {
-    config.headers.authorization = `Bearer ${window.localStorage.getItem('token')}`
-    console.log(localStorage.getItem('token'))
-    return config
-}
+  config.headers.authorization = `Bearer ${window.localStorage.getItem(
+    "jsonWebToken"
+  )}`;
 
-$authHost.interceptors.request.use(authInterceptor)
+  return config;
+};
 
-export {
-    $host,
-    $authHost
-}
+$authHost.interceptors.request.use(authInterceptor);
+
+export { $host, $authHost };
