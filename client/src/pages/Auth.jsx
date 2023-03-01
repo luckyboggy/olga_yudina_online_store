@@ -1,12 +1,49 @@
-import React from "react";
-import { Link, useLocation } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { SignInForm } from "../components/SignInForm";
 import { SignUpForm } from "../components/SignUpForm";
-import { LOGIN_ROUTE, REGISTRATION_ROUTE } from "../utils/consts";
+import {
+  LOGIN_ROUTE,
+  MAINPAGE_ROUTE,
+  REGISTRATION_ROUTE,
+} from "../utils/consts";
+import { login, registration } from "../http/userAPI.js";
+import { useContext } from "react";
+import { Context } from "../index.js";
+import { observer } from "mobx-react-lite";
 
-const Auth = () => {
+const Auth = observer(() => {
+  const { user } = useContext(Context);
   const location = useLocation();
   const isLogin = location.pathname.substring(1) === "login";
+  const navigate = useNavigate();
+
+  const [authUser, setAuthUser] = useState({
+    email: "",
+    password: "",
+  });
+
+  const signClick = async (email, password) => {
+    try {
+      let data;
+      if (isLogin) {
+        data = await login(email, password);
+        console.log(data);
+      } else {
+        data = await registration(email, password);
+        console.log(data);
+      }
+      user.setUser(data);
+      user.setIsAuth(true);
+      setAuthUser({
+        email: "",
+        password: "",
+      });
+      navigate("../" + MAINPAGE_ROUTE);
+    } catch (error) {
+      alert(error.response.data.message);
+    }
+  };
 
   return (
     <div className="auth">
@@ -34,13 +71,21 @@ const Auth = () => {
       </div>
       <div className="authForm">
         {isLogin ? (
-          <SignInForm isLogin={isLogin} />
+          <SignInForm
+            authUser={authUser}
+            setAuthUser={setAuthUser}
+            signClick={signClick}
+          />
         ) : (
-          <SignUpForm isLogin={isLogin} />
+          <SignUpForm
+            authUser={authUser}
+            setAuthUser={setAuthUser}
+            signClick={signClick}
+          />
         )}
       </div>
     </div>
   );
-};
+});
 
 export { Auth };

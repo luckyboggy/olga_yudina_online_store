@@ -60,15 +60,29 @@ class UserController {
       next(ApiError.internal("Неверный пароль"));
     }
 
-    const jsonWebToken = generateJwt(user.id, user.email, user.role);
-    return res.json({ jsonWebToken });
+    const jsonWebToken = generateJwt(
+      user.id,
+      user.name,
+      user.surename,
+      user.email,
+      user.phone,
+      user.role);
+    try {
+      return res.json({ jsonWebToken });
+    } catch (error) { }
+
   }
   async check(req, res, next) {
+    console.log(4)
     const jsonWebToken = generateJwt(
-      req.user.id,
-      req.user.email,
-      req.user.role
+      user.id,
+      user.name,
+      user.surename,
+      user.email,
+      user.phone,
+      user.role
     );
+
     return res.json({ jsonWebToken });
   }
 }

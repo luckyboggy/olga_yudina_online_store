@@ -320,7 +320,8 @@ main {
 
   .admin__content {
     .admin__category,
-    .admin__products {
+    .admin__products,
+    .admin__personal {
       padding: 0 0.5rem;
       .admin__category_new {
         border: 1px solid $haeder_bc;

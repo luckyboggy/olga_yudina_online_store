@@ -1,8 +1,9 @@
 import React, { useState, useContext } from "react";
 import ProductList from "../components/ProductList";
 import { Context } from "../index.js";
+import { observer } from "mobx-react-lite";
 
-const Shop = () => {
+const Shop = observer(() => {
   const [sort, setSort] = useState(false);
   const { product } = useContext(Context);
 
@@ -26,6 +27,6 @@ const Shop = () => {
       </div>
     </div>
   );
-};
+});
 
 export { Shop };

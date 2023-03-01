@@ -5,8 +5,10 @@ import { ProductManagement } from "../components/adminManagements/ProductManagem
 import { CategoryManagement } from "../components/adminManagements/CategoryManagement.jsx";
 import { UserManagement } from "../components/adminManagements/UserManagement.jsx";
 import { OrderManagement } from "../components/adminManagements/OrderManagement.jsx";
+import { PersonalManagement } from "../components/adminManagements/PersonalManagement.jsx";
+import { observer } from "mobx-react-lite";
 
-const Admin = () => {
+const Admin = observer(() => {
   const isMobile = IsMobil();
 
   const management = [
@@ -14,6 +16,7 @@ const Admin = () => {
     { value: "types", name: "Категории" },
     { value: "users", name: "Пользователи" },
     { value: "orders", name: "Заказы" },
+    { value: "personal", name: "Личные данные" },
   ];
 
   const [currentManagement, setCurrentManagement] = useState("products");
@@ -30,9 +33,10 @@ const Admin = () => {
         {currentManagement === "types" && <CategoryManagement />}
         {currentManagement === "users" && <UserManagement />}
         {currentManagement === "orders" && <OrderManagement />}
+        {currentManagement === "personal" && <PersonalManagement />}
       </div>
     </div>
   );
-};
+});
 
 export { Admin };

@@ -5,10 +5,10 @@ import { ReactComponent as Auth } from "../../img/svg/person.svg";
 import { ReactComponent as Basket } from "../../img/svg/basket.svg";
 import { ReactComponent as Burger } from "../../img/svg/burger.svg";
 import { Context } from "../../index.js";
+import { observer } from "mobx-react-lite";
 
-const Header = ({ setMobileMenu }) => {
+const Header = observer(({ setMobileMenu }) => {
   const { user } = useContext(Context);
-  
 
   return (
     <header>
@@ -54,6 +54,6 @@ const Header = ({ setMobileMenu }) => {
       </div>
     </header>
   );
-};
+});
 
 export { Header };
