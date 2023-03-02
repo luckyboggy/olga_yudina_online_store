@@ -4,8 +4,9 @@ import { ReactComponent as Close } from "../img/svg/close.svg";
 import { ReactComponent as Search } from "../img/svg/search.svg";
 import { ReactComponent as Arrow } from "../img/svg/arrow.svg";
 import { Context } from "../index.js";
+import { observer } from "mobx-react-lite";
 
-const MobileMenu = ({ mobileMenu, setMobileMenu }) => {
+const MobileMenu = observer(({ mobileMenu, setMobileMenu }) => {
   const [collection, setCollection] = useState(false);
   const { product } = useContext(Context);
 
@@ -73,7 +74,7 @@ const MobileMenu = ({ mobileMenu, setMobileMenu }) => {
           >
             workshops
           </Link>
-          </div>
+        </div>
         <div className="mobileMenu__item">
           <Link
             className="mobileMenu__item_title"
@@ -96,6 +97,6 @@ const MobileMenu = ({ mobileMenu, setMobileMenu }) => {
       <div className="mobileMenu__nav"></div>
     </div>
   );
-};
+});
 
 export { MobileMenu };

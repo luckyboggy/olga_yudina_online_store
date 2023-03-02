@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { CustomButton } from "../UI/button/CustomButton";
 import { Context } from "../../index.js";
 import { useNavigate } from "react-router-dom";
-import { LOGIN_ROUTE, MAINPAGE_ROUTE } from "../../utils/consts";
+import { LOGIN_ROUTE } from "../../utils/consts";
 
 const PersonalManagement = () => {
   const { user } = useContext(Context);

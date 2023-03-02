@@ -1,7 +1,14 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { fetchOneProduct } from "../http/productAPI";
 
 const Product = () => {
-  const item = { id: 1, name: "Серьги_1", price: 5000 };
+  const [item, setItem] = useState({});
+  const { id } = useParams();
+
+  useEffect(() => {
+    fetchOneProduct(id).then((data) => setItem(data));
+  }, [id]);
 
   return (
     <div className="product">
