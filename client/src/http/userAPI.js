@@ -7,7 +7,7 @@ const registration = async (email, password) => {
     password,
     role: "ADMIN",
   });
-  localStorage.setItem("jsonWebToken", data.jsonWebToken);
+  window.localStorage.setItem("jsonWebToken", data.jsonWebToken);
   return jwt_decode(data.jsonWebToken);
 };
 

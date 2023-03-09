@@ -5,47 +5,99 @@ import { ReactComponent as Accept } from "../../img/svg/accept.svg";
 import { ReactComponent as Close } from "../../img/svg/close.svg";
 import { CustomInput } from "../UI/input/CustomInput.jsx";
 import CustomSelect from "../UI/select/CustomSelect.jsx";
+import { observer } from "mobx-react-lite";
+import { createProduct } from "../../http/productAPI.js";
 
-const ProductManagement = () => {
+const ProductManagement = observer(() => {
   const { product } = useContext(Context);
-  const [newProduct, setNewProduct] = useState(false);
+  const [creation, setCreation] = useState(false);
+  const [newProduct, setNewProduct] = useState({
+    name: "",
+    price: "",
+    img: {},
+    typeId: null,
+  });
+
+  const selectFile = (event) => {
+    setNewProduct({ ...newProduct, img: event.target.value[0] });
+  };
+
+  const selectTypeId = (typeName) => {
+    const id = product.types.find((type) => {
+      return type.name === typeName;
+    }).id;
+    setNewProduct({ ...newProduct, typeId: id });
+  };
+
+  const addProduct = () => {
+    createProduct({ ...newProduct }).then(() => {
+      setNewProduct({
+        name: "",
+        price: "",
+        img: {},
+        typeId: null,
+      });
+    });
+  };
 
   return (
     <div className="admin__products">
-      {!newProduct && (
+      {!creation && (
         <div className="admin__products_add">
           <Add
             className="admin__products_addItem"
-            onClick={() => setNewProduct(true)}
+            onClick={() => setCreation(true)}
           />
         </div>
       )}
 
       {/* Новый товар */}
-      {newProduct && (
+      {creation && (
         <form className="admin__products_new">
           Новый товар
           <div className="admin__products_input">
             <div>Назвение</div>
-            <CustomInput />
+            <CustomInput
+              placeholder="название"
+              value={newProduct.name}
+              onChange={(event) =>
+                setNewProduct({ ...newProduct, name: event.target.value })
+              }
+            />
           </div>
           <div className="admin__products_input">
             <div>Цена</div>
-            <CustomInput />
+            <CustomInput
+              placeholder="цена"
+              value={newProduct.price}
+              onChange={(event) =>
+                setNewProduct({
+                  ...newProduct,
+                  price: Number(event.target.value),
+                })
+              }
+            />
           </div>
           <div className="admin__products_input">
             <div>Категория</div>
-            <CustomSelect options={product.types} onChange={() => {}} />
+            <CustomSelect options={product.types} onChange={selectTypeId} />
           </div>
-          <CustomInput type="file" />
+          <CustomInput type="file" onChange={selectFile} />
           <div className="admin__products_btns">
-            <Accept type="submit" className="acceptBtn" />
-            <Close className="closeBtn" onClick={() => setNewProduct(false)} />
+            <Accept
+              type="submit"
+              className="acceptBtn"
+              onClick={() => {
+                console.log(newProduct);
+                addProduct();
+              }}
+            />
+            <Close className="closeBtn" onClick={() => setCreation(false)} />
           </div>
         </form>
       )}
     </div>
   );
-};
+});
 
 export { ProductManagement };

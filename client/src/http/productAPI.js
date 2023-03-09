@@ -21,8 +21,8 @@ const deleteType = async (id) => {
 }
 
 //Товары
-const createProduct = async (type) => {
-    const { data } = await $authHost.post('api/product', type);
+const createProduct = async (product) => {
+    const { data } = await $authHost.post('api/product', product);
     return data;
 }
 
