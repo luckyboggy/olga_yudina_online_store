@@ -7,6 +7,7 @@ import { CustomInput } from "../UI/input/CustomInput.jsx";
 import CustomSelect from "../UI/select/CustomSelect.jsx";
 import { observer } from "mobx-react-lite";
 import { createProduct } from "../../http/productAPI.js";
+import ProductList from "../ProductList.jsx";
 
 const ProductManagement = observer(() => {
   const { product } = useContext(Context);
@@ -96,6 +97,14 @@ const ProductManagement = observer(() => {
           </div>
         </form>
       )}
+
+      {/* Фильтр/Сортировка */}
+      <div></div>
+
+      {/* Список товаров */}
+      <div className="shop__products">
+        <ProductList />
+      </div>
     </div>
   );
 });

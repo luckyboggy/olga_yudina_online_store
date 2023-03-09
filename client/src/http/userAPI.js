@@ -5,7 +5,7 @@ const registration = async (email, password) => {
   const { data } = await $host.post("api/user/registration", {
     email,
     password,
-    role: "ADMIN",
+    role: "USER",
   });
   window.localStorage.setItem("jsonWebToken", data.jsonWebToken);
   return jwt_decode(data.jsonWebToken);

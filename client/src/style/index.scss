@@ -311,14 +311,17 @@ main {
   }
 }
 
-.admin {
-  .admin__menu {
+.admin,
+.user {
+  .admin__menu,
+  .user__menu {
     display: flex;
     justify-content: center;
     padding: 0 2rem;
   }
 
-  .admin__content {
+  .admin__content,
+  .user__content {
     .admin__category,
     .admin__products,
     .admin__personal {
