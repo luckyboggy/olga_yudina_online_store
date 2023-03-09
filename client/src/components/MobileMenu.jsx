@@ -1,21 +1,29 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { ReactComponent as Close } from "../img/svg/close.svg";
 import { ReactComponent as Search } from "../img/svg/search.svg";
 import { ReactComponent as Arrow } from "../img/svg/arrow.svg";
 import { Context } from "../index.js";
 import { observer } from "mobx-react-lite";
+import { fetchTypes } from "../http/productAPI.js";
 
 const MobileMenu = observer(({ mobileMenu, setMobileMenu }) => {
   const [collection, setCollection] = useState(false);
   const { product } = useContext(Context);
+
+  useEffect(() => {
+    fetchTypes().then((data) => product.setTypes(data));
+  }, [collection]);
 
   return (
     <div className={mobileMenu ? "mobileMenu activeMenu" : "mobileMenu"}>
       <div className="mobileMenu__header">
         <Close
           className="mobileMenu__close"
-          onClick={() => setMobileMenu(false)}
+          onClick={() => {
+            setMobileMenu(false);
+            setCollection(false);
+          }}
         />
         <Search className="mobileMenu__search" />
       </div>

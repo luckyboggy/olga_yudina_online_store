@@ -13,16 +13,34 @@ const CategoryManagement = observer(() => {
   const [creation, setCreation] = useState(false);
   const [newCategory, setNewCategory] = useState("");
 
+  // Добавление категории
+  const addType = () => {
+    createType({ name: newCategory })
+      .then((data) => {
+        setNewCategory("");
+        setCreation(false);
+      })
+      .then(() => {
+        fetchTypes().then((data1) => {
+          product.setTypes(data1);
+        });
+      });
+  };
+
+  // Удаление категории
+  const removeType = (type) => {
+    deleteType(type.id).then(() => {
+      fetchTypes().then((data1) => {
+        product.setTypes(data1);
+      });
+    });
+  };
+
   useEffect(() => {
     fetchTypes().then((data) => {
       product.setTypes(data);
     });
-  });
-
-  const addType = () => {
-    createType({ name: newCategory }).then((data) => setNewCategory(""));
-    setCreation(false);
-  };
+  }, []);
 
   return (
     <div className="admin__category">
@@ -61,7 +79,7 @@ const CategoryManagement = observer(() => {
         {product.types.map((type) => (
           <div key={type.name} className="admin__category_typeItem">
             {type.name}
-            <Remove className="removeBtn" onClick={() => deleteType(type.id)} />
+            <Remove className="removeBtn" onClick={() => removeType(type)} />
           </div>
         ))}
       </div>
