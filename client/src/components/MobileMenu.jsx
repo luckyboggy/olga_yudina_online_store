@@ -43,7 +43,7 @@ const MobileMenu = observer(({ mobileMenu, setMobileMenu }) => {
                 className="mobileMenu__ddItem"
                 to="shop"
                 onClick={() => {
-                  product.setSelectedType({ name: "all" });
+                  product.setSelectedType({});
                   setMobileMenu(false);
                 }}
               >
@@ -59,7 +59,7 @@ const MobileMenu = observer(({ mobileMenu, setMobileMenu }) => {
                     setMobileMenu(false);
                   }}
                 >
-                  {type.name.toLowerCase()}
+                  {type.name/* .toLowerCase() */}
                 </Link>
               ))}
             </div>

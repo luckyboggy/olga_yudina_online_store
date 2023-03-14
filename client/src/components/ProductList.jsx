@@ -1,8 +1,9 @@
 import React, { useContext } from "react";
 import { ProductItem } from "./ProductItem";
 import { Context } from "../index.js";
+import { observer } from "mobx-react-lite";
 
-const ProductList = () => {
+const ProductList = observer(() => {
   const { product } = useContext(Context);
 
   return (
@@ -12,6 +13,6 @@ const ProductList = () => {
       ))}
     </div>
   );
-};
+});
 
 export default ProductList;

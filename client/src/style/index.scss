@@ -421,3 +421,15 @@ main {
 
 .user {
 }
+
+.pagination {
+  width: 100%;
+  padding: 1.5rem 2rem 0.5rem;
+  display: flex;
+  justify-content: space-around;
+
+  .pageItem {
+    font-size: 22px;
+    color:  $haeder_bc;
+  }
+}
