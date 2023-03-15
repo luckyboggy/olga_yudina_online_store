@@ -20,7 +20,7 @@ const ProductManagement = observer(() => {
   });
 
   const selectFile = (event) => {
-    setNewProduct({ ...newProduct, img: event.target.value[0] });
+    setNewProduct({ ...newProduct, img: event.target.files[0]});
   };
 
   const selectTypeId = (typeName) => {
@@ -31,7 +31,14 @@ const ProductManagement = observer(() => {
   };
 
   const addProduct = () => {
-    createProduct({ ...newProduct }).then(() => {
+    const formData = new FormData();
+    formData.append('name', newProduct.name);
+    formData.append('price', newProduct.price);
+    formData.append('typeId', newProduct.typeId);
+    formData.append('img', newProduct.img);
+
+
+    createProduct(formData).then(() => {
       setNewProduct({
         name: "",
         price: "",

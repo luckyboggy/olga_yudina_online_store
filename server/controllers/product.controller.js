@@ -9,12 +9,20 @@ class ProductController {
   async create(req, res, next) {
     try {
       let { name, price, typeId, info } = req.body;
-      const { img } = req.files || false;
+      let { img } = req.files || false;
+
       let imgArr = [];
 
       if (img) {
+        if (img.length > 1) {
+          img = [...img];
+        } else {
+          img = [img];
+        }
+
         for (let i = 0; i < img.length; i++) {
           let fileName = v4() + ".png";
+
           img[i].mv(
             path.resolve(__dirname, "..", "server", "static", fileName)
           );
@@ -65,11 +73,10 @@ class ProductController {
   }
   async getOne(req, res) {
     const { id } = req.params;
-    const product = await Product.findOne(
-      { 
-        where: { id },
-        include: [{model: ProductInfo, as: 'info'}]
-      });
+    const product = await Product.findOne({
+      where: { id },
+      include: [{ model: ProductInfo, as: "info" }],
+    });
     res.json(product);
   }
   async delete(req, res) {

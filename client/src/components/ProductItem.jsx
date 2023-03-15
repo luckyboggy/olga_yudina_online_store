@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { PRODUCT_ROUTE } from "../utils/consts.js";
 
 const ProductItem = ({ item }) => {
-  const { id, name, price} = item;
+  const { id, name, price, img} = item;
   const navigate = useNavigate();
 
   return (
@@ -11,7 +11,9 @@ const ProductItem = ({ item }) => {
       className="shop__productItem"
       onClick={() => navigate("../" + PRODUCT_ROUTE + "/" + id)}
     >
-      <div className="productImg"></div>
+      <div className="productImg">
+      <img src={process.env.REACT_APP_API_URL + img} alt={name} />
+      </div>
       <div className="productContent">
         <div className="productName">{name}</div>
         <div className="productPrice">{price} р.</div>

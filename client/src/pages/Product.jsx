@@ -10,9 +10,12 @@ const Product = () => {
     fetchOneProduct(id).then((data) => setItem(data));
   }, [id]);
 
+
   return (
     <div className="product">
-      <div className="product__img"></div>
+      <div className="product__img">
+        <img src={process.env.REACT_APP_API_URL + item.img} alt={item.name} />
+      </div>
       <div className="product__content">
         <div className="product__title">{item.name}</div>
         <div className="product__price">{item.price}</div>

@@ -250,8 +250,11 @@ main {
   margin-bottom: 15px;
   .productImg {
     min-width: 150px;
-    min-height: 200px;
+    min-height: 150px;
     background-color: $header_fc;
+    img {
+      width: 100%;
+    }
   }
 
   .productContent {
@@ -281,8 +284,11 @@ main {
 .product {
   .product__img {
     width: 100%;
-    height: 300px;
-    background-color: #ffe4c4;
+    //height: 300px;
+    //background-color: #ffe4c4;
+    img {
+      width: 100%;
+    }
   }
 
   .product__content {

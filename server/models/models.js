@@ -31,19 +31,19 @@ const Favorites = sequelize.define('favorites', {
 
 const BasketProduct = sequelize.define('basket_product', {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true }
-    // baket_id
+    // basket_id
     // product_id
 });
 
 const OrderProduct = sequelize.define('order_product', {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true }
-    // baket_id
+    // basket_id
     // product_id
 });
 
 const FavoritesProduct = sequelize.define('favorites_product', {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true }
-    // baket_id
+    // basket_id
     // product_id
 });
 
