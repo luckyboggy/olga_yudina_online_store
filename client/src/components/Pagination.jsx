@@ -4,12 +4,13 @@ import { observer } from "mobx-react-lite";
 
 const Pagination = observer(() => {
   const { product } = useContext(Context);
-  const pageCount = Math.ceil(product.totalCount / product.limit);
   const pages = [];
 
-  for (let i = 0; i < pageCount; i++) {
+  for (let i = 0; i < product.pageCount; i++) {
     pages.push(i + 1);
   }
+
+  console.log(product.pageCount);
 
   return (
     <div className="pagination">

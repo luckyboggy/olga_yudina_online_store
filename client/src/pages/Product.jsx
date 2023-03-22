@@ -10,7 +10,6 @@ const Product = () => {
     fetchOneProduct(id).then((data) => setItem(data));
   }, [id]);
 
-
   return (
     <div className="product">
       <div className="product__img">
@@ -19,7 +18,7 @@ const Product = () => {
       <div className="product__content">
         <div className="product__title">{item.name}</div>
         <div className="product__price">{item.price}</div>
-        <div className="product__description">тут какое-то описание</div>
+        <div className="product__description">{item.description}</div>
         <button className="product__button">в корзину</button>
       </div>
     </div>

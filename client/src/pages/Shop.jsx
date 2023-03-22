@@ -14,6 +14,7 @@ const Shop = observer(() => {
     fetchProducts(null, product.limit, 1).then((data) => {
       product.setItems(data.rows);
       product.setTotalCount(data.count);
+      product.setPageCount();
     });
   }, []);
 
@@ -22,6 +23,7 @@ const Shop = observer(() => {
       (data) => {
         product.setItems(data.rows);
         product.setTotalCount(data.count);
+        product.setPageCount();
       }
     );
   }, [product.page, product.selectedType]);
@@ -44,7 +46,7 @@ const Shop = observer(() => {
       <div className="shop__products">
         <ProductList />
       </div>
-      <Pagination />
+      {product.pageCount > 1 && <Pagination />}
     </div>
   );
 });

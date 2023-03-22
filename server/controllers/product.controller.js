@@ -8,7 +8,7 @@ const __dirname = path.resolve();
 class ProductController {
   async create(req, res, next) {
     try {
-      let { name, price, typeId, info } = req.body;
+      let { name, price, typeId, description, info } = req.body;
       let { img } = req.files || false;
 
       let imgArr = [];
@@ -34,6 +34,7 @@ class ProductController {
         name,
         price,
         typeId,
+        description,
         info,
         img: imgArr,
       });
