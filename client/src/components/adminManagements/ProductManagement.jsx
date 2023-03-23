@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Context } from "../../index.js";
 import { ReactComponent as Add } from "../../img/svg/add.svg";
 import { ReactComponent as Accept } from "../../img/svg/accept.svg";
@@ -9,6 +9,7 @@ import CustomSelect from "../UI/select/CustomSelect.jsx";
 import { observer } from "mobx-react-lite";
 import { createProduct } from "../../http/productAPI.js";
 import ProductList from "../ProductList.jsx";
+import { fetchProducts } from "../../http/productAPI.js";
 
 const ProductManagement = observer(() => {
   const { product } = useContext(Context);
@@ -16,13 +17,13 @@ const ProductManagement = observer(() => {
   const [newProduct, setNewProduct] = useState({
     name: "",
     price: "",
-    img: {},
+    img: [],
     description: "",
     typeId: null,
   });
 
   const selectFile = (event) => {
-    setNewProduct({ ...newProduct, img: event.target.files[0] });
+    setNewProduct({ ...newProduct, img: [...event.target.files] });
   };
 
   const selectTypeId = (typeName) => {
@@ -44,12 +45,18 @@ const ProductManagement = observer(() => {
       setNewProduct({
         name: "",
         price: "",
-        img: {},
+        img: [],
         description: "",
         typeId: null,
       });
     });
   };
+
+  useEffect(() => {
+    fetchProducts(null, product.limit, 1).then((data) => {
+      product.setItems(data.rows);
+    });
+  }, []);
 
   return (
     <div className="admin__products">
@@ -93,7 +100,28 @@ const ProductManagement = observer(() => {
             <div>Категория</div>
             <CustomSelect options={product.types} onChange={selectTypeId} />
           </div>
-          <CustomInput type="file" onChange={selectFile} />
+          <input
+            type="file"
+            multiple
+            accept="image/+"
+            onChange={selectFile}
+            className="admin__products_fileInput"
+            id="fileInput"
+          />
+          <label for="fileInput">
+            <div>новая фотка</div>
+          </label>
+          {newProduct.img && (
+            <div className="selectedImages">
+              {newProduct.img.map((image) => (
+                <img
+                  key={image.name}
+                  src={URL.createObjectURL(image)}
+                  className="selectedImages__items"
+                />
+              ))}
+            </div>
+          )}
           <CustomTextArea
             placeholder="описание"
             value={newProduct.description}

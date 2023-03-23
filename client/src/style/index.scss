@@ -408,6 +408,12 @@ main {
           text-align: left;
         }
 
+        .admin__products_fileInput {
+          opacity: 0;
+          visibility: hidden;
+          position: absolute;
+        }
+
         .admin__products_btns {
           margin-top: 1rem;
           display: flex;
@@ -418,6 +424,15 @@ main {
             width: 44px;
             height: 44px;
             fill: $haeder_bc;
+          }
+        }
+
+        .selectedImages {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          .selectedImages__items {
+            height: 50px;
+            width: 50px;
           }
         }
       }
@@ -436,6 +451,6 @@ main {
 
   .pageItem {
     font-size: 22px;
-    color:  $haeder_bc;
+    color: $haeder_bc;
   }
 }
