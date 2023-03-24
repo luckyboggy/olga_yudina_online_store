@@ -18,14 +18,16 @@ const ProductManagement = observer(() => {
   const [newProduct, setNewProduct] = useState({
     name: "",
     price: "",
-    img: [],
+    img: null,
     description: "",
     typeId: null,
   });
 
   const selectFile = (event) => {
-    setNewProduct({ ...newProduct, img: [...event.target.files] });
+    setNewProduct({ ...newProduct, img: event.target.files });
   };
+
+  const images = newProduct.img ? [...newProduct.img] : [];
 
   const selectTypeId = (typeName) => {
     const id = product.types.find((type) => {
@@ -35,21 +37,21 @@ const ProductManagement = observer(() => {
   };
 
   const addProduct = () => {
-    console.log(newProduct.img);
     const formData = new FormData();
     formData.append("name", newProduct.name);
     formData.append("price", newProduct.price);
     formData.append("typeId", newProduct.typeId);
     formData.append("description", newProduct.description);
-    formData.append("img", newProduct.img);
-
-    console.log(newProduct.img);
+    console.log(images)
+    images.forEach((img, i) => {
+      formData.append(`img`, img);
+    });
 
     createProduct(formData).then(() => {
       setNewProduct({
         name: "",
         price: "",
-        img: [],
+        img: null,
         description: "",
         typeId: null,
       });
@@ -109,8 +111,8 @@ const ProductManagement = observer(() => {
           </div>
           {/* images */}
           <div className="admin__product_images">
-            {newProduct.img.length != 0 &&
-              newProduct.img.map((image) => (
+            {images.length != 0 &&
+              images.map((image) => (
                 <img
                   key={image.name}
                   src={URL.createObjectURL(image)}

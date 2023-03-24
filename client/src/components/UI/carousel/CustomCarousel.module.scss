@@ -1,12 +1,46 @@
+$haeder_bc: lightslategrey;
+$header_fc: #ffe4c4;
+
 .carouselWrapper {
   width: 100%;
-  img {
-    width: 100%;
-  }
-
-  .btns {
+  position: relative;
+  .carouselLine {
+    img {
+      width: 100%;
+    }
+    .btns {
+      height: 50px;
+      width: 50px;
+      border-radius: 50%;
+      position: absolute;
+      z-index: 1;
+      top: 45%;
+      text-align: center;
+      cursor: pointer;
+      &:hover {
+        background-color: rgb(255, 255, 255);
+      }
+    }
+    .prev {
+      left: 0;
+    }
+    .next {
+      right: 0;
+    }
   }
 
   .dots {
+    display: flex;
+    justify-content: center;
+    .dotItem {
+      margin: 5px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background-color: rgb(206, 206, 206);
+    }
+    .current {
+      background-color: $haeder_bc;
+    }
   }
 }

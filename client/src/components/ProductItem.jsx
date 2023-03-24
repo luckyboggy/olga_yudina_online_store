@@ -12,7 +12,7 @@ const ProductItem = ({ item }) => {
       onClick={() => navigate("../" + PRODUCT_ROUTE + "/" + id)}
     >
       <div className="productImg">
-      <img src={process.env.REACT_APP_API_URL + img} alt={name} />
+      <img src={process.env.REACT_APP_API_URL + img[0]} alt={name} />
       </div>
       <div className="productContent">
         <div className="productName">{name}</div>

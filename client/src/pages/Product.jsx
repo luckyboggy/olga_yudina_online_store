@@ -7,15 +7,16 @@ const Product = () => {
   const [item, setItem] = useState({});
   const { id } = useParams();
 
-  console.log(item.img);
-
   useEffect(() => {
     fetchOneProduct(id).then((data) => setItem(data));
   }, [id]);
 
   return (
     <div className="product">
-      <CustomCarousel url={process.env.REACT_APP_API_URL} images={item.img} />
+      {item.img && (
+        <CustomCarousel url={process.env.REACT_APP_API_URL} images={item.img} />
+      )}
+
       <div className="product__content">
         <div className="product__title">{item.name}</div>
         <div className="product__price">{item.price}</div>
