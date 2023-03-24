@@ -15,4 +15,4 @@ const ProductList = observer(() => {
   );
 });
 
-export default ProductList;
+export { ProductList };

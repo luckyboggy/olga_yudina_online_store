@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import CustomSelect from "../components/UI/select/CustomSelect";
+import { CustomSelect } from "../components/UI/select/CustomSelect";
 import { IsMobil } from "../hooks/IsMobil.js";
 import { ProductManagement } from "../components/adminManagements/ProductManagement.jsx";
 import { CategoryManagement } from "../components/adminManagements/CategoryManagement.jsx";

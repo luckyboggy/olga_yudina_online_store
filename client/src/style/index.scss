@@ -427,12 +427,26 @@ main {
           }
         }
 
-        .selectedImages {
+        .admin__product_images {
+          padding: 1rem 0;
+          width: 100%;
           display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          .selectedImages__items {
-            height: 50px;
-            width: 50px;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 0.5rem;
+
+          .imageItem {
+            height: 100%;
+            width: 100%;
+          }
+
+          .addNewImages {
+            border: 4px solid $haeder_bc;
+            stroke: $haeder_bc;
+            .addImg {
+              width: 100%;
+              height: 100%;
+              stroke: $haeder_bc;
+            }
           }
         }
       }

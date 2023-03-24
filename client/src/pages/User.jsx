@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import CustomSelect from "../components/UI/select/CustomSelect.jsx";
+import { CustomSelect } from "../components/UI/select/CustomSelect.jsx";
 import { IsMobil } from "../hooks/IsMobil.js";
 import { UserPersonal } from "../components/userManagement/UserPersonal.jsx";
 import { observer } from "mobx-react-lite";
@@ -21,7 +21,7 @@ const User = observer(() => {
           <CustomSelect options={management} onChange={setCurrentManagement} />
         )}
       </div>
-      {currentManagement === "personal" && <UserPersonal/>}
+      {currentManagement === "personal" && <UserPersonal />}
     </div>
   );
 });

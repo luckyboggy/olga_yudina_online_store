@@ -3,9 +3,11 @@ import classes from "./CustomSelect.module.scss";
 
 const CustomSelect = ({ options, onChange }) => {
   return (
-    <select className={classes.cSelect}
-    onChange={(event) => onChange(event.target.value)}>
-      {options.map((option) => 
+    <select
+      className={classes.cSelect}
+      onChange={(event) => onChange(event.target.value)}
+    >
+      {options.map((option) => (
         <option
           className={classes.cSelect}
           key={option.name}
@@ -13,9 +15,9 @@ const CustomSelect = ({ options, onChange }) => {
         >
           {option.name}
         </option>
-      )}
+      ))}
     </select>
   );
 };
 
-export default CustomSelect;
+export { CustomSelect };

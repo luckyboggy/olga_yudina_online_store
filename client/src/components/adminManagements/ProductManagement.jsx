@@ -1,14 +1,15 @@
 import React, { useContext, useState, useEffect } from "react";
 import { Context } from "../../index.js";
 import { ReactComponent as Add } from "../../img/svg/add.svg";
+import { ReactComponent as AddImg } from "../../img/svg/add02.svg";
 import { ReactComponent as Accept } from "../../img/svg/accept.svg";
 import { ReactComponent as Close } from "../../img/svg/close.svg";
 import { CustomInput } from "../UI/input/CustomInput.jsx";
 import { CustomTextArea } from "../UI/textarea/CustomTextArea.jsx";
-import CustomSelect from "../UI/select/CustomSelect.jsx";
+import { CustomSelect } from "../UI/select/CustomSelect.jsx";
 import { observer } from "mobx-react-lite";
 import { createProduct } from "../../http/productAPI.js";
-import ProductList from "../ProductList.jsx";
+import { ProductList } from "../ProductList.jsx";
 import { fetchProducts } from "../../http/productAPI.js";
 
 const ProductManagement = observer(() => {
@@ -34,12 +35,15 @@ const ProductManagement = observer(() => {
   };
 
   const addProduct = () => {
+    console.log(newProduct.img);
     const formData = new FormData();
     formData.append("name", newProduct.name);
     formData.append("price", newProduct.price);
     formData.append("typeId", newProduct.typeId);
     formData.append("description", newProduct.description);
     formData.append("img", newProduct.img);
+
+    console.log(newProduct.img);
 
     createProduct(formData).then(() => {
       setNewProduct({
@@ -73,6 +77,7 @@ const ProductManagement = observer(() => {
       {creation && (
         <form className="admin__products_new">
           Новый товар
+          {/* Name */}
           <div className="admin__products_input">
             <div>Назвение</div>
             <CustomInput
@@ -83,6 +88,7 @@ const ProductManagement = observer(() => {
               }
             />
           </div>
+          {/* price */}
           <div className="admin__products_input">
             <div>Цена</div>
             <CustomInput
@@ -96,32 +102,39 @@ const ProductManagement = observer(() => {
               }
             />
           </div>
+          {/* type */}
           <div className="admin__products_input">
             <div>Категория</div>
             <CustomSelect options={product.types} onChange={selectTypeId} />
           </div>
-          <input
-            type="file"
-            multiple
-            accept="image/+"
-            onChange={selectFile}
-            className="admin__products_fileInput"
-            id="fileInput"
-          />
-          <label for="fileInput">
-            <div>новая фотка</div>
-          </label>
-          {newProduct.img && (
-            <div className="selectedImages">
-              {newProduct.img.map((image) => (
+          {/* images */}
+          <div className="admin__product_images">
+            {newProduct.img.length != 0 &&
+              newProduct.img.map((image) => (
                 <img
                   key={image.name}
                   src={URL.createObjectURL(image)}
-                  className="selectedImages__items"
+                  className="imageItem"
                 />
               ))}
+
+            <div>
+              <input
+                type="file"
+                multiple
+                accept="image/+"
+                onChange={selectFile}
+                className="admin__products_fileInput"
+                id="fileInput"
+              />
+              <label htmlFor="fileInput">
+                <div className="imageItem addNewImages">
+                  <AddImg className="addImg" />
+                </div>
+              </label>
             </div>
-          )}
+          </div>
+          {/* description */}
           <CustomTextArea
             placeholder="описание"
             value={newProduct.description}
@@ -137,7 +150,6 @@ const ProductManagement = observer(() => {
               type="submit"
               className="acceptBtn"
               onClick={() => {
-                console.log(newProduct);
                 addProduct();
               }}
             />

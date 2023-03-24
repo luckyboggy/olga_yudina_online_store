@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { CustomCarousel } from "../components/UI/carousel/CustomCarousel.jsx";
 import { fetchOneProduct } from "../http/productAPI";
 
 const Product = () => {
   const [item, setItem] = useState({});
   const { id } = useParams();
+
+  console.log(item.img);
 
   useEffect(() => {
     fetchOneProduct(id).then((data) => setItem(data));
@@ -12,9 +15,7 @@ const Product = () => {
 
   return (
     <div className="product">
-      <div className="product__img">
-        <img src={process.env.REACT_APP_API_URL + item.img} alt={item.name} />
-      </div>
+      <CustomCarousel url={process.env.REACT_APP_API_URL} images={item.img} />
       <div className="product__content">
         <div className="product__title">{item.name}</div>
         <div className="product__price">{item.price}</div>

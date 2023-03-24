@@ -10,6 +10,7 @@ class ProductController {
     try {
       let { name, price, typeId, description, info } = req.body;
       let { img } = req.files || false;
+      console.log(img)
 
       let imgArr = [];
 

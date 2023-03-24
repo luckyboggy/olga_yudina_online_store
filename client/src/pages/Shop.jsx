@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
-import ProductList from "../components/ProductList";
+import { ProductList } from "../components/ProductList";
 import { Context } from "../index.js";
 import { observer } from "mobx-react-lite";
 import { fetchTypes, fetchProducts } from "../http/productAPI.js";
