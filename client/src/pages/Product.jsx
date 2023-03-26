@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { CustomCarousel } from "../components/UI/carousel/CustomCarousel.jsx";
 import { fetchOneProduct } from "../http/productAPI";
+//import { CustomCarousel } from "../components/UI/carousel2/CustomCaroousel.jsx";
+
 
 const Product = () => {
   const [item, setItem] = useState({});

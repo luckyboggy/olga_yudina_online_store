@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import classes from "./CustomCarousel.module.scss";
+import { ReactComponent as Prev } from "../../../img/svg//prev.svg";
+import { IsMobil } from "../../../hooks/IsMobil.js";
 
 const CustomCarousel = ({ images, url }) => {
+  const isMobil = IsMobil();
   const [currentImg, setCurrentImg] = useState(0);
 
   const plusIndex = (n) => {
@@ -14,36 +17,40 @@ const CustomCarousel = ({ images, url }) => {
     }
   };
 
-  const setCurrentIndex = () => {};
-
   return (
-    <div className={classes.carouselWrapper}>
-      <div className={classes.carouselLine}>
-        <img src={url + images[currentImg]} />
-        <div
-          className={`${classes.btns} ${classes.prev}`}
-          onClick={() => plusIndex(-1)}
-        >
-          л
+    <div className={classes.carousel}>
+      <div className={classes.carouselWrapper}>
+        <div className={classes.carouselLine}>
+          <img src={url + images[currentImg]} />
+          {!isMobil && (
+            <div
+              className={`${classes.btns} ${classes.prev}`}
+              onClick={() => plusIndex(-1)}
+            >
+              <Prev className={classes.prevArrow} />
+            </div>
+          )}
+          {!isMobil && (
+            <div
+              className={`${classes.btns} ${classes.next}`}
+              onClick={() => plusIndex(1)}
+            >
+              <Prev className={classes.nextArrow} />
+            </div>
+          )}
         </div>
-        <div
-          className={`${classes.btns} ${classes.next}`}
-          onClick={() => plusIndex(1)}
-        >
-          р
-        </div>
-      </div>
 
-      <div className={classes.dots}>
-        {images.map((i, index) => (
-          <div
-            className={`${classes.dotItem} ${
-              index === currentImg ? classes.current : ""
-            }`}
-            key={i}
-            onClick={() => setCurrentImg(index)}
-          ></div>
-        ))}
+        <div className={classes.dots}>
+          {images.map((i, index) => (
+            <div
+              className={`${classes.dotItem} ${
+                index === currentImg ? classes.current : ""
+              }`}
+              key={i}
+              onClick={() => setCurrentImg(index)}
+            ></div>
+          ))}
+        </div>
       </div>
     </div>
   );
