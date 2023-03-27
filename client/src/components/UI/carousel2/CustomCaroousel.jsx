@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import classes from "./CustomCarousel.module.scss";
 import { ReactComponent as Prev } from "../../../img/svg/prev.svg";
 import { IsMobil } from "../../../hooks/IsMobil.js";
 
 const CustomCarousel = ({ images, url }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [touchPosition, setTouchPosition] = useState(null);
   const isMobil = IsMobil();
 
   const plusIndex = (n) => {
@@ -17,9 +18,41 @@ const CustomCarousel = ({ images, url }) => {
     }
   };
 
+  // Swipe
+
+  const handleTouchStart = (event) => {
+    const touchDown = event.touches[0].clientX;
+    setTouchPosition(touchDown);
+  };
+
+  const handleTouchMove = (event) => {
+    const touchDown = touchPosition;
+
+    if (touchDown === null) {
+      return;
+    }
+
+    const currentTouch = event.touches[0].clientX;
+    const difference = touchDown - currentTouch;
+
+    if (difference > 5 && currentIndex < images.length - 1) {
+      plusIndex(1);
+    }
+
+    if (difference < -5 && currentIndex > 0) {
+      plusIndex(-1);
+    }
+
+    setTouchPosition(null);
+  };
+
   return (
     <div className={classes.carousel}>
-      <div className={classes.wrapper}>
+      <div
+        className={classes.wrapper}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+      >
         <div className={classes.constent}>
           <div
             className={classes.imagesLine}
@@ -34,12 +67,12 @@ const CustomCarousel = ({ images, url }) => {
             ))}
           </div>
         </div>
-        {currentIndex > 0 && (
+        {currentIndex > 0 && !isMobil && (
           <div className={classes.prev} onClick={() => plusIndex(-1)}>
             <Prev className={classes.prevArrow} />
           </div>
         )}
-        {currentIndex < images.length - 1 && (
+        {currentIndex < images.length - 1 && !isMobil && (
           <div className={classes.next} onClick={() => plusIndex(1)}>
             <Prev className={classes.nextArrow} />
           </div>
