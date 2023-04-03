@@ -4,6 +4,6 @@ import { basketProductController } from "../controllers/basketProduct.controller
 const basketProductRouter = new Router();
 
 basketProductRouter.post('/', basketProductController.addToBasket);
-basketProductRouter.get('/', basketProductController.getBasket);
+basketProductRouter.get('/', basketProductController.getBasketProduct);
 
 export { basketProductRouter };

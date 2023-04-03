@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { ReactComponent as Search } from "../../img/svg/search.svg";
 import { ReactComponent as Auth } from "../../img/svg/person.svg";
@@ -6,9 +6,17 @@ import { ReactComponent as Basket } from "../../img/svg/basket.svg";
 import { ReactComponent as Burger } from "../../img/svg/burger.svg";
 import { Context } from "../../index.js";
 import { observer } from "mobx-react-lite";
+import { getBasket } from "../../http/basketAPI.js";
 
 const Header = observer(({ setMobileMenu }) => {
   const { user } = useContext(Context);
+
+  useEffect(() => {
+    getBasket(user.user.id).then((data) => {
+      console.log(data.id)
+      user.setBasketId(data.id)
+    })
+  }, [user])
 
   return (
     <header>

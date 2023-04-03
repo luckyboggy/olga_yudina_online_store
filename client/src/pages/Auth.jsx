@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { SignInForm } from "../components/SignInForm";
 import { SignUpForm } from "../components/SignUpForm";
@@ -8,7 +8,6 @@ import {
   REGISTRATION_ROUTE,
 } from "../utils/consts";
 import { login, registration } from "../http/userAPI.js";
-import { useContext } from "react";
 import { Context } from "../index.js";
 import { observer } from "mobx-react-lite";
 

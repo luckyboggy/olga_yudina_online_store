@@ -1,11 +1,28 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import { fetchOneProduct } from "../http/productAPI";
 import { CustomCarousel } from "../components/UI/carousel2/CustomCaroousel.jsx";
+import { addToBasket } from "../http/basketProductAPI.js";
+import { Context } from "../index.js";
 
 const Product = () => {
   const [item, setItem] = useState({});
   const { id } = useParams();
+  const { user } = useContext(Context);
+
+  console.log(user.basketId);
+
+/*   console.log(user.basketId);
+  console.log(id);
+
+  const handleAddtoBasket = () => {
+    const basketProduct = {
+      basketId: user.basketId,
+      productId: id,
+    };
+  };
+
+  console.log("bid", user.basketId); */
 
   useEffect(() => {
     fetchOneProduct(id).then((data) => setItem(data));
@@ -21,7 +38,14 @@ const Product = () => {
         <div className="product__title">{item.name}</div>
         <div className="product__price">{item.price}</div>
         <div className="product__description">{item.description}</div>
-        <button className="product__button">в корзину</button>
+        <button
+          className="product__button"
+          onClick={() =>
+            addToBasket({ basketId: user.basketId, productId: id })
+          }
+        >
+          в корзину
+        </button>
       </div>
     </div>
   );
