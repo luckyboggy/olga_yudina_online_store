@@ -28,11 +28,11 @@ class BasketProductController {
     try {
       const { basketId } = req.query;
 
-      const basketProduct = await BasketProduct.findAll({
+      const basketProduct = await BasketProduct.findAndCountAll({
         where: { basketId },
       });
       return res.json(basketProduct);
-    } catch (error) {}
+    } catch (error) { }
   }
 }
 

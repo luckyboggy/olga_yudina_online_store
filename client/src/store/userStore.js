@@ -7,6 +7,7 @@ export class UserStore {
     //this._user ={role: "USER"};
     this._basketId = 0;
     this._basketCount = 0;
+    this._basketItems = [];
     makeAutoObservable(this);
   }
 
@@ -24,6 +25,9 @@ export class UserStore {
   setBasketCount(basketCount) {
     this._basketCount = basketCount;
   }
+  setBasketItems(basketItems) {
+    this._basketItems = basketItems;
+  }
 
   get isAuth() {
     return this._isAuth;
@@ -36,5 +40,8 @@ export class UserStore {
   }
   get basketCount() {
     return this._basketCount;
+  }
+  get basketItems() {
+    return this._basketItems;
   }
 }

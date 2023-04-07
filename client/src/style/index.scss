@@ -78,6 +78,23 @@ header {
     width: 22px;
     fill: $header_fc;
   }
+
+  .basketIcon {
+    position: relative;
+  }
+  .basketCount_item {
+    position: absolute;
+    background-color: darkred;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    bottom: -4px;
+    right: -8px;
+    font-size: 12px;
+  }
 }
 
 footer {

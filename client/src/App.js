@@ -6,6 +6,8 @@ import { authRoutes, publicRoutes } from "./routes.js";
 import { Context } from "./index.js";
 import { observer } from "mobx-react-lite";
 import { check } from "./http/userAPI.js";
+import { getBasket } from "./http/basketAPI.js";
+import { fetchBasketProduct } from "./http/basketProductAPI.js";
 
 const App = observer(() => {
 
@@ -14,14 +16,25 @@ const App = observer(() => {
   const [loading, setLoading] = useState(true);
   const [mobileMenu, setMobileMenu] = useState(false);
 
+
   useEffect(() => {
     check().then(data => {
       user.setUser(data);
       user.setIsAuth(true);
     }).finally(() => {
+      getBasket(user.user.id).then((data) => {
+        user.setBasketId(data.id)
+      }).then(() => {
+        fetchBasketProduct(user.basketId).then((data) => {
+          user.setBasketCount(data.count);
+          user.setBasketItems(data.rows);
+        })
+      })
       setLoading(false)
     })
   }, [])
+
+
 
   return (
     <BrowserRouter>

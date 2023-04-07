@@ -11,7 +11,6 @@ const fetchBasketProduct = async (basketId) => {
       basketId,
     },
   });
-  console.log(data)
   return data;
 };
 
