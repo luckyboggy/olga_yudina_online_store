@@ -1,23 +1,12 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import { ReactComponent as Remove } from "../img/svg/delete.svg";
-import { Context } from "../index.js";
 import { fetchOneProduct } from "../http/productAPI.js";
-import { deleteFromBasket } from "../http/basketProductAPI.js";
-import { fetchBasketProduct } from "../http/basketProductAPI.js";
+import { handleRemoveFromBasket } from "../functions/basketFunctions";
 
 const BasketItem = ({ item }) => {
-  const { user } = useContext(Context);
+
   const { productId } = item;
   const [basketItem, setBasketItem] = useState({});
-
-  const removeFromBasket = () => {
-    deleteFromBasket(productId).then(() => {
-      fetchBasketProduct(user.basketId).then((data) => {
-        user.setBasketCount(data.count);
-        user.setBasketItems(data.rows);
-      });
-    });
-  };
 
   useEffect(() => {
     fetchOneProduct(productId).then((data) => setBasketItem(data));
@@ -41,7 +30,7 @@ const BasketItem = ({ item }) => {
         </div>
       </div>
       <div className="basketProduct__control">
-        <Remove className="removeBtn" onClick={() => removeFromBasket()} />
+        <Remove className="removeBtn" onClick={() => handleRemoveFromBasket(productId)} />
       </div>
     </div>
   );

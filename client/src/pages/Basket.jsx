@@ -1,6 +1,6 @@
 import React, { useEffect, useContext } from "react";
 import { Context } from "../index.js";
-import { BasketList } from "./BasketList.jsx";
+import { BasketList } from "../components/BasketList.jsx";
 import { observer } from "mobx-react-lite";
 
 const Basket = observer(() => {

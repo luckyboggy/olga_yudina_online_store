@@ -37,9 +37,8 @@ class BasketProductController {
 
   async delete(req, res) {
     const { productId } = req.params;
-    console.log(productId)
-    /* const basketProduct = await BasketProduct.destroy({ where: { productId } });
-    return res.json(basketProduct) */
+    const basketProduct = await BasketProduct.destroy({ where: { productId } });
+    return res.json(basketProduct)
   }
 }
 
