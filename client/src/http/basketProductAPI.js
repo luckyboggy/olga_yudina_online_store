@@ -13,5 +13,11 @@ const fetchBasketProduct = async (basketId) => {
   });
   return data;
 };
+const deleteFromBasket = async (productId) => {
+  const { data } = await $authHost.delete(`api/basketProduct/${productId}`);
+  window.localStorage.setItem("jsonWebToken", data.jsonWebToken);
+  return data.jsonWebToken;
 
-export { addToBasket, fetchBasketProduct };
+}
+
+export { addToBasket, fetchBasketProduct, deleteFromBasket };

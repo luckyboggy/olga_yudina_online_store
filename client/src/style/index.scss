@@ -486,3 +486,52 @@ main {
     color: $haeder_bc;
   }
 }
+
+.basket {
+  .basket__products {
+    .basket__productList {
+      .basketProduct {
+        display: grid;
+        grid-template-columns: 5fr 1fr;
+        border: 1px solid $haeder_bc;
+        border-radius: 0.5rem;
+        padding: 0.5rem;
+        margin-bottom: 5px;
+        .basketProduct__content {
+          display: grid;
+          grid-template-columns: 1fr 4fr;
+          .basketProduct__img {
+            img {
+              width: 100%;
+            }
+          }
+          .basketProduct__info {
+            display: grid;
+            grid-template-columns: 1.25fr 1fr;
+            align-items: center;
+            .basketProduct__name {
+              font-size: 18px;
+              margin: 0 0.5rem;
+            }
+
+            .basketProduct__price {
+              font-size: 22px;
+              margin: 0 0.25rem;
+            }
+          }
+        }
+
+        .basketProduct__control {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          .removeBtn {
+            stroke: $haeder_bc;
+            height: 30px;
+            width: 30px;
+          }
+        }
+      }
+    }
+  }
+}

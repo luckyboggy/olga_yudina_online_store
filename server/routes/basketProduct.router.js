@@ -5,5 +5,6 @@ const basketProductRouter = new Router();
 
 basketProductRouter.post('/', basketProductController.addToBasket);
 basketProductRouter.get('/', basketProductController.getBasketProduct);
+basketProductRouter.delete('/:id', basketProductController.delete);
 
 export { basketProductRouter };
