@@ -290,11 +290,26 @@ main {
     }
     .productBtn {
       width: 100%;
+      height: 37px;
       padding: 6px;
       font-size: 14px;
       background-color: $haeder_bc;
       color: $header_fc;
       border: none;
+      .basket_icon {
+        height: 22px;
+        width: 22px;
+        fill: $header_fc;
+      }
+    }
+    .productBtn_order {
+      width: 100%;
+      height: 37px;
+      padding: 6px;
+      font-size: 14px;
+      background-color: $header_fc;
+      color: $haeder_bc;
+      border: 1px solid $haeder_bc;
     }
   }
 }
@@ -325,11 +340,28 @@ main {
       font-size: 18px;
     }
     .product__button {
+      width: 120px;
+      height: 47px;
       padding: 6px;
       font-size: 18px;
       background-color: $haeder_bc;
       color: $header_fc;
       border: none;
+      cursor: pointer;
+      .basket_icon {
+        width: 30px;
+        height: 30px;
+        fill: $header_fc;
+      }
+    }
+    .product__button_order {
+      width: 120px;
+      height: 47px;
+      padding: 6px;
+      font-size: 18px;
+      background-color: $header_fc;
+      color: $haeder_bc;
+      border: 1px solid $haeder_bc;
       cursor: pointer;
     }
   }

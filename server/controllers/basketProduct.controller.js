@@ -4,7 +4,6 @@ class BasketProductController {
   async addToBasket(req, res) {
     try {
       const { productId, basketId } = req.body;
-      //const basketId = req.basket.id;
 
       // Проверка, есть ли данный товар в корзине
       const basketItem = await BasketProduct.findOne({
