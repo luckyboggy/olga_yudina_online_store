@@ -4,6 +4,7 @@ import {
   fetchBasketProduct,
   deleteFromBasket,
 } from "../http/basketProductAPI.js";
+import { fetchOneProduct } from "../http/productAPI.js";
 
 const handleAddToBasket = (id) => {
   addToBasket({ basketId: user.basketId, productId: id });
@@ -30,4 +31,23 @@ const isInBasket = (id) => {
   return false;
 };
 
-export { handleAddToBasket, handleRemoveFromBasket, isInBasket };
+const basketTotalPrice = async () => {
+  let total = 0;
+
+  const productData = await Promise.all(
+    user.basketItems.map((item) => fetchOneProduct(item.productId))
+  );
+
+  productData.forEach((data) => {
+    total += Number(data.price);
+  });
+
+  return total;
+};
+
+export {
+  handleAddToBasket,
+  handleRemoveFromBasket,
+  isInBasket,
+  basketTotalPrice,
+};
