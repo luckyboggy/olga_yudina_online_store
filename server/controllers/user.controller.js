@@ -1,5 +1,5 @@
 import { ApiError } from "../error/ApiError.js";
-import { User, Basket } from "../models/models.js";
+import { User, Basket, Favorites} from "../models/models.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
@@ -37,6 +37,7 @@ class UserController {
       password: hashPassword,
     });
     const basket = await Basket.create({ userId: user.id });
+    const favorites = await Favorites.create({ userId: user.id });
 
     const jsonWebToken = generateJwt(
       user.id,
