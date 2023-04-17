@@ -7,8 +7,10 @@ const Layout = ({ setMobileMenu, setMobilBasket }) => {
   return (
     <div>
       <Header setMobileMenu={setMobileMenu} setMobilBasket={setMobilBasket} />
-      <main className="container">
-        <Outlet />
+      <main>
+        <div className="container">
+          <Outlet />
+        </div>
       </main>
       <Footer />
     </div>

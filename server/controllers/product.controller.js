@@ -10,7 +10,7 @@ class ProductController {
     try {
       let { name, price, typeId, description, info } = req.body;
       let { img } = req.files || false;
-      console.log(img)
+      console.log(img);
 
       let imgArr = [];
 
@@ -65,11 +65,16 @@ class ProductController {
     if (typeId) {
       products = await Product.findAndCountAll({
         where: { typeId },
+        order: [["price", "DESC"]],
         limit,
         offset,
       });
     } else {
-      products = await Product.findAndCountAll({ limit, offset });
+      products = await Product.findAndCountAll({
+        order: [["price", "DESC"]],
+        limit,
+        offset,
+      });
     }
     return res.json(products);
   }
