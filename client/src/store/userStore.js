@@ -8,7 +8,7 @@ export class UserStore {
     this._basketId = 0;
     this._basketCount = 0;
     this._basketItems = [];
-    this._favoritesId = 0;
+    this._favoriteId = 0;
     this._favoritesItems = [];
     makeAutoObservable(this);
   }
@@ -30,8 +30,8 @@ export class UserStore {
   setBasketItems(basketItems) {
     this._basketItems = basketItems;
   }
-  setFavoritesId(favoritesId) {
-    this._favoritesId = favoritesId;
+  setFavoriteId(favoriteId) {
+    this._favoriteId = favoriteId;
   }
   setFavoritesItems(favoritesItems) {
     this._favoritesItems = favoritesItems;
@@ -52,8 +52,8 @@ export class UserStore {
   get basketItems() {
     return this._basketItems;
   }
-  get favoritesId() {
-    return this._favoritesId;
+  get favoriteId() {
+    return this._favoriteId;
   }
   get favoritesItems() {
     return this._favoritesItems;

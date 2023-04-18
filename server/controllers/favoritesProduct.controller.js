@@ -3,17 +3,17 @@ import { FavoritesProduct } from "../models/models.js";
 class FavoritesProductController {
   async addToFavorites(req, res) {
     try {
-      const { productId, favoritesId } = req.body;
+      const { productId, favoriteId } = req.body;
 
       // Проверка, есть ли данный товар в избранном
       const favoritesItem = await FavoritesProduct.findOne({
-        where: { productId, favoritesId },
+        where: { productId, favoriteId },
       });
 
       if (favoritesItem) {
       } else {
         const favoritesProduct = await FavoritesProduct.create({
-          favoritesId,
+          favoriteId,
           productId,
         });
         return res.json(favoritesProduct);
@@ -25,10 +25,10 @@ class FavoritesProductController {
 
   async getFavoritesProduct(req, res) {
     try {
-      const { favoritesId } = req.query;
+      const { favoriteId } = req.query;
 
       const favoritesProduct = await FavoritesProduct.findAndCountAll({
-        where: { favoritesId },
+        where: { favoriteId },
       });
       return res.json(favoritesProduct);
     } catch (error) { }

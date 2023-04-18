@@ -263,12 +263,34 @@ main {
 
 .shop__productItem {
   margin-bottom: 15px;
-  .productImg {
-    min-width: 150px;
-    min-height: 150px;
-    background-color: $header_fc;
-    img {
-      width: 100%;
+  .productImg__wrapper {
+    position: relative;
+    .productImg {
+      min-width: 150px;
+      min-height: 150px;
+      background-color: $header_fc;
+      img {
+        width: 100%;
+      }
+    }
+    .productLike__wrapper {
+      top: 0;
+      right: 0;
+      width: 50px;
+      height: 50px;
+      position: absolute;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .prodictLike {
+        width: 35px;
+        height: 35px;
+        fill: white;
+        stroke: $haeder_bc;
+      }
+      .liked {
+        fill: $header_fc;
+      }
     }
   }
 

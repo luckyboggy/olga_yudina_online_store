@@ -6,15 +6,15 @@ import {
 } from "../http/favoritesProductAPI.js";
 
 const handleAddToFavorites = (id) => {
-  addToFavorites({ favoritesId: user.favoritesId, productId: id });
-  fetchFavoritesProduct(user.favoritesId).then((data) => {
+  addToFavorites({ favoriteId: user.favoriteId, productId: id });
+  fetchFavoritesProduct(user.favoriteId).then((data) => {
     user.setFavoritesItems(data.rows);
   });
 };
 
 const handleRemoveFromFavorites = (productId) => {
   deleteFromFavorites(productId).then(() => {
-    fetchFavoritesProduct(user.favoritesId).then((data) => {
+    fetchFavoritesProduct(user.favoriteId).then((data) => {
       user.setFavoritesItems(data.rows);
     });
   });

@@ -2,13 +2,29 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { BASKET_ROUTE, PRODUCT_ROUTE } from "../utils/consts.js";
 import { handleAddToBasket, isInBasket } from "../functions/basketFunctions.js";
+import {
+  handleAddToFavorites,
+  handleRemoveFromFavorites,
+  isInFavorites,
+} from "../functions/favoritesFunctions.js";
 import { ReactComponent as Basket } from "../img/svg/basket.svg";
+import { ReactComponent as Like } from "../img/svg/like.svg";
 import { observer } from "mobx-react-lite";
 
 const ProductItem = observer(({ item }) => {
   const { id, name, price, img } = item;
   const navigate = useNavigate();
   const inBasket = isInBasket(id);
+  const favorite = isInFavorites(id);
+
+  const toggleFavorite = (event) => {
+    event.stopPropagation();
+    if (favorite) {
+      handleRemoveFromFavorites(id);
+    } else {
+      handleAddToFavorites(id);
+    }
+  };
 
   return (
     <div
@@ -17,15 +33,27 @@ const ProductItem = observer(({ item }) => {
         event.stopPropagation();
         if (
           event.target.className !== "productBtn" &&
-          event.target.className !== "productBtn_order"
+          event.target.className !== "productBtn_order" &&
+          event.target.className !== "prodictLike"
         ) {
           navigate("../" + PRODUCT_ROUTE + "/" + id);
         }
       }}
     >
-      <div className="productImg">
-        <img src={process.env.REACT_APP_API_URL + img[0]} alt={name} />
+      <div className="productImg__wrapper">
+        <div className="productImg">
+          <img src={process.env.REACT_APP_API_URL + img[0]} alt={name} />
+        </div>
+        <div
+          className="productLike__wrapper"
+          onClick={(event) => {
+            toggleFavorite(event);
+          }}
+        >
+          <Like className={`prodictLike ${favorite ? "liked" : ""}`} />
+        </div>
       </div>
+
       <div className="productContent">
         <div className="productName">{name}</div>
         <div className="productPrice">{price} р.</div>

@@ -16,7 +16,7 @@ router.use("/type", typeRouter);
 router.use("/collection", collectionRouter);
 router.use("/basket", basketRouter);
 router.use("/basketProduct", basketProductRouter);
-router.use("favorites", favoritesRouter);
-router.use("favoritesProduct", favoritesProductRouter);
+router.use("/favorites", favoritesRouter);
+router.use("/favoritesProduct", favoritesProductRouter);
 
 export { router };

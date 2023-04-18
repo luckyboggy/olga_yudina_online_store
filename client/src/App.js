@@ -8,6 +8,8 @@ import { observer } from "mobx-react-lite";
 import { check } from "./http/userAPI.js";
 import { getBasket } from "./http/basketAPI.js";
 import { fetchBasketProduct } from "./http/basketProductAPI.js";
+import { getFavorites } from "./http/favoritesAPI.js";
+import { fetchFavoritesProduct } from "./http/favoritesProductAPI.js";
 
 const App = observer(() => {
 
@@ -21,7 +23,7 @@ const App = observer(() => {
     check().then(data => {
       user.setUser(data);
       user.setIsAuth(true);
-    }).finally(() => {
+    }).then(() => {
       getBasket(user.user.id).then((data) => {
         user.setBasketId(data.id)
       }).then(() => {
@@ -30,6 +32,16 @@ const App = observer(() => {
           user.setBasketItems(data.rows);
         })
       })
+
+    }).then(() => {
+      getFavorites(user.user.id).then((data) => {
+        user.setFavoriteId(data.id)
+      }).then(() => {
+        fetchFavoritesProduct(user.favoriteId).then((data) => {
+          user.setFavoritesItems(data.rows)
+        })
+      })
+    }).finally(() => {
       setLoading(false)
     })
   }, [])

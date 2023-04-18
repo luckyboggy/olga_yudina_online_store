@@ -1,14 +1,16 @@
 import { $authHost, $host } from "./index.js";
 
 const addToFavorites = async (favoritesProduct) => {
+
   const { data } = await $authHost.post("api/favoritesProduct", favoritesProduct);
   return data;
 };
 
-const fetchFavoritesProduct = async (favoritesId) => {
+const fetchFavoritesProduct = async (favoriteId) => {
+
   const { data } = await $authHost.get("api/favoritesProduct", {
     params: {
-      favoritesId,
+      favoriteId,
     },
   });
   return data;
