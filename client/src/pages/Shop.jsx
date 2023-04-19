@@ -4,10 +4,12 @@ import { Context } from "../index.js";
 import { observer } from "mobx-react-lite";
 import { fetchTypes, fetchProducts } from "../http/productAPI.js";
 import { Pagination } from "../components/Pagination.jsx";
+import CurrentModal from "../components/UI/modal/CurrentModal";
 
 const Shop = observer(() => {
   const [sort, setSort] = useState(false);
   const { product } = useContext(Context);
+
 
   useEffect(() => {
     fetchTypes().then((data) => product.setTypes(data));
@@ -30,6 +32,8 @@ const Shop = observer(() => {
 
   return (
     <div>
+      <CurrentModal/>
+
       <div className="shop__toolbar">
         <div className="shop__toolbar__selected">
           {product.selectedType.name /* .toLowerCase() */}

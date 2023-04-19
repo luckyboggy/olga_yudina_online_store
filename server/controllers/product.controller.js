@@ -58,6 +58,8 @@ class ProductController {
   }
   async getAll(req, res) {
     let { typeId, limit, page } = req.query;
+    const s1= ["price", "DESC"]
+    const s2= ["price", "ASC"]
     limit = limit || 8;
     page = page || 1;
     let offset = limit * page - limit;
@@ -65,13 +67,13 @@ class ProductController {
     if (typeId) {
       products = await Product.findAndCountAll({
         where: { typeId },
-        order: [["price", "DESC"]],
+        order: [s2],
         limit,
         offset,
       });
     } else {
       products = await Product.findAndCountAll({
-        order: [["price", "DESC"]],
+        order: [s2],
         limit,
         offset,
       });
