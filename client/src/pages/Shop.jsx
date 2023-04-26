@@ -13,11 +13,13 @@ const Shop = observer(() => {
 
   useEffect(() => {
     fetchTypes().then((data) => product.setTypes(data));
-    fetchProducts(null, product.limit, 1, product.sortType).then((data) => {
-      product.setItems(data.rows);
-      product.setTotalCount(data.count);
-      product.setPageCount();
-    });
+    fetchProducts(null, product.limit, 1, product.sortType.value).then(
+      (data) => {
+        product.setItems(data.rows);
+        product.setTotalCount(data.count);
+        product.setPageCount();
+      }
+    );
   }, []);
 
   useEffect(() => {
@@ -25,13 +27,13 @@ const Shop = observer(() => {
       product.selectedType.id,
       product.limit,
       product.page,
-      product.sortType
+      product.sortType.value
     ).then((data) => {
       product.setItems(data.rows);
       product.setTotalCount(data.count);
       product.setPageCount();
     });
-  }, [product.page, product.selectedType, product.sortType]);
+  }, [product.page, product.selectedType, product.sortType.value]);
 
   return (
     <div>
@@ -51,7 +53,7 @@ const Shop = observer(() => {
             setSort(!sort);
           }}
         >
-          сортировка
+          {product.sortType.name.toLowerCase()}
         </div>
       </div>
       <div className="shop__products">

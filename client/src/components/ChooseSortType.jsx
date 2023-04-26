@@ -17,7 +17,7 @@ const ChooseSortType = ({ closeModal }) => {
           className="sortType"
           key={sortType.name}
           onClick={() => {
-            product.setSortType(sortType.value);
+            product.setSortType(sortType);
             closeModal(false);
           }}
         >
