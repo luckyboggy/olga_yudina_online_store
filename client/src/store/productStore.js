@@ -9,6 +9,7 @@ export class ProductStore {
     this._totalCount = 0;
     this._limit = 8;
     this._pageCount = 0;
+    this._sortType = '';
     makeAutoObservable(this);
   }
 
@@ -41,6 +42,10 @@ export class ProductStore {
     this._pageCount = Math.ceil(this._totalCount / this._limit)
   }
 
+  setSortType(sortType) {
+    this._sortType = sortType;
+  }
+
   get types() {
     return this._types;
   }
@@ -61,5 +66,8 @@ export class ProductStore {
   }
   get pageCount() {
     return this._pageCount;
+  }
+  get sortType() {
+    return this._sortType;
   }
 }

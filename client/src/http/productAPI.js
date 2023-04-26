@@ -25,12 +25,13 @@ const createProduct = async (product) => {
   return data;
 };
 
-const fetchProducts = async (typeId, limit, page) => {
+const fetchProducts = async (typeId, limit, page, sortType) => {
   const { data } = await $host.get("api/product", {
     params: {
       typeId,
       limit,
       page,
+      sortType
     },
   });
   return data;

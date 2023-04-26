@@ -261,6 +261,14 @@ main {
   margin-top: 1rem;
 }
 
+.sortTypes {
+  .sortType {
+    font-size: 20px;
+    color: $haeder_bc;
+    padding: 1rem 0;
+  }
+}
+
 .shop__productItem {
   margin-bottom: 15px;
   .productImg__wrapper {

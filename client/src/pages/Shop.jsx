@@ -1,5 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
-import { ProductList } from "../components/ProductList";
+import { ProductList } from "../components/ProductList.jsx";
+import { ChooseSortType } from "../components/ChooseSortType.jsx";
 import { Context } from "../index.js";
 import { observer } from "mobx-react-lite";
 import { fetchTypes, fetchProducts } from "../http/productAPI.js";
@@ -10,10 +11,9 @@ const Shop = observer(() => {
   const [sort, setSort] = useState(false);
   const { product } = useContext(Context);
 
-
   useEffect(() => {
     fetchTypes().then((data) => product.setTypes(data));
-    fetchProducts(null, product.limit, 1).then((data) => {
+    fetchProducts(null, product.limit, 1, product.sortType).then((data) => {
       product.setItems(data.rows);
       product.setTotalCount(data.count);
       product.setPageCount();
@@ -21,18 +21,25 @@ const Shop = observer(() => {
   }, []);
 
   useEffect(() => {
-    fetchProducts(product.selectedType.id, product.limit, product.page).then(
-      (data) => {
-        product.setItems(data.rows);
-        product.setTotalCount(data.count);
-        product.setPageCount();
-      }
-    );
-  }, [product.page, product.selectedType]);
+    fetchProducts(
+      product.selectedType.id,
+      product.limit,
+      product.page,
+      product.sortType
+    ).then((data) => {
+      product.setItems(data.rows);
+      product.setTotalCount(data.count);
+      product.setPageCount();
+    });
+  }, [product.page, product.selectedType, product.sortType]);
 
   return (
     <div>
-      <CurrentModal/>
+      {sort && (
+        <CurrentModal close={setSort}>
+          <ChooseSortType closeModal={setSort} />
+        </CurrentModal>
+      )}
 
       <div className="shop__toolbar">
         <div className="shop__toolbar__selected">
