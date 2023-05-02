@@ -17,6 +17,7 @@ const App = observer(() => {
 
   const [loading, setLoading] = useState(true);
   const [mobileMenu, setMobileMenu] = useState(false);
+  
 
 
   useEffect(() => {

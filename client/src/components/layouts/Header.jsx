@@ -7,7 +7,7 @@ import { ReactComponent as Burger } from "../../img/svg/burger.svg";
 import { Context } from "../../index.js";
 import { observer } from "mobx-react-lite";
 
-const Header = observer(({ setMobileMenu }) => {
+const Header = observer(({ setMobileMenu, setMobilSearch, mobilSearch }) => {
   const { user } = useContext(Context);
 
   return (
@@ -29,7 +29,10 @@ const Header = observer(({ setMobileMenu }) => {
           <Link to="delivery">delivery</Link>
         </div>
         <div className="header__icons">
-          <Search className="header__icons__item" />
+          <Search
+            className="header__icons__item"
+            onClick={() => setMobilSearch(!mobilSearch)}
+          />
           {user.isAuth && user.user.role === "ADMIN" && (
             <Link to="admin">
               <Auth className="header__icons__item" />

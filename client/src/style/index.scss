@@ -195,6 +195,20 @@ main {
   left: 0;
 }
 
+.mobilSearch {
+  background-color: rgba(0, 0, 0, 0.25);
+  z-index: 10;
+  position: fixed;
+  min-width: 100vw;
+  min-height: calc(100vh - 44px);
+  .searchWrapper {
+    background-color: white;
+    height: 100px;
+    width: 100%;
+    padding: 0.5rem 1rem;
+  }
+}
+
 // Auth
 .auth {
   padding: 1rem;
