@@ -1,4 +1,4 @@
-$haeder_bc: lightslategrey;
+$header_bc: lightslategrey;
 $header_fc: #ffe4c4;
 $font: rgb(54, 62, 70);
 
@@ -33,7 +33,7 @@ $font: rgb(54, 62, 70);
 }
 
 header {
-  background-color: $haeder_bc;
+  background-color: $header_bc;
   a {
     text-decoration: none;
     color: $header_fc;
@@ -98,11 +98,65 @@ header {
 }
 
 footer {
-  background-color: $haeder_bc;
-  color: $header_fc;
+  color: $header_bc;
+  padding: 0 1rem;
   .footer__wrapper {
-    text-align: center;
+    hr {
+      border: none;
+      height: 1px;
+      color: $header_bc;
+      background-color: $header_bc;
+    }
+    .footer__section {
+      .footer__info {
+        .footer__info_item {
+          width: 100%;
+          .footer__info_title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            text-decoration: none;
+            font-size: 22px;
+            padding: 14px 0;
+            color: $header_bc;
+          }
+          .footer__info_dropDown {
+            padding-left: 1rem;
+            .footer__info_ddItem {
+              display: block;
+              text-decoration: none;
+              font-size: 20px;
+              padding: 14px 0;
+              color: $header_bc;
+            }
+          }
+        }
+
+        .dropArrow {
+          margin-left: 1rem;
+          width: 18px;
+          height: 18px;
+          fill: $header_bc;
+          transform: rotate(180deg);
+        }
+        .active {
+          transform: rotate(0deg);
+        }
+      }
+
+      .footer__links {
+        display: flex;
+        justify-content: space-evenly;
+        .footer_link {
+          padding: 5px;
+          height: 45px;
+          width: 45px;
+          fill: $header_bc;
+        }
+      }
+    }
     .footer__copyright {
+      text-align: center;
       padding: 10px;
       font-size: 10px;
     }
@@ -115,7 +169,7 @@ main {
 .container {
   width: 100%;
   position: relative;
-  min-height: calc(100vh - 44px - 31px);
+  min-height: calc(100vh - 44px - 137px);
   padding: 1rem;
   @include breakpoint(md) {
     max-width: 800px;
@@ -146,11 +200,14 @@ main {
     .mobileMenu__search {
       width: 34px;
       height: 34px;
-      fill: $haeder_bc;
+      fill: $header_bc;
     }
   }
   hr {
-    fill: $haeder_bc;
+    border: none;
+    height: 1px;
+    color: $header_bc;
+    background-color: $header_bc;
   }
   .mobileMenu__content {
     /* display: flex;
@@ -165,13 +222,13 @@ main {
         text-decoration: none;
         font-size: 24px;
         padding: 14px 0;
-        color: $haeder_bc;
+        color: $header_bc;
       }
       .dropArrow {
         margin-left: 1rem;
         width: 18px;
         height: 18px;
-        fill: $haeder_bc;
+        fill: $header_bc;
         transform: rotate(180deg);
       }
       .active {
@@ -184,7 +241,7 @@ main {
           text-decoration: none;
           font-size: 22px;
           padding: 14px 0;
-          color: $haeder_bc;
+          color: $header_bc;
         }
       }
     }
@@ -222,7 +279,7 @@ main {
       background: transparent;
       text-decoration: none;
       font-size: 20px;
-      color: $haeder_bc;
+      color: $header_bc;
       cursor: pointer;
     }
 
@@ -258,13 +315,13 @@ main {
 
 .shop__toolbar__selected {
   font-size: 20px;
-  color: $haeder_bc;
+  color: $header_bc;
 }
 
 .shop__toolbar__sort,
 .shop__toolbar__filter {
   font-size: 20px;
-  color: $haeder_bc;
+  color: $header_bc;
   cursor: pointer;
   &:hover {
     color: #0e3838;
@@ -278,7 +335,7 @@ main {
 .sortTypes {
   .sortType {
     font-size: 20px;
-    color: $haeder_bc;
+    color: $header_bc;
     padding: 1rem 0;
   }
 }
@@ -308,7 +365,7 @@ main {
         width: 35px;
         height: 35px;
         fill: white;
-        stroke: $haeder_bc;
+        stroke: $header_bc;
       }
       .liked {
         fill: $header_fc;
@@ -334,7 +391,7 @@ main {
       height: 37px;
       padding: 6px;
       font-size: 14px;
-      background-color: $haeder_bc;
+      background-color: $header_bc;
       color: $header_fc;
       border: none;
       .basket_icon {
@@ -349,8 +406,8 @@ main {
       padding: 6px;
       font-size: 14px;
       background-color: $header_fc;
-      color: $haeder_bc;
-      border: 1px solid $haeder_bc;
+      color: $header_bc;
+      border: 1px solid $header_bc;
     }
   }
 }
@@ -385,7 +442,7 @@ main {
       height: 47px;
       padding: 6px;
       font-size: 18px;
-      background-color: $haeder_bc;
+      background-color: $header_bc;
       color: $header_fc;
       border: none;
       cursor: pointer;
@@ -401,8 +458,8 @@ main {
       padding: 6px;
       font-size: 18px;
       background-color: $header_fc;
-      color: $haeder_bc;
-      border: 1px solid $haeder_bc;
+      color: $header_bc;
+      border: 1px solid $header_bc;
       cursor: pointer;
     }
   }
@@ -424,7 +481,7 @@ main {
     .admin__personal {
       padding: 0 0.5rem;
       .admin__category_new {
-        border: 1px solid $haeder_bc;
+        border: 1px solid $header_bc;
         border-radius: 1rem;
         padding: 0 1rem;
         margin: 0.5rem 0;
@@ -444,7 +501,7 @@ main {
           .closeBtn {
             width: 44px;
             height: 44px;
-            fill: $haeder_bc;
+            fill: $header_bc;
           }
         }
       }
@@ -456,13 +513,13 @@ main {
           align-items: center;
           padding: 0.75rem 1rem;
           margin: 0.5rem 0;
-          border: 1px solid $haeder_bc;
+          border: 1px solid $header_bc;
           border-radius: 1rem;
           font-size: 24px;
           color: $font;
 
           .removeBtn {
-            stroke: $haeder_bc;
+            stroke: $header_bc;
             height: 30px;
             width: 30px;
           }
@@ -477,13 +534,13 @@ main {
         padding: 3px;
         .admin__category_addItem,
         .admin__products_addItem {
-          stroke: $haeder_bc;
+          stroke: $header_bc;
           height: 50px;
           width: 50px;
         }
       }
       .admin__products_new {
-        border: 1px solid $haeder_bc;
+        border: 1px solid $header_bc;
         border-radius: 1rem;
         padding: 1rem;
         margin: 0.5rem 0;
@@ -514,7 +571,7 @@ main {
           .closeBtn {
             width: 44px;
             height: 44px;
-            fill: $haeder_bc;
+            fill: $header_bc;
           }
         }
 
@@ -531,12 +588,12 @@ main {
           }
 
           .addNewImages {
-            border: 4px solid $haeder_bc;
-            stroke: $haeder_bc;
+            border: 4px solid $header_bc;
+            stroke: $header_bc;
             .addImg {
               width: 100%;
               height: 100%;
-              stroke: $haeder_bc;
+              stroke: $header_bc;
             }
           }
         }
@@ -556,7 +613,7 @@ main {
 
   .pageItem {
     font-size: 22px;
-    color: $haeder_bc;
+    color: $header_bc;
   }
 }
 
@@ -567,7 +624,7 @@ main {
         .basketProduct {
           display: grid;
           grid-template-columns: 5fr 1fr;
-          border: 1px solid $haeder_bc;
+          border: 1px solid $header_bc;
           border-radius: 0.5rem;
           padding: 0.5rem;
           margin-bottom: 5px;
@@ -600,7 +657,7 @@ main {
             justify-content: center;
             align-items: center;
             .removeBtn {
-              stroke: $haeder_bc;
+              stroke: $header_bc;
               height: 30px;
               width: 30px;
             }

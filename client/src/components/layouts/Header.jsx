@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { ReactComponent as Search } from "../../img/svg/search.svg";
 import { ReactComponent as Auth } from "../../img/svg/person.svg";
