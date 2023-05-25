@@ -108,42 +108,6 @@ footer {
       background-color: $header_bc;
     }
     .footer__section {
-      .footer__info {
-        .footer__info_item {
-          width: 100%;
-          .footer__info_title {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            text-decoration: none;
-            font-size: 22px;
-            padding: 14px 0;
-            color: $header_bc;
-          }
-          .footer__info_dropDown {
-            padding-left: 1rem;
-            .footer__info_ddItem {
-              display: block;
-              text-decoration: none;
-              font-size: 20px;
-              padding: 14px 0;
-              color: $header_bc;
-            }
-          }
-        }
-
-        .dropArrow {
-          margin-left: 1rem;
-          width: 18px;
-          height: 18px;
-          fill: $header_bc;
-          transform: rotate(180deg);
-        }
-        .active {
-          transform: rotate(0deg);
-        }
-      }
-
       .footer__links {
         display: flex;
         justify-content: space-evenly;
