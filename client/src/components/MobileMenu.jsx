@@ -29,6 +29,7 @@ const MobileMenu = observer(({ mobileMenu, setMobileMenu }) => {
       </div>
       <hr />
       <div className="mobileMenu__content">
+        {/* dd */}
         <div
           className="mobileMenu__item"
           onClick={() => setCollection(!collection)}
@@ -59,16 +60,17 @@ const MobileMenu = observer(({ mobileMenu, setMobileMenu }) => {
                     setMobileMenu(false);
                   }}
                 >
-                  {type.name/* .toLowerCase() */}
+                  {type.name /* .toLowerCase() */}
                 </Link>
               ))}
             </div>
           )}
         </div>
+        {/* dd end */}
         <div className="mobileMenu__item">
           <Link
             className="mobileMenu__item_title"
-            to="about"
+            to="favorites"
             onClick={() => setMobileMenu(false)}
           >
             favorites

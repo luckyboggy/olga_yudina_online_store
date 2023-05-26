@@ -6,6 +6,7 @@ import { MainPage } from "./pages/MainPage.jsx";
 import { Auth } from "./pages/Auth.jsx";
 import { NoPage } from "./pages/NoPage.jsx";
 import { About } from "./pages/About.jsx";
+import { Favorites } from "./pages/Favorites.jsx";
 import { Delivery } from "./pages/Delivery.jsx";
 import { User } from "./pages/User.jsx";
 
@@ -16,6 +17,7 @@ import {
   DELIVERY_ROUTE,
   LOGIN_ROUTE,
   MAINPAGE_ROUTE,
+  FAVORITES_ROUTE,
   USER_ROUTE,
   NOPAGE_ROUTE,
   PRODUCT_ROUTE,
@@ -70,6 +72,10 @@ const publicRoutes = [
   {
     path: NOPAGE_ROUTE,
     Element: NoPage,
+  },
+  {
+    path: FAVORITES_ROUTE,
+    Element: Favorites,
   },
 ];
 
