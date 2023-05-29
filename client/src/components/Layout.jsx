@@ -15,6 +15,7 @@ const Layout = ({ setMobileMenu, setMobilBasket }) => {
         setMobilSearch={setMobilSearch}
         mobilSearch={mobilSearch}
       />
+
       {mobilSearch && <MobilSearch setMobilSearch={setMobilSearch} />}
 
       <main>

@@ -32,7 +32,21 @@ $font: rgb(54, 62, 70);
   box-sizing: border-box;
 }
 
+.text {
+  color: $header_bc;
+  margin: 1rem 0;
+}
+
+.fs22 {
+  font-size: 22px;
+}
+
+.fs20 {
+  font-size: 20px;
+}
+
 header {
+
   background-color: $header_bc;
   a {
     text-decoration: none;
@@ -582,7 +596,36 @@ main {
 }
 
 .favorites {
-  
+  .unauthorized {
+    .toAuth {
+    }
+    .emptySpace {
+      min-height: calc(100vh - 240px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .toShop {
+        width: 150px;
+
+        .toShop__link {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          text-decoration: none;
+          font-size: 20px;
+          padding: 14px 0;
+          color: $header_bc;
+          .linkArrow {
+            margin-left: 1rem;
+            width: 18px;
+            height: 18px;
+            fill: $header_bc;
+            transform: rotate(90deg);
+          }
+        }
+      }
+    }
+  }
 }
 
 .basket {
