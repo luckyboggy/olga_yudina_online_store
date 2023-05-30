@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { ReactComponent as Search } from "../../img/svg/search.svg";
 import { ReactComponent as Auth } from "../../img/svg/person.svg";
@@ -10,8 +10,28 @@ import { observer } from "mobx-react-lite";
 const Header = observer(({ setMobileMenu, setMobilSearch, mobilSearch }) => {
   const { user } = useContext(Context);
 
+  const [isHeaderVisible, setIsHeaderVisible] = useState(true);
+  const [prevScrollPosition, setPrevScrollPosition] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollPosition = window.pageYOffset;
+      setIsHeaderVisible(
+        prevScrollPosition > currentScrollPosition || currentScrollPosition < 10
+      );
+      setPrevScrollPosition(currentScrollPosition);
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [prevScrollPosition]);
+
+  console.log(isHeaderVisible);
+
   return (
-    <header>
+    <header className={isHeaderVisible ? "show" : "hide"}>
       <div className="header__wrapper">
         <div className="header__burger">
           <Burger

@@ -46,8 +46,15 @@ $font: rgb(54, 62, 70);
 }
 
 header {
-
   background-color: $header_bc;
+  //
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  transition: transform 0.3s ease-in;
+  z-index: 5;
+  //
   a {
     text-decoration: none;
     color: $header_fc;
@@ -111,6 +118,13 @@ header {
   }
 }
 
+.show {
+  transform: translateY(0);
+}
+.hide {
+  transform: translateY(-100%);
+}
+
 footer {
   color: $header_bc;
   padding: 0 1rem;
@@ -146,6 +160,7 @@ main {
 
 .container {
   width: 100%;
+  margin-top: 44px;
   position: relative;
   min-height: calc(100vh - 44px - 137px);
   padding: 1rem;
@@ -166,9 +181,10 @@ main {
   min-width: 100vw;
   min-height: 100vh;
   padding: 5px 8px;
+  top: 0;
   left: -100vw;
   transition: 0.2s ease-in-out;
-  z-index: 1;
+  z-index: 10;
 
   .mobileMenu__header {
     display: flex;
