@@ -4,7 +4,6 @@ import { fetchOneProduct } from "../http/productAPI.js";
 import { handleRemoveFromBasket } from "../functions/basketFunctions";
 
 const BasketItem = ({ item }) => {
-
   const { productId } = item;
   const [basketItem, setBasketItem] = useState({});
 
@@ -30,7 +29,10 @@ const BasketItem = ({ item }) => {
         </div>
       </div>
       <div className="basketProduct__control">
-        <Remove className="removeBtn" onClick={() => handleRemoveFromBasket(productId)} />
+        <Remove
+          className="removeBtn"
+          onClick={() => handleRemoveFromBasket(productId)}
+        />
       </div>
     </div>
   );

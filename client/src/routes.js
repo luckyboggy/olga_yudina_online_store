@@ -34,10 +34,7 @@ const authRoutes = [
     path: USER_ROUTE,
     Element: User,
   },
-  {
-    path: BASKET_ROUTE,
-    Element: Basket,
-  },
+
 ];
 
 const publicRoutes = [
@@ -60,6 +57,10 @@ const publicRoutes = [
   {
     path: LOGIN_ROUTE,
     Element: Auth,
+  },
+  {
+    path: BASKET_ROUTE,
+    Element: Basket,
   },
   {
     path: ABOUT_ROUTE,

@@ -28,8 +28,6 @@ const Header = observer(({ setMobileMenu, setMobilSearch, mobilSearch }) => {
     };
   }, [prevScrollPosition]);
 
-  console.log(isHeaderVisible);
-
   return (
     <header className={isHeaderVisible ? "show" : "hide"}>
       <div className="header__wrapper">
@@ -73,9 +71,16 @@ const Header = observer(({ setMobileMenu, setMobilSearch, mobilSearch }) => {
           <Link to="basket">
             <div className="basketIcon">
               <Basket className="header__icons__item" />
-              {user.basketCount > 0 && (
-                <div className="basketCount_item">{user.basketCount}</div>
-              )}
+
+              {user.isAuth
+                ? user.basketCount > 0 && (
+                    <div className="basketCount_item">{user.basketCount}</div>
+                  )
+                : user.localBasket.length > 0 && (
+                    <div className="basketCount_item">
+                      {user.localBasket.length}
+                    </div>
+                  )}
             </div>
           </Link>
         </div>

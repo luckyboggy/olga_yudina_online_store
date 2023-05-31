@@ -10,6 +10,8 @@ export class UserStore {
     this._basketItems = [];
     this._favoriteId = 0;
     this._favoritesItems = [];
+    //local basket
+    this._localBasket = [];
     makeAutoObservable(this);
   }
 
@@ -36,6 +38,12 @@ export class UserStore {
   setFavoritesItems(favoritesItems) {
     this._favoritesItems = favoritesItems;
   }
+  addToLocalBasket(productId) {
+    if (!this._localBasket.find(item => item.productId === productId)) {
+      this._localBasket.push({ productId: productId })
+    }
+
+  }
 
   get isAuth() {
     return this._isAuth;
@@ -57,5 +65,8 @@ export class UserStore {
   }
   get favoritesItems() {
     return this._favoritesItems;
+  }
+  get localBasket() {
+    return this._localBasket;
   }
 }

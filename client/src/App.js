@@ -17,7 +17,7 @@ const App = observer(() => {
 
   const [loading, setLoading] = useState(true);
   const [mobileMenu, setMobileMenu] = useState(false);
-  
+
 
 
   useEffect(() => {
@@ -47,7 +47,7 @@ const App = observer(() => {
     })
   }, [])
 
-
+  console.log(user)
 
   return (
     <BrowserRouter>

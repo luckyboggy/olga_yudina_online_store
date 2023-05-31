@@ -7,9 +7,13 @@ const BasketList = () => {
 
   return (
     <div className="basket__productList">
-      {user.basketItems.map((item) => (
-        <BasketItem key={item.id} item={item} />
-      ))}
+      {user.isAuth
+        ? user.basketItems.map((item) => (
+            <BasketItem key={item.id} item={item} />
+          ))
+        : user.localBasket.map((item) => (
+            <BasketItem key={item.id} item={item} />
+          ))}
     </div>
   );
 };

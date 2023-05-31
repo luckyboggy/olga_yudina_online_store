@@ -9,11 +9,14 @@ const Basket = observer(() => {
   const { user } = useContext(Context);
   const [totalPrice, setTotalPrice] = useState(0);
 
+  console.log(user.localBasket);
+
   basketTotalPrice().then((total) => setTotalPrice(total));
 
   return (
     <div className="basket">
-      {user.basketCount === 0 ? (
+      {(user.isAuth && user.basketCount === 0) ||
+      (!user.isAuth && user.localBasket.length === 0) ? (
         <h3 style={{ textAlign: "center" }}>Ваша корзина пуста</h3>
       ) : (
         <div className="basket__check">

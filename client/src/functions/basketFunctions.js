@@ -6,12 +6,18 @@ import {
 } from "../http/basketProductAPI.js";
 import { fetchOneProduct } from "../http/productAPI.js";
 
+
 const handleAddToBasket = (id) => {
-  addToBasket({ basketId: user.basketId, productId: id });
-  fetchBasketProduct(user.basketId).then((data) => {
-    user.setBasketCount(data.count);
-    user.setBasketItems(data.rows);
-  });
+  if (user.isAuth) {
+    addToBasket({ basketId: user.basketId, productId: id });
+    fetchBasketProduct(user.basketId).then((data) => {
+      user.setBasketCount(data.count);
+      user.setBasketItems(data.rows);
+    });
+  } else {
+    user.addToLocalBasket(id);
+  }
+
 };
 
 const handleRemoveFromBasket = (productId) => {
