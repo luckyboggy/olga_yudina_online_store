@@ -38,11 +38,20 @@ export class UserStore {
   setFavoritesItems(favoritesItems) {
     this._favoritesItems = favoritesItems;
   }
-  addToLocalBasket(productId) {
-    if (!this._localBasket.find(item => item.productId === productId)) {
-      this._localBasket.push({ productId: productId })
-    }
 
+  // local basket
+  addToLocalBasket(productId) {
+    if (!this._localBasket.find((item) => item.productId === productId)) {
+      this._localBasket.push({ productId: productId });
+    }
+  }
+  parseLocalBasket(localBasket) {
+    this._localBasket = localBasket;
+  }
+  removeFromLocalBasket(id) {
+    this._localBasket = this._localBasket.filter(
+      (item) => item.productId !== id
+    );
   }
 
   get isAuth() {

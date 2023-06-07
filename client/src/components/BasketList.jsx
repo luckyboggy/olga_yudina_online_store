@@ -12,7 +12,7 @@ const BasketList = () => {
             <BasketItem key={item.id} item={item} />
           ))
         : user.localBasket.map((item) => (
-            <BasketItem key={item.id} item={item} />
+            <BasketItem key={item.productId} item={item} />
           ))}
     </div>
   );

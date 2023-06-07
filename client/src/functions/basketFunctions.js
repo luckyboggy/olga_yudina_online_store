@@ -6,7 +6,6 @@ import {
 } from "../http/basketProductAPI.js";
 import { fetchOneProduct } from "../http/productAPI.js";
 
-
 const handleAddToBasket = (id) => {
   if (user.isAuth) {
     addToBasket({ basketId: user.basketId, productId: id });
@@ -16,17 +15,29 @@ const handleAddToBasket = (id) => {
     });
   } else {
     user.addToLocalBasket(id);
+    window.localStorage.setItem(
+      "localBasket",
+      JSON.stringify(user.localBasket)
+    );
   }
-
 };
 
 const handleRemoveFromBasket = (productId) => {
-  deleteFromBasket(productId).then(() => {
-    fetchBasketProduct(user.basketId).then((data) => {
-      user.setBasketCount(data.count);
-      user.setBasketItems(data.rows);
+  if (user.isAuth) {
+    deleteFromBasket(productId).then(() => {
+      fetchBasketProduct(user.basketId).then((data) => {
+        user.setBasketCount(data.count);
+        user.setBasketItems(data.rows);
+      });
     });
-  });
+  } else {
+    user.removeFromLocalBasket(productId);
+    console.log('tut')
+    window.localStorage.setItem(
+      "localBasket",
+      JSON.stringify(user.localBasket)
+    );
+  }
 };
 
 const isInBasket = (id) => {

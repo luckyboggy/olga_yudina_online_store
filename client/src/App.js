@@ -12,42 +12,47 @@ import { getFavorites } from "./http/favoritesAPI.js";
 import { fetchFavoritesProduct } from "./http/favoritesProductAPI.js";
 
 const App = observer(() => {
-
   const { user } = useContext(Context);
 
   const [loading, setLoading] = useState(true);
   const [mobileMenu, setMobileMenu] = useState(false);
 
-
-
   useEffect(() => {
-    check().then(data => {
-      user.setUser(data);
-      user.setIsAuth(true);
-    }).then(() => {
-      getBasket(user.user.id).then((data) => {
-        user.setBasketId(data.id)
-      }).then(() => {
-        fetchBasketProduct(user.basketId).then((data) => {
-          user.setBasketCount(data.count);
-          user.setBasketItems(data.rows);
-        })
+    check()
+      .then((data) => {
+        user.setUser(data);
+        user.setIsAuth(true);
       })
-
-    }).then(() => {
-      getFavorites(user.user.id).then((data) => {
-        user.setFavoriteId(data.id)
-      }).then(() => {
-        fetchFavoritesProduct(user.favoriteId).then((data) => {
-          user.setFavoritesItems(data.rows)
-        })
+      .then(() => {
+        getBasket(user.user.id)
+          .then((data) => {
+            user.setBasketId(data.id);
+          })
+          .then(() => {
+            fetchBasketProduct(user.basketId).then((data) => {
+              user.setBasketCount(data.count);
+              user.setBasketItems(data.rows);
+            });
+          });
       })
-    }).finally(() => {
-      setLoading(false)
-    })
-  }, [])
-
-  console.log(user)
+      .then(() => {
+        getFavorites(user.user.id)
+          .then((data) => {
+            user.setFavoriteId(data.id);
+          })
+          .then(() => {
+            fetchFavoritesProduct(user.favoriteId).then((data) => {
+              user.setFavoritesItems(data.rows);
+            });
+          });
+      })
+      .catch(() => {
+        user.parseLocalBasket(JSON.parse(localStorage.getItem("localBasket")));
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }, []);
 
   return (
     <BrowserRouter>
@@ -66,6 +71,6 @@ const App = observer(() => {
       </Routes>
     </BrowserRouter>
   );
-})
+});
 
 export default App;

@@ -9,8 +9,6 @@ const Basket = observer(() => {
   const { user } = useContext(Context);
   const [totalPrice, setTotalPrice] = useState(0);
 
-  console.log(user.localBasket);
-
   basketTotalPrice().then((total) => setTotalPrice(total));
 
   return (
