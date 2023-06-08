@@ -41,7 +41,14 @@ const handleRemoveFromBasket = (productId) => {
 };
 
 const isInBasket = (id) => {
-  const foundProduct = user.basketItems.find((item) => item.productId === id);
+  let foundProduct = null;
+
+  if (user.isAuth) {
+    foundProduct = user.basketItems.find((item) => item.productId === id);
+  } else {
+    foundProduct = user.localBasket.find((item) => item.productId === id);
+  }
+
   if (foundProduct) {
     return true;
   }
@@ -49,17 +56,26 @@ const isInBasket = (id) => {
 };
 
 const basketTotalPrice = async () => {
-  let total = 0;
 
-  const productData = await Promise.all(
-    user.basketItems.map((item) => fetchOneProduct(item.productId))
-  );
+  let total = 0;
+  let productData = [];
+  if (user.isAuth) {
+    productData = await Promise.all(
+      user.basketItems.map((item) => fetchOneProduct(item.productId))
+    );
+  } else {
+    productData = await Promise.all(
+      user.localBasket.map((item) => fetchOneProduct(item.productId))
+    );
+  }
 
   productData.forEach((data) => {
     total += Number(data.price);
   });
 
   return total;
+
+
 };
 
 export {

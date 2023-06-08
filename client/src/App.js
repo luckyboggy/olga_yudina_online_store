@@ -47,7 +47,10 @@ const App = observer(() => {
           });
       })
       .catch(() => {
-        user.parseLocalBasket(JSON.parse(localStorage.getItem("localBasket")));
+        if (localStorage.getItem("localBasket")) {
+          user.parseLocalBasket(JSON.parse(localStorage.getItem("localBasket")));
+        }
+
       })
       .finally(() => {
         setLoading(false);

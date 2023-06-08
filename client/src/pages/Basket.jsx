@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Context } from "../index.js";
 import { BasketList } from "../components/BasketList.jsx";
 import { basketTotalPrice } from "../functions/basketFunctions.js";
@@ -9,7 +9,9 @@ const Basket = observer(() => {
   const { user } = useContext(Context);
   const [totalPrice, setTotalPrice] = useState(0);
 
-  basketTotalPrice().then((total) => setTotalPrice(total));
+  useEffect(() => {
+    basketTotalPrice().then((total) => setTotalPrice(total));
+  }, [user.localBasket]);
 
   return (
     <div className="basket">
