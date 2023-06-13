@@ -1,5 +1,6 @@
 export const ADMIN_ROUTE = "admin";
 export const BASKET_ROUTE = "basket";
+export const ORDERING_ROUTE = "ordering";
 
 export const SHOP_ROUTE = "shop";
 export const PRODUCT_ROUTE = "product";
@@ -11,6 +12,7 @@ export const USER_ROUTE = "user";
 export const FAVORITES_ROUTE = 'favorites';
 
 export const ABOUT_ROUTE = "about";
+export const WORKSHOPS_ROUTE = "workshops";
 export const DELIVERY_ROUTE = "delivery";
 
 export const NOPAGE_ROUTE = "*";

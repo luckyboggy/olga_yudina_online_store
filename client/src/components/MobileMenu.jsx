@@ -79,7 +79,7 @@ const MobileMenu = observer(({ mobileMenu, setMobileMenu }) => {
         <div className="mobileMenu__item">
           <Link
             className="mobileMenu__item_title"
-            to="about"
+            to="workshops"
             onClick={() => setMobileMenu(false)}
           >
             workshops

@@ -1,5 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import { Context } from "../index.js";
+import { Link } from "react-router-dom";
 import { BasketList } from "../components/BasketList.jsx";
 import { basketTotalPrice } from "../functions/basketFunctions.js";
 import { observer } from "mobx-react-lite";
@@ -26,7 +27,9 @@ const Basket = observer(() => {
           <div className="basket__confirm">
             <div className="basket__totalPrice">{totalPrice} р</div>
             <div className="basket__order">
-              <CustomButton>Оформить заказ</CustomButton>
+              <Link to="/ordering">
+                <CustomButton>Оформить заказ</CustomButton>
+              </Link>
             </div>
           </div>
         </div>

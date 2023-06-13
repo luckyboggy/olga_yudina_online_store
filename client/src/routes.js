@@ -9,6 +9,8 @@ import { About } from "./pages/About.jsx";
 import { Favorites } from "./pages/Favorites.jsx";
 import { Delivery } from "./pages/Delivery.jsx";
 import { User } from "./pages/User.jsx";
+import { Ordering } from "./pages/Ordering.jsx";
+import { Workshops } from "./pages/Workshops.jsx";
 
 import {
   ABOUT_ROUTE,
@@ -23,6 +25,8 @@ import {
   PRODUCT_ROUTE,
   REGISTRATION_ROUTE,
   SHOP_ROUTE,
+  ORDERING_ROUTE,
+  WORKSHOPS_ROUTE,
 } from "./utils/consts";
 
 const authRoutes = [
@@ -77,6 +81,14 @@ const publicRoutes = [
   {
     path: FAVORITES_ROUTE,
     Element: Favorites,
+  },
+  {
+    path: ORDERING_ROUTE,
+    Element: Ordering,
+  },
+  {
+    path: WORKSHOPS_ROUTE,
+    Element: Workshops,
   },
 ];
 
