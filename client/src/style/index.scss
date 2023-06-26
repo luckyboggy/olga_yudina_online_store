@@ -715,6 +715,19 @@ main {
   }
 }
 
+.ordering {
+  .ordering__personal {
+  }
+  .ordering__delivery {
+    margin-top: 1rem;
+    .ordering__delivery__houseFlat {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+  }
+}
+
 .workshops {
   color: $header_bc;
 }
