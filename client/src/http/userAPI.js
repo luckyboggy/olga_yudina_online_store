@@ -1,4 +1,4 @@
-import { $authHost, $host } from "./index.js";
+import { $authHost, $host } from "../shared/api/index.js";
 import jwt_decode from "jwt-decode";
 
 const registration = async (email, password) => {

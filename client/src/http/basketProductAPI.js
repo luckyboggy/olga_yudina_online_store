@@ -1,4 +1,4 @@
-import { $authHost, $host } from "./index.js";
+import { $authHost, $host } from "../shared/api/index.js";
 
 const addToBasket = async (basketProduct) => {
   const { data } = await $authHost.post("api/basketProduct", basketProduct);

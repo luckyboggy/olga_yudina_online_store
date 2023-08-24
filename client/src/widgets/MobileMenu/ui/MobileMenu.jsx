@@ -1,0 +1,112 @@
+import React, { useState, useContext, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { ReactComponent as Close } from "shared/assets/img/svg/close.svg";
+import { ReactComponent as Search } from "shared/assets/img/svg/search.svg";
+import { ReactComponent as Arrow } from "shared/assets/img/svg/arrow.svg";
+import { Context } from "../../../index.js";
+import { observer } from "mobx-react-lite";
+import { fetchTypes } from "../../../http/productAPI.js";
+
+const MobileMenu = observer(({ mobileMenu, setMobileMenu }) => {
+  const [collection, setCollection] = useState(false);
+  const { product } = useContext(Context);
+
+  useEffect(() => {
+    fetchTypes().then((data) => product.setTypes(data));
+  }, [collection]);
+
+  return (
+    <div className={mobileMenu ? "mobileMenu activeMenu" : "mobileMenu"}>
+      <div className="mobileMenu__header">
+        <Close
+          className="mobileMenu__close"
+          onClick={() => {
+            setMobileMenu(false);
+            setCollection(false);
+          }}
+        />
+        <Search className="mobileMenu__search" />
+      </div>
+      <hr />
+      <div className="mobileMenu__content">
+        {/* dd */}
+        <div
+          className="mobileMenu__item"
+          onClick={() => setCollection(!collection)}
+        >
+          <div className="mobileMenu__item_title">
+            <div>collection</div>
+            <Arrow className={`dropArrow ${collection ? "active" : ""}`} />
+          </div>
+          {collection && (
+            <div className="mobileMenu__dropDown">
+              <Link
+                className="mobileMenu__ddItem"
+                to="shop"
+                onClick={() => {
+                  product.setSelectedType({});
+                  setMobileMenu(false);
+                }}
+              >
+                watch all
+              </Link>
+              {product.types.map((type) => (
+                <Link
+                  key={type.name}
+                  className="mobileMenu__ddItem"
+                  to="shop"
+                  onClick={() => {
+                    product.setSelectedType(type);
+                    setMobileMenu(false);
+                  }}
+                >
+                  {type.name /* .toLowerCase() */}
+                </Link>
+              ))}
+            </div>
+          )}
+        </div>
+        {/* dd end */}
+        <div className="mobileMenu__item">
+          <Link
+            className="mobileMenu__item_title"
+            to="favorites"
+            onClick={() => setMobileMenu(false)}
+          >
+            favorites
+          </Link>
+        </div>
+        <div className="mobileMenu__item">
+          <Link
+            className="mobileMenu__item_title"
+            to="workshops"
+            onClick={() => setMobileMenu(false)}
+          >
+            workshops
+          </Link>
+        </div>
+        <div className="mobileMenu__item">
+          <Link
+            className="mobileMenu__item_title"
+            to="about"
+            onClick={() => setMobileMenu(false)}
+          >
+            about
+          </Link>
+        </div>
+        <div className="mobileMenu__item">
+          <Link
+            className="mobileMenu__item_title"
+            to="delivery"
+            onClick={() => setMobileMenu(false)}
+          >
+            delivery
+          </Link>
+        </div>
+      </div>
+      <div className="mobileMenu__nav"></div>
+    </div>
+  );
+});
+
+export { MobileMenu };
