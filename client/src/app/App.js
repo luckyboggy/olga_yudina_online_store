@@ -1,21 +1,24 @@
 import React, { useContext, useState, useEffect } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Layout } from "./Layout";
+import { BrowserRouter } from "react-router-dom";
 import { MobileMenu } from "../widgets/MobileMenu/ui/MobileMenu";
-import { authRoutes, publicRoutes } from "./routes.js";
-import { Context } from "../index.js";
+import { Context } from "index.js";
 import { observer } from "mobx-react-lite";
-import { check } from "../http/userAPI.js";
-import { getBasket } from "../http/basketAPI.js";
-import { fetchBasketProduct } from "../http/basketProductAPI.js";
-import { getFavorites } from "../http/favoritesAPI.js";
-import { fetchFavoritesProduct } from "../http/favoritesProductAPI.js";
+import { check } from "http/userAPI.js";
+import { getBasket } from "http/basketAPI.js";
+import { fetchBasketProduct } from "http/basketProductAPI.js";
+import { getFavorites } from "http/favoritesAPI.js";
+import { fetchFavoritesProduct } from "http/favoritesProductAPI.js";
+import { Footer } from "widgets/layouts/Footer";
+import { Header } from "widgets/layouts/Header";
+import { MobilSearch } from "shared/ui/search/MobilSearch";
+import { AppRouter } from "./providers/router";
 
 const App = observer(() => {
   const { user } = useContext(Context);
 
   const [loading, setLoading] = useState(true);
   const [mobileMenu, setMobileMenu] = useState(false);
+  const [mobilSearch, setMobilSearch] = useState(false);
 
   useEffect(() => {
     check()
@@ -60,19 +63,16 @@ const App = observer(() => {
   return (
     <BrowserRouter>
       <MobileMenu mobileMenu={mobileMenu} setMobileMenu={setMobileMenu} />
+      <Header
+        setMobileMenu={setMobileMenu}
+        setMobilSearch={setMobilSearch}
+        mobilSearch={mobilSearch}
+      />
+      {mobilSearch && <MobilSearch setMobilSearch={setMobilSearch} />}
+      <AppRouter user={user} />
 
-      <Routes>
-        <Route path="/" element={<Layout setMobileMenu={setMobileMenu} />}>
-          {user.isAuth &&
-            authRoutes.map(({ path, Element }) => (
-              <Route path={path} element={<Element />} key={path} />
-            ))}
-          {publicRoutes.map(({ path, Element }) => (
-            <Route path={path} element={<Element />} key={path} />
-          ))}
-        </Route>
-      </Routes>
-    </BrowserRouter>
+      <Footer />
+    </BrowserRouter >
   );
 });
 

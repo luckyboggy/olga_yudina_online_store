@@ -1,3 +1,3 @@
-const { AboutAsync } = require("./ui/About.async");
+import { AboutAsync } from "./ui/About.async";
 
-export {AboutAsync as About}
+export { AboutAsync as About }
