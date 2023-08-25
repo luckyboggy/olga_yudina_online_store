@@ -4,7 +4,7 @@ import { ChooseSortType } from "entities/ChooseSortType.jsx";
 import { Context } from "../../../index.js";
 import { observer } from "mobx-react-lite";
 import { fetchTypes, fetchProducts } from "../../../http/productAPI.js";
-import { Pagination } from "shared/ui/Pagination.jsx";
+import { Pagination } from "shared/ui/pagination/Pagination.jsx";
 import CurrentModal from "shared/ui/modal/CurrentModal";
 
 const Shop = observer(() => {

@@ -1,12 +1,9 @@
-$header_bc: lightslategrey;
-$header_fc: #ffe4c4;
-
 .dropDown {
   .dropArrow {
     margin-left: 1rem;
     width: 18px;
     height: 18px;
-    fill: $header_bc;
+    fill: var(--primary-color);
     transform: rotate(180deg);
   }
   .active {
@@ -20,7 +17,7 @@ $header_fc: #ffe4c4;
     text-decoration: none;
     font-size: 22px;
     padding: 14px 0;
-    color: $header_bc;
+    color: var(--primary-color);
   }
 
   .dropDownContent {
@@ -30,7 +27,7 @@ $header_fc: #ffe4c4;
       text-decoration: none;
       font-size: 20px;
       padding: 14px 0;
-      color: $header_bc;
+      color: var(--primary-color);
     }
   }
 }

@@ -1,11 +1,8 @@
-$haeder_bc: lightslategrey;
-$header_fc: #ffe4c4;
-
 .cTextAria {
   width: 100%;
   padding: 6px;
   font-size: 18px;
   margin-bottom: 1rem;
   background: transparent;
-  border-bottom: 1px solid $haeder_bc;
+  border-bottom: 1px solid var(--primary-color);
 }

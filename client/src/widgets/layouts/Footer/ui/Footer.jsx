@@ -4,14 +4,15 @@ import { CustomDropDown } from "shared/ui/dropDownMenu/CustomDropDown.jsx";
 import { ReactComponent as ToVk } from "shared/assets/img/svg/linkVk.svg";
 import { ReactComponent as ToTg } from "shared/assets/img/svg/linkTg.svg";
 import { ReactComponent as ToEmail } from "shared/assets/img/svg/linkEmail.svg";
+import cls from "./Footer.module.scss";
 
 const Footer = () => {
   const year = new Date().getFullYear();
   return (
-    <footer>
-      <div className="footer__wrapper">
+    <footer className={cls.footer}>
+      <div className={cls.wrapper}>
         <hr />
-        <div className="footer__section">
+        <div className={cls.section}>
           <CustomDropDown
             title={"покупателям"}
             content={[
@@ -21,21 +22,21 @@ const Footer = () => {
           />
         </div>
         <hr />
-        <div className="footer__section">
-          <div className="footer__links">
+        <div className={cls.section}>
+          <div className={cls.links}>
             <Link to="#">
-              <ToVk className="footer_link" />
+              <ToVk className={cls.link} />
             </Link>
             <Link to="#">
-              <ToTg className="footer_link" />
+              <ToTg className={cls.link} />
             </Link>
             <Link to="#">
-              <ToEmail className="footer_link" />
+              <ToEmail className={cls.link} />
             </Link>
           </div>
         </div>
         <hr />
-        <div className="footer__copyright">© {year} luckyboggy</div>
+        <div className={cls.copyright}>© {year} luckyboggy</div>
       </div>
     </footer>
   );

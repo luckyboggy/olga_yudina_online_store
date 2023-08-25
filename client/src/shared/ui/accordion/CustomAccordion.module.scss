@@ -1,8 +1,5 @@
-$haeder_bc: lightslategrey;
-$header_fc: #ffe4c4;
-
 .customAccordion {
-  color: $haeder_bc;
+  color: var(--primary-color);
   margin-top: 1rem;
   .ac__header {
     display: flex;
@@ -15,7 +12,7 @@ $header_fc: #ffe4c4;
       margin-left: 1rem;
       width: 18px;
       height: 18px;
-      fill: $haeder_bc;
+      fill: var(--secondary-color);
     }
     .visible {
       transform: rotate(180deg);

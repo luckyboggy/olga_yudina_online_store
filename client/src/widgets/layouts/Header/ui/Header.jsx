@@ -4,8 +4,9 @@ import { ReactComponent as Search } from "shared/assets/img/svg/search.svg";
 import { ReactComponent as Auth } from "shared/assets/img/svg/person.svg";
 import { ReactComponent as Basket } from "shared/assets/img/svg/basket.svg";
 import { ReactComponent as Burger } from "shared/assets/img/svg/burger.svg";
-import { Context } from "../../index.js";
+import { Context } from "index.js";
 import { observer } from "mobx-react-lite";
+import cls from "./Header.module.scss";
 
 const Header = observer(({ setMobileMenu, setMobilSearch, mobilSearch }) => {
   const { user } = useContext(Context);
@@ -29,55 +30,57 @@ const Header = observer(({ setMobileMenu, setMobilSearch, mobilSearch }) => {
   }, [prevScrollPosition]);
 
   return (
-    <header className={isHeaderVisible ? "show" : "hide"}>
-      <div className="header__wrapper">
-        <div className="header__burger">
+    <header
+      className={`${cls.header} ${isHeaderVisible ? cls.show : cls.hide}  `}
+    >
+      <div className={cls.wrapper}>
+        <div className={cls.burger}>
           <Burger
-            className="header__burger__icon"
+            className={cls.burgerIcon}
             onClick={() => setMobileMenu(true)}
           />
         </div>
-        <div className="header__navi"></div>
-        <div className="header__logo">
+        <div className={cls.naviBar}></div>
+        <div className={cls.logo}>
           <Link to="">OLGA YUDINA</Link>
         </div>
-        <div className="header__navi">
+        <div className={cls.naviBar}>
           <Link to="shop">collection</Link>
           <Link to="about">about</Link>
           <Link to="delivery">delivery</Link>
         </div>
-        <div className="header__icons">
+        <div className={cls.icons}>
           <Search
-            className="header__icons__item"
+            className={cls.icon}
             onClick={() => setMobilSearch(!mobilSearch)}
           />
           {user.isAuth && user.user.role === "ADMIN" && (
             <Link to="admin">
-              <Auth className="header__icons__item" />
+              <Auth className={cls.icon} />
             </Link>
           )}
           {user.isAuth && user.user.role === "USER" && (
             <Link to="user">
-              <Auth className="header__icons__item" />
+              <Auth className={cls.icon} />
             </Link>
           )}
 
           {!user.isAuth && (
             <Link to="login">
-              <Auth className="header__icons__item" />
+              <Auth className={cls.icon} />
             </Link>
           )}
 
           <Link to="basket">
-            <div className="basketIcon">
-              <Basket className="header__icons__item" />
+            <div className={cls.basketIcon}>
+              <Basket className={cls.icon} />
 
               {user.isAuth
                 ? user.basketCount > 0 && (
-                    <div className="basketCount_item">{user.basketCount}</div>
+                    <div className={cls.basketCount}>{user.basketCount}</div>
                   )
                 : user.localBasket.length > 0 && (
-                    <div className="basketCount_item">
+                    <div className={cls.basketCount}>
                       {user.localBasket.length}
                     </div>
                   )}

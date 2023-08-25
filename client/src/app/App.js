@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 import { BrowserRouter } from "react-router-dom";
-import { MobileMenu } from "../widgets/MobileMenu/ui/MobileMenu";
+import { MobileMenu } from "widgets/MobileMenu";
 import { Context } from "index.js";
 import { observer } from "mobx-react-lite";
 import { check } from "http/userAPI.js";

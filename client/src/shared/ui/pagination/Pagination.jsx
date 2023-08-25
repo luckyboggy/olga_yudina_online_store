@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
-import { Context } from "../../index.js";
+import { Context } from "index.js";
 import { observer } from "mobx-react-lite";
+import cls from "./Pagination.module.scss";
 
 const Pagination = observer(() => {
   const { product } = useContext(Context);
@@ -13,10 +14,10 @@ const Pagination = observer(() => {
   console.log(product.pageCount);
 
   return (
-    <div className="pagination">
+    <div className={cls.pagination}>
       {pages.map((page) => (
         <div
-          className="pageItem"
+          className={cls.pageItem}
           key={page}
           onClick={() => product.setPage(page)}
         >

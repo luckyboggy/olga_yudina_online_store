@@ -3,6 +3,7 @@ import { CustomSelect } from "shared/ui/select/CustomSelect.jsx";
 import { IsMobil } from "shared/lib/hooks/IsMobil.js";
 import { UserPersonal } from "entities/userManagement/UserPersonal.jsx";
 import { observer } from "mobx-react-lite";
+import cls from "./User.module.scss";
 
 const User = observer(() => {
   const isMobile = IsMobil();
@@ -15,8 +16,8 @@ const User = observer(() => {
   const [currentManagement, setCurrentManagement] = useState("personal");
 
   return (
-    <div className="user">
-      <div className="user__menu">
+    <div className={cls.user}>
+      <div className={cls.menu}>
         {isMobile && (
           <CustomSelect options={management} onChange={setCurrentManagement} />
         )}

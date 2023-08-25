@@ -3,9 +3,10 @@ import { Link } from "react-router-dom";
 import { ReactComponent as Close } from "shared/assets/img/svg/close.svg";
 import { ReactComponent as Search } from "shared/assets/img/svg/search.svg";
 import { ReactComponent as Arrow } from "shared/assets/img/svg/arrow.svg";
-import { Context } from "../../../index.js";
+import { Context } from "index.js";
 import { observer } from "mobx-react-lite";
-import { fetchTypes } from "../../../http/productAPI.js";
+import { fetchTypes } from "http/productAPI.js";
+import cls from "./MobileMenu.module.scss";
 
 const MobileMenu = observer(({ mobileMenu, setMobileMenu }) => {
   const [collection, setCollection] = useState(false);
@@ -16,32 +17,31 @@ const MobileMenu = observer(({ mobileMenu, setMobileMenu }) => {
   }, [collection]);
 
   return (
-    <div className={mobileMenu ? "mobileMenu activeMenu" : "mobileMenu"}>
-      <div className="mobileMenu__header">
+    <div className={`${cls.mobileMenu} ${mobileMenu ? cls.activeMenu : ""}`}>
+      <div className={cls.header}>
         <Close
-          className="mobileMenu__close"
+          className={cls.close}
           onClick={() => {
             setMobileMenu(false);
             setCollection(false);
           }}
         />
-        <Search className="mobileMenu__search" />
+        <Search className={cls.search} />
       </div>
       <hr />
-      <div className="mobileMenu__content">
+      <div className={cls.content}>
         {/* dd */}
-        <div
-          className="mobileMenu__item"
-          onClick={() => setCollection(!collection)}
-        >
-          <div className="mobileMenu__item_title">
+        <div className={cls.item} onClick={() => setCollection(!collection)}>
+          <div className={cls.title}>
             <div>collection</div>
-            <Arrow className={`dropArrow ${collection ? "active" : ""}`} />
+            <Arrow
+              className={`${cls.dropArrow} ${collection ? cls.active : ""}`}
+            />
           </div>
           {collection && (
-            <div className="mobileMenu__dropDown">
+            <div className={cls.dropDown}>
               <Link
-                className="mobileMenu__ddItem"
+                className={cls.ddItem}
                 to="shop"
                 onClick={() => {
                   product.setSelectedType({});
@@ -53,7 +53,7 @@ const MobileMenu = observer(({ mobileMenu, setMobileMenu }) => {
               {product.types.map((type) => (
                 <Link
                   key={type.name}
-                  className="mobileMenu__ddItem"
+                  className={cls.ddItem}
                   to="shop"
                   onClick={() => {
                     product.setSelectedType(type);
@@ -67,36 +67,36 @@ const MobileMenu = observer(({ mobileMenu, setMobileMenu }) => {
           )}
         </div>
         {/* dd end */}
-        <div className="mobileMenu__item">
+        <div className={cls.item}>
           <Link
-            className="mobileMenu__item_title"
+            className={cls.title}
             to="favorites"
             onClick={() => setMobileMenu(false)}
           >
             favorites
           </Link>
         </div>
-        <div className="mobileMenu__item">
+        <div className={cls.item}>
           <Link
-            className="mobileMenu__item_title"
+            className={cls.title}
             to="workshops"
             onClick={() => setMobileMenu(false)}
           >
             workshops
           </Link>
         </div>
-        <div className="mobileMenu__item">
+        <div className={cls.item}>
           <Link
-            className="mobileMenu__item_title"
+            className={cls.title}
             to="about"
             onClick={() => setMobileMenu(false)}
           >
             about
           </Link>
         </div>
-        <div className="mobileMenu__item">
+        <div className={cls.item}>
           <Link
-            className="mobileMenu__item_title"
+            className={cls.title}
             to="delivery"
             onClick={() => setMobileMenu(false)}
           >

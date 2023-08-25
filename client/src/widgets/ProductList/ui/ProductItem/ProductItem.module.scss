@@ -1,0 +1,67 @@
+.productItem {
+  margin-bottom: 15px;
+  .wrapper {
+    position: relative;
+    .productImg {
+      min-width: 150px;
+      min-height: 150px;
+      background-color: var(--secondary-color);
+      img {
+        width: 100%;
+      }
+    }
+    .like {
+      top: 0;
+      right: 0;
+      width: 50px;
+      height: 50px;
+      position: absolute;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .prodictLike {
+        width: 35px;
+        height: 35px;
+        fill: white;
+        stroke: var(--primary-color);
+      }
+      .liked {
+        fill: var(--secondary-color);
+      }
+    }
+  }
+
+  .productContent {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    .productName {
+      grid-column-start: 1;
+      grid-column-end: 3;
+      padding: 10px 0;
+      font-size: 18px;
+    }
+    .productPrice {
+      margin: auto 0;
+      font-size: 18px;
+    }
+    .productBtn {
+      width: 100%;
+      height: 37px;
+      padding: 6px;
+      font-size: 14px;
+      background-color: var(--primary-color);
+      color: var(--secondary-color);
+      border: none;
+      .basketIcon {
+        height: 22px;
+        width: 22px;
+        fill: var(--secondary-color);
+      }
+    }
+    .ordered {
+      background-color: var(--secondary-color);
+      color: var(--primary-color);
+      border: 1px solid var(--primary-color);
+    }
+  }
+}

@@ -1,7 +1,10 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { BASKET_ROUTE, PRODUCT_ROUTE } from "../../../../app/utils/consts.js";
-import { handleAddToBasket, isInBasket } from "shared/lib/functions/basketFunctions.js";
+import { BASKET_ROUTE, PRODUCT_ROUTE } from "app/utils/consts.js";
+import {
+  handleAddToBasket,
+  isInBasket,
+} from "shared/lib/functions/basketFunctions.js";
 import {
   handleAddToFavorites,
   handleRemoveFromFavorites,
@@ -10,6 +13,7 @@ import {
 import { ReactComponent as Basket } from "shared/assets/img/svg/basket.svg";
 import { ReactComponent as Like } from "shared/assets/img/svg/like.svg";
 import { observer } from "mobx-react-lite";
+import cls from "./ProductItem.module.scss";
 
 const ProductItem = observer(({ item }) => {
   const { id, name, price, img } = item;
@@ -28,7 +32,7 @@ const ProductItem = observer(({ item }) => {
 
   return (
     <div
-      className="shop__productItem"
+      className={cls.productItem}
       onClick={(event) => {
         event.stopPropagation();
         if (
@@ -40,39 +44,39 @@ const ProductItem = observer(({ item }) => {
         }
       }}
     >
-      <div className="productImg__wrapper">
-        <div className="productImg">
+      <div className={cls.wrapper}>
+        <div className={cls.productImg}>
           <img src={process.env.REACT_APP_API_URL + img[0]} alt={name} />
         </div>
         <div
-          className="productLike__wrapper"
+          className={cls.like}
           onClick={(event) => {
             toggleFavorite(event);
           }}
         >
-          <Like className={`prodictLike ${favorite ? "liked" : ""}`} />
+          <Like className={`${cls.prodictLike} ${favorite ? cls.liked : ""}`} />
         </div>
       </div>
 
-      <div className="productContent">
-        <div className="productName">{name}</div>
-        <div className="productPrice">{price} р.</div>
+      <div className={cls.productContent}>
+        <div className={cls.productName}>{name}</div>
+        <div className={cls.productPrice}>{price} р.</div>
         {inBasket ? (
           <button
-            className="productBtn_order"
+            className={`${cls.productBtn} ${cls.ordered}`}
             onClick={() => navigate("../" + BASKET_ROUTE)}
           >
             оформить
           </button>
         ) : (
           <button
-            className="productBtn"
+            className={cls.productBtn}
             onClick={(event) => {
               event.stopPropagation();
               handleAddToBasket(id);
             }}
           >
-            <Basket className="basket_icon" />
+            <Basket className={cls.basketIcon} />
           </button>
         )}
       </div>

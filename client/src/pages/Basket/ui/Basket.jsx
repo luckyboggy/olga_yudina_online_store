@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import { Context } from "index.js";
 import { Link } from "react-router-dom";
-import { BasketList } from "widgets/BasketList/ui/BasketList/BasketList.jsx";
+import { BasketList } from "widgets/BasketList/ui/BasketList/ui/BasketList.jsx";
 import { basketTotalPrice } from "shared/lib/functions/basketFunctions.js";
 import { observer } from "mobx-react-lite";
 import { CustomButton } from "shared/ui/button/CustomButton.jsx";

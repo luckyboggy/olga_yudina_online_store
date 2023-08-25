@@ -1,6 +1,3 @@
-$haeder_bc: lightslategrey;
-$header_fc: #ffe4c4;
-
 .carousel {
   position: relative;
   .carouselWrapper {
@@ -34,7 +31,7 @@ $header_fc: #ffe4c4;
           height: 40px;
           fill: rgb(206, 206, 206);
           &:hover {
-            fill: $haeder_bc;
+            fill: var(--primary-color);
           }
         }
       }
@@ -49,7 +46,7 @@ $header_fc: #ffe4c4;
           transform: rotate(180deg);
           fill: rgb(206, 206, 206);
           &:hover {
-            fill: $haeder_bc;
+            fill: var(--primary-color);
           }
         }
       }
@@ -67,7 +64,7 @@ $header_fc: #ffe4c4;
       background-color: rgb(206, 206, 206);
     }
     .current {
-      background-color: $haeder_bc;
+      background-color: var(--primary-color);
     }
   }
 }

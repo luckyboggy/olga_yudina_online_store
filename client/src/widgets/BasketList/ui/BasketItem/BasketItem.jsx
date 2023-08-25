@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { ReactComponent as Remove } from "shared/assets/img/svg/delete.svg";
 import { fetchOneProduct } from "http/productAPI.js";
 import { handleRemoveFromBasket } from "shared/lib/functions/basketFunctions";
+import cls from "./BasketItem.module.scss";
 
 const BasketItem = ({ item }) => {
   const { productId } = item;
@@ -12,9 +13,9 @@ const BasketItem = ({ item }) => {
   }, []);
 
   return (
-    <div className="basketProduct">
-      <div className="basketProduct__content">
-        <div className="basketProduct__img">
+    <div className={cls.basketProduct}>
+      <div className={cls.content}>
+        <div className={cls.basketProductImg}>
           {basketItem.img && (
             <img
               src={process.env.REACT_APP_API_URL + basketItem.img[0]}
@@ -23,14 +24,14 @@ const BasketItem = ({ item }) => {
           )}
         </div>
 
-        <div className="basketProduct__info">
-          <div className="basketProduct__name">{basketItem.name}</div>
-          <div className="basketProduct__price">{basketItem.price} р</div>
+        <div className={cls.info}>
+          <div className={cls.name}>{basketItem.name}</div>
+          <div className={cls.price}>{basketItem.price} р</div>
         </div>
       </div>
-      <div className="basketProduct__control">
+      <div className={cls.control}>
         <Remove
-          className="removeBtn"
+          className={cls.removeBtn}
           onClick={() => handleRemoveFromBasket(productId)}
         />
       </div>
