@@ -1,8 +1,12 @@
 import React, { useState, useContext } from "react";
-import { Context } from "../../../index.js";
+import { Context } from "index.js";
 import { CustomButton } from "shared/ui/button/CustomButton.jsx";
 import { CustomInput } from "shared/ui/input/CustomInput.jsx";
-import { fetchCity, fetchStreet } from "../../../shared/lib/functions/autocompleteFunctions.js";
+import {
+  fetchCity,
+  fetchStreet,
+} from "shared/lib/functions/autocompleteFunctions.js";
+import cls from "./Ordering.module.scss";
 
 const Ordering = () => {
   const { user } = useContext(Context);
@@ -24,8 +28,8 @@ const Ordering = () => {
   const [suggestionStreet, setSuggestionStreet] = useState([]);
 
   return (
-    <div className="ordering">
-      <div className="ordering__personal">
+    <div className={cls.ordering}>
+      <div className={cls.personal}>
         <CustomInput
           type="email"
           placeholder="email"
@@ -51,7 +55,7 @@ const Ordering = () => {
           }}
         />
       </div>
-      <div className="ordering__delivery">
+      <div className={cls.delivery}>
         <div className="fs20">Доставка</div>
 
         {/* выбор города */}
@@ -107,7 +111,7 @@ const Ordering = () => {
             ></option>
           ))}
         </datalist>
-        <div className="ordering__delivery__houseFlat">
+        <div className={cls.houseFlat}>
           <CustomInput
             type="text"
             placeholder="house"

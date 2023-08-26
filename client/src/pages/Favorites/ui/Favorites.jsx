@@ -1,18 +1,19 @@
 import React, { useContext } from "react";
-import { Context } from "../../../index.js";
+import { Context } from "index.js";
 import { Link } from "react-router-dom";
 import { ReactComponent as Arrow } from "shared/assets/img/svg/arrow.svg";
 import { CustomButton } from "shared/ui/button/CustomButton.jsx";
+import cls from "./Favorites.module.scss";
 
 const Favorites = () => {
   const { user } = useContext(Context);
   return (
-    <div className="favorites">
+    <div className={cls.favorites}>
       {user.isAuth ? (
-        <div className="authorized">a</div>
+        <div className={cls.authorized}>a</div>
       ) : (
-        <div className="unauthorized">
-          <div className="toAuth">
+        <div className={cls.unauthorized}>
+          <div className={cls.toAuth}>
             <div className="text fs22">Избранное</div>
             <div className="text fs20">
               Войдите в аккаунт, чтобы смотреть избранное на любом устройстве
@@ -23,11 +24,11 @@ const Favorites = () => {
             </Link>
           </div>
           <div>
-            <div className="emptySpace">
-              <div className="toShop">
-                <Link className="toShop__link" to="../shop">
+            <div className={cls.emptySpace}>
+              <div className={cls.toShop}>
+                <Link className={cls.link} to="../shop">
                   <div>В магазин</div>
-                  <Arrow className="linkArrow" />
+                  <Arrow className={cls.linkArrow} />
                 </Link>
               </div>
             </div>

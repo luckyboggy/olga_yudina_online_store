@@ -1,11 +1,12 @@
 import React, { useState, useContext, useEffect } from "react";
 import { ProductList } from "widgets/ProductList/ui/ProductList/ProductList.jsx";
 import { ChooseSortType } from "entities/ChooseSortType.jsx";
-import { Context } from "../../../index.js";
+import { Context } from "index.js";
 import { observer } from "mobx-react-lite";
-import { fetchTypes, fetchProducts } from "../../../http/productAPI.js";
+import { fetchTypes, fetchProducts } from "http/productAPI.js";
 import { Pagination } from "shared/ui/pagination/Pagination.jsx";
 import CurrentModal from "shared/ui/modal/CurrentModal";
+import cls from "./Shop.module.scss";
 
 const Shop = observer(() => {
   const [sort, setSort] = useState(false);
@@ -43,12 +44,12 @@ const Shop = observer(() => {
         </CurrentModal>
       )}
 
-      <div className="shop__toolbar">
-        <div className="shop__toolbar__selected">
+      <div className={cls.toolbar}>
+        <div className={cls.selected}>
           {product.selectedType.name /* .toLowerCase() */}
         </div>
         <div
-          className="shop__toolbar__sort"
+          className={cls.sort}
           onClick={() => {
             setSort(!sort);
           }}
@@ -56,7 +57,7 @@ const Shop = observer(() => {
           {product.sortType.name.toLowerCase()}
         </div>
       </div>
-      <div className="shop__products">
+      <div className={cls.products}>
         <ProductList />
       </div>
       {product.pageCount > 1 && <Pagination />}

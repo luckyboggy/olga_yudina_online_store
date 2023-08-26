@@ -1,0 +1,26 @@
+.auth {
+    padding: 1rem;
+    .choose {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 15px;
+  
+      .chooseBtn {
+        border: none;
+        background: transparent;
+        text-decoration: none;
+        font-size: 20px;
+        color: var(--primary-color);
+        cursor: pointer;
+      }
+  
+      .chooseActive {
+        font-weight: 700;
+        color: rgb(14, 56, 56);
+      }
+    }
+
+    .authForm {
+        
+    }
+  }

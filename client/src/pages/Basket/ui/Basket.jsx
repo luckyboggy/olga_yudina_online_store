@@ -5,6 +5,7 @@ import { BasketList } from "widgets/BasketList/ui/BasketList/ui/BasketList.jsx";
 import { basketTotalPrice } from "shared/lib/functions/basketFunctions.js";
 import { observer } from "mobx-react-lite";
 import { CustomButton } from "shared/ui/button/CustomButton.jsx";
+import cls from "./Basket.module.scss";
 
 const Basket = observer(() => {
   const { user } = useContext(Context);
@@ -15,18 +16,18 @@ const Basket = observer(() => {
   }, [user.localBasket]);
 
   return (
-    <div className="basket">
+    <div className={cls.basket}>
       {(user.isAuth && user.basketCount === 0) ||
       (!user.isAuth && user.localBasket.length === 0) ? (
         <h3 style={{ textAlign: "center" }}>Ваша корзина пуста</h3>
       ) : (
-        <div className="basket__check">
-          <div className="basket__products">
+        <div className={cls.check}>
+          <div className={cls.products}>
             <BasketList />
           </div>
-          <div className="basket__confirm">
-            <div className="basket__totalPrice">{totalPrice} р</div>
-            <div className="basket__order">
+          <div className={cls.confirm}>
+            <div className={cls.totalPrice}>{totalPrice} р</div>
+            <div className={cls.order}>
               <Link to="/ordering">
                 <CustomButton>Оформить заказ</CustomButton>
               </Link>

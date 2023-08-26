@@ -1,5 +1,6 @@
 import React from "react";
 import { CustomInput } from "shared/ui/input/CustomInput";
+import cls from "./MobilSearch.module.scss";
 
 const MobilSearch = ({ setMobilSearch }) => {
   const handleClose = (event) => {
@@ -9,8 +10,8 @@ const MobilSearch = ({ setMobilSearch }) => {
   };
 
   return (
-    <div className="mobilSearch" onClick={(event) => handleClose(event)}>
-      <div className="searchWrapper">
+    <div className={cls.mobilSearch} onClick={(event) => handleClose(event)}>
+      <div className={cls.searchWrapper}>
         <CustomInput />
       </div>
     </div>

@@ -1,0 +1,12 @@
+.ordering {
+    .personal {
+    }
+    .delivery {
+      margin-top: 1rem;
+      .houseFlat {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+      }
+    }
+  }

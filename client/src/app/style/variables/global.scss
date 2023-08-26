@@ -1,9 +1,19 @@
 // colors
 :root {
+  --basic-bg-color: white;
+
   --primary-color: lightslategrey;
   --secondary-color: #ffe4c4;
 
-  --font-color: rgb(54, 62, 70);
+  --font-color: #363e46;
+
+  --opacity-color: #00000040;
+
+
+
+  // z-index
+
+  --mobilSearch-z: 10;
 }
 
 $font: rgb(54, 62, 70);

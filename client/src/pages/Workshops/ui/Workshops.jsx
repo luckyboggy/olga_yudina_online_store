@@ -1,8 +1,9 @@
 import React from "react";
+import cls from "./Workshops.module.scss";
 
 const Workshops = () => {
   return (
-    <div className="workshops">
+    <div className={cls.workshops}>
       <div className="fs22">Скоро сдесь будет интересно</div>
     </div>
   );

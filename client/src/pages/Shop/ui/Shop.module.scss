@@ -1,0 +1,23 @@
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+}
+
+.selected {
+  font-size: 20px;
+  color: var(--primary-color);
+}
+
+.sort,
+.filter {
+  font-size: 20px;
+  color: var(--primary-color);
+  cursor: pointer;
+  &:hover {
+    color: #0e3838;
+  }
+}
+
+.products {
+    
+}

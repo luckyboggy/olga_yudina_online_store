@@ -6,10 +6,11 @@ import {
   LOGIN_ROUTE,
   MAINPAGE_ROUTE,
   REGISTRATION_ROUTE,
-} from "../../../app/utils/consts";
-import { login, registration } from "../../../http/userAPI.js";
-import { Context } from "../../../index.js";
+} from "app/utils/consts";
+import { login, registration } from "http/userAPI.js";
+import { Context } from "index.js";
 import { observer } from "mobx-react-lite";
+import cls from "./Auth.module.scss";
 
 const Auth = observer(() => {
   const { user } = useContext(Context);
@@ -43,30 +44,22 @@ const Auth = observer(() => {
   };
 
   return (
-    <div className="auth">
-      <div className="auth_choose">
+    <div className={cls.auth}>
+      <div className={cls.choose}>
         <Link
-          className={
-            isLogin
-              ? "auth_choose_btn auth_choose_btn_active"
-              : "auth_choose_btn"
-          }
+          className={`${cls.chooseBtn} ${isLogin ? cls.chooseActive : ""}`}
           to={"../" + LOGIN_ROUTE}
         >
           вход
         </Link>
         <Link
-          className={
-            isLogin
-              ? "auth_choose_btn"
-              : "auth_choose_btn auth_choose_btn_active"
-          }
+          className={`${cls.chooseBtn} ${isLogin ? "" : cls.chooseActive}`}
           to={"../" + REGISTRATION_ROUTE}
         >
           регистрация
         </Link>
       </div>
-      <div className="authForm">
+      <div className={cls.authForm}>
         {isLogin ? (
           <SignInForm
             authUser={authUser}
