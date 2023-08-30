@@ -6,15 +6,15 @@
 }
 
 .header {
-  background-color: var(--primary-color);
-  //
+  background: var(--primary-color);
+
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   transition: transform 0.3s ease-in;
-  z-index: 5;
-  //
+  z-index: var(--header-z);
+
   a {
     text-decoration: none;
     color: var(--secondary-color);
@@ -29,7 +29,7 @@
   }
 
   .burger {
-    flex-basis: 25%;
+    flex-basis: 20%;
     display: flex;
 
     .burgerIcon {
@@ -40,9 +40,11 @@
   }
 
   .logo {
-    flex-basis: 50%;
-    font-size: 20px;
+    flex-basis: 60%;
+    font-size: 18px;
     text-align: center;
+    font-family: var(--font-family-logo);
+    letter-spacing: 0.5px;
   }
 
   .naviBar {
@@ -50,14 +52,19 @@
   }
 
   .icons {
-    flex-basis: 25%;
+    flex-basis: 20%;
     display: flex;
     justify-content: space-around;
+    align-items: center;
   }
   .icon {
     height: 22px;
     width: 22px;
     fill: var(--secondary-color);
+  }
+  .like {
+    fill: transparent;
+    stroke: var(--secondary-color);
   }
 
   .basketIcon {
@@ -65,7 +72,8 @@
   }
   .basketCount {
     position: absolute;
-    background-color: darkred;
+    background-color: var(--secondary-color);
+    color: black;
     height: 20px;
     width: 20px;
     border-radius: 50%;
@@ -75,5 +83,17 @@
     bottom: -4px;
     right: -8px;
     font-size: 12px;
+    font-weight: 700;
   }
+}
+
+.main {
+  //background-color: var(--opacity-color);
+  background: linear-gradient(var(--opacity-color), 80%, #00000000);
+  transform: translateY(0);
+}
+
+.main.hide {
+  background-color: black;
+  transform: translateY(0);
 }

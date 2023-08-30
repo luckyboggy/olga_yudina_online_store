@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
-import { BrowserRouter } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { MobileMenu } from "widgets/MobileMenu";
 import { Context } from "index.js";
 import { observer } from "mobx-react-lite";
@@ -19,6 +19,17 @@ const App = observer(() => {
   const [loading, setLoading] = useState(true);
   const [mobileMenu, setMobileMenu] = useState(false);
   const [mobilSearch, setMobilSearch] = useState(false);
+  const [headerTheme, setHeaderTheme] = useState("");
+
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.pathname === "/") {
+      setHeaderTheme("main");
+    } else {
+      setHeaderTheme("");
+    }
+  }, [location]);
 
   useEffect(() => {
     check()
@@ -51,9 +62,10 @@ const App = observer(() => {
       })
       .catch(() => {
         if (localStorage.getItem("localBasket")) {
-          user.parseLocalBasket(JSON.parse(localStorage.getItem("localBasket")));
+          user.parseLocalBasket(
+            JSON.parse(localStorage.getItem("localBasket"))
+          );
         }
-
       })
       .finally(() => {
         setLoading(false);
@@ -61,18 +73,19 @@ const App = observer(() => {
   }, []);
 
   return (
-    <BrowserRouter>
+    <div className='app'>
       <MobileMenu mobileMenu={mobileMenu} setMobileMenu={setMobileMenu} />
       <Header
         setMobileMenu={setMobileMenu}
         setMobilSearch={setMobilSearch}
         mobilSearch={mobilSearch}
+        theme={headerTheme}
       />
       {mobilSearch && <MobilSearch setMobilSearch={setMobilSearch} />}
       <AppRouter user={user} />
 
       <Footer />
-    </BrowserRouter >
+    </div>
   );
 });
 

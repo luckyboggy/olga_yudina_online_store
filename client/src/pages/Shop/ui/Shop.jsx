@@ -37,7 +37,7 @@ const Shop = observer(() => {
   }, [product.page, product.selectedType, product.sortType.value]);
 
   return (
-    <div>
+    <div className={cls.shop}>
       {sort && (
         <CurrentModal close={setSort}>
           <ChooseSortType closeModal={setSort} />

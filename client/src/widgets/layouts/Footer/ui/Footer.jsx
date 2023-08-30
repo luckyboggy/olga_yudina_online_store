@@ -11,17 +11,31 @@ const Footer = () => {
   return (
     <footer className={cls.footer}>
       <div className={cls.wrapper}>
-        <hr />
-        <div className={cls.section}>
-          <CustomDropDown
-            title={"покупателям"}
-            content={[
-              { name: "delivery", link: "delivery" },
-              { name: "about", link: "about" },
-            ]}
-          />
+        {/* <hr /> */}
+        <div className={cls.menu}>
+          <div className={cls.items}>
+            <div className={cls.subMenu}>
+              <Link to="#" className={cls.item}>
+                О бренде
+              </Link>
+              <Link to="#" className={cls.item}>
+                Про уход
+              </Link>
+            </div>
+            <div className={cls.subMenu}>
+              <Link to="#" className={cls.item}>
+                Контакты
+              </Link>
+              <Link to="#" className={cls.item}>
+                Доставка и оплата
+              </Link>
+              <Link to="#" className={cls.item}>
+                Гарантия и возврат
+              </Link>
+            </div>
+          </div>
         </div>
-        <hr />
+        {/* <hr /> */}
         <div className={cls.section}>
           <div className={cls.links}>
             <Link to="#">
@@ -35,7 +49,7 @@ const Footer = () => {
             </Link>
           </div>
         </div>
-        <hr />
+        {/* <hr /> */}
         <div className={cls.copyright}>© {year} luckyboggy</div>
       </div>
     </footer>

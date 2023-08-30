@@ -3,10 +3,30 @@
   padding: 0 1rem;
   .wrapper {
     hr {
+      margin-top: 1rem;
       border: none;
       height: 1px;
       color: var(--primary-color);
       background-color: var(--primary-color);
+    }
+    .menu {
+      margin-top: 1rem;
+      .items {
+        display: flex;
+        flex-direction: column;
+        padding: 1rem 0;
+        .subMenu {
+          display: flex;
+          flex-direction: column;
+          padding: 0.5rem 0;
+          .item {
+            padding: 0.25rem 0;
+            text-decoration: none;
+            color: var(--primary-color);
+            font-size: 14px;
+          }
+        }
+      }
     }
     .section {
       .links {

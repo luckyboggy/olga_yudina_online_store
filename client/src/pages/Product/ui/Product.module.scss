@@ -1,54 +1,53 @@
-
 .product {
-    .product__img {
+  padding: var(--page-padding-md);
+  .product__img {
+    width: 100%;
+    //height: 300px;
+    //background-color: #ffe4c4;
+    img {
       width: 100%;
-      //height: 300px;
-      //background-color: #ffe4c4;
-      img {
-        width: 100%;
-      }
-    }
-  
-    .content {
-      .title {
-        margin: 1rem 0;
-        font-size: 24px;
-      }
-  
-      .price {
-        margin: 1rem 0;
-        font-size: 24px;
-      }
-  
-      .description {
-        margin: 1rem 0;
-        font-size: 18px;
-      }
-      .button {
-        width: 120px;
-        height: 47px;
-        padding: 6px;
-        font-size: 18px;
-        background-color: var(--primary-color);
-        color: var(--secondary-color);
-        border: none;
-        cursor: pointer;
-        .icon {
-          width: 30px;
-          height: 30px;
-          fill: var(--secondary-color);
-        }
-      }
-      .buttonOrder {
-        width: 120px;
-        height: 47px;
-        padding: 6px;
-        font-size: 18px;
-        background-color: var(--secondary-color);
-        color: var(--primary-color);
-        border: 1px solid var(--primary-color);
-        cursor: pointer;
-      }
     }
   }
-  
+
+  .content {
+    .title {
+      margin: 1rem 0;
+      font-size: 24px;
+    }
+
+    .price {
+      margin: 1rem 0;
+      font-size: 24px;
+    }
+
+    .description {
+      margin: 1rem 0;
+      font-size: 18px;
+    }
+    .button {
+      width: 120px;
+      height: 47px;
+      padding: 6px;
+      font-size: 18px;
+      background-color: var(--primary-color);
+      color: var(--secondary-color);
+      border: none;
+      cursor: pointer;
+      .icon {
+        width: 30px;
+        height: 30px;
+        fill: var(--secondary-color);
+      }
+    }
+    .buttonOrder {
+      width: 120px;
+      height: 47px;
+      padding: 6px;
+      font-size: 18px;
+      background-color: var(--secondary-color);
+      color: var(--primary-color);
+      border: 1px solid var(--primary-color);
+      cursor: pointer;
+    }
+  }
+}

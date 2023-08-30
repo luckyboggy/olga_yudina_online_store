@@ -1,12 +1,13 @@
 .ordering {
-    .personal {
-    }
-    .delivery {
-      margin-top: 1rem;
-      .houseFlat {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 1rem;
-      }
+  padding: var(--page-padding-md);
+  .personal {
+  }
+  .delivery {
+    margin-top: 1rem;
+    .houseFlat {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
     }
   }
+}

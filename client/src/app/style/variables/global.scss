@@ -1,25 +1,40 @@
-// colors
-:root {
-  --basic-bg-color: white;
-
-  --primary-color: lightslategrey;
-  --secondary-color: #ffe4c4;
-
-  --font-color: #363e46;
-
-  --opacity-color: #00000040;
-
-
-
-  // z-index
-
-  --mobilSearch-z: 10;
-}
-
-$font: rgb(54, 62, 70);
-
 // fonts
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display+SC:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&display=swap');
+// colors
+:root {
+  // fonts
+  --font-family-logo: "Playfair Display SC", serif;
+
+  // colors
+  --basic-bg-color: white;
+
+  //--primary-color: lightslategrey;
+  --primary-color: rgb(39, 39, 39);
+  //--secondary-color: #ffe4c4;
+  --secondary-color: white;
+
+  --font-color: #363e46;
+
+  --opacity-color: #000000d0;
+
+  // heights
+
+  // mobile
+  --header-height-md: 44px;
+  --footer-height-md: 152px;
+
+  // paddings
+  --page-padding-md: 1rem;
+
+  // margins
+
+  // z-index
+  --header-z: 5;
+  --mobilSearch-z: 10;
+}
+
+$font: rgb(54, 62, 70);

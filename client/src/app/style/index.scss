@@ -2,6 +2,10 @@
 @import "variables/global.scss";
 @import "breakpoint.scss";
 
+.app {
+  font-family: "Poppins", sans-serif;
+}
+
 .text {
   color: var(--primary-color);
   margin: 1rem 0;
@@ -22,8 +26,7 @@ main {
   width: 100%;
   margin-top: 44px;
   position: relative;
-  min-height: calc(100vh - 44px - 152px);
-  padding: 1rem;
+  min-height: calc(100vh - var(--header-height-md) - var(--footer-height-md));
   @include breakpoint(md) {
     max-width: 800px;
   }
