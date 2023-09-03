@@ -7,7 +7,22 @@
 // colors
 :root {
   // fonts
+  --font-family-main: "Poppins", sans-serif;
   --font-family-logo: "Playfair Display SC", serif;
+
+  --font-size-s: 14px;
+  --font-line-s: 22px;
+  --font-main-s: var(--font-size-s) / var(--font-line-s) var(--font-family-main);
+
+  --font-size-m: 22px;
+  --font-line-m: 30px;
+  --font-main-m: var(--font-size-m) / var(--font-line-m) var(--font-family-main);
+
+
+  --font-size-l: 30px;
+  --font-line-l: 48px;
+  --font-main-l: var(--font-size-l) / var(--font-line-l) var(--font-family-main);
+
 
   // colors
   --basic-bg-color: white;
@@ -26,7 +41,7 @@
   // mobile
   --header-height-md: 44px;
   --footer-height-md: 297px;
-  --container-heighy-md: calc(100vh - 358px);
+  --container-heighy-md: calc(100vh - 362px);
 
   // paddings
   --page-padding-md: 1rem;

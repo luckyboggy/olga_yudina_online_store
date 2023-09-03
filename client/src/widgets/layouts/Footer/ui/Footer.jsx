@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { CustomDropDown } from "shared/ui/dropDownMenu/CustomDropDown.jsx";
 import { ReactComponent as ToVk } from "shared/assets/img/svg/linkVk.svg";
 import { ReactComponent as ToTg } from "shared/assets/img/svg/linkTg.svg";
 import { ReactComponent as ToEmail } from "shared/assets/img/svg/linkEmail.svg";
@@ -15,7 +14,7 @@ const Footer = () => {
         <div className={cls.menu}>
           <div className={cls.items}>
             <div className={cls.subMenu}>
-              <Link to="#" className={cls.item}>
+              <Link to="about" className={cls.item}>
                 О бренде
               </Link>
               <Link to="#" className={cls.item}>
@@ -26,7 +25,7 @@ const Footer = () => {
               <Link to="#" className={cls.item}>
                 Контакты
               </Link>
-              <Link to="#" className={cls.item}>
+              <Link to="delivery" className={cls.item}>
                 Доставка и оплата
               </Link>
               <Link to="#" className={cls.item}>

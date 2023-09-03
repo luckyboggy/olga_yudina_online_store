@@ -3,7 +3,7 @@
 @import "breakpoint.scss";
 
 .app {
-  font-family: "Poppins", sans-serif;
+  font-family: var(--font-family-main);
 }
 
 .text {
