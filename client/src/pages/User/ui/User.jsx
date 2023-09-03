@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { CustomSelect } from "shared/ui/select/CustomSelect.jsx";
 import { IsMobil } from "shared/lib/hooks/IsMobil.js";
-import { UserPersonal } from "entities/userManagement/UserPersonal.jsx";
+import { UserPersonal } from "entities/userManagement/UserPersonal";
 import { observer } from "mobx-react-lite";
 import cls from "./User.module.scss";
 

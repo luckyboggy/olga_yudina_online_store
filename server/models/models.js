@@ -9,6 +9,7 @@ const User = sequelize.define("user", {
   email: { type: DataTypes.STRING, unique: true },
   password: { type: DataTypes.STRING },
   role: { type: DataTypes.STRING, defaultValue: "USER" },
+  addres: { type: DataTypes.JSON },
 });
 
 const Basket = sequelize.define("basket", {
@@ -67,7 +68,7 @@ const Type = sequelize.define("type", {
   name: { type: DataTypes.STRING, unique: true, allowNull: false },
 });
 
-const Collection = sequelize.define("type", {
+const Collection = sequelize.define("collection", {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
   name: { type: DataTypes.STRING, unique: true, allowNull: false },
 });

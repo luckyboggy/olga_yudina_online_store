@@ -1,7 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { ReactComponent as Search } from "shared/assets/img/svg/search.svg";
-import { ReactComponent as Auth } from "shared/assets/img/svg/person.svg";
 import { ReactComponent as Basket } from "shared/assets/img/svg/basket.svg";
 import { ReactComponent as Like } from "shared/assets/img/svg/like.svg";
 import { ReactComponent as Burger } from "shared/assets/img/svg/burger.svg";

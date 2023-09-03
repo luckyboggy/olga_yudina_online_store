@@ -1,10 +1,10 @@
-import { user } from "../../../index.js";
-import { addToBasket } from "../../../http/basketProductAPI.js";
+import { user } from "index.js";
 import {
+  addToBasket,
   fetchBasketProduct,
   deleteFromBasket,
-} from "../../../http/basketProductAPI.js";
-import { fetchOneProduct } from "../../../http/productAPI.js";
+} from "http/basketProductAPI.js";
+import { fetchOneProduct } from "http/productAPI.js";
 
 const handleAddToBasket = (id) => {
   if (user.isAuth) {
@@ -32,7 +32,6 @@ const handleRemoveFromBasket = (productId) => {
     });
   } else {
     user.removeFromLocalBasket(productId);
-    console.log('tut')
     window.localStorage.setItem(
       "localBasket",
       JSON.stringify(user.localBasket)
@@ -56,7 +55,6 @@ const isInBasket = (id) => {
 };
 
 const basketTotalPrice = async () => {
-
   let total = 0;
   let productData = [];
   if (user.isAuth) {
@@ -74,8 +72,6 @@ const basketTotalPrice = async () => {
   });
 
   return total;
-
-
 };
 
 export {

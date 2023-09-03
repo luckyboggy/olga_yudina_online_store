@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { CustomSelect } from "shared/ui/select/CustomSelect";
 import { IsMobil } from "shared/lib/hooks/IsMobil.js";
-import { ProductManagement } from "entities/adminManagements/ProductManagement.jsx";
-import { CategoryManagement } from "entities/adminManagements/CategoryManagement.jsx";
-import { UserManagement } from "entities/adminManagements/UserManagement.jsx";
-import { OrderManagement } from "entities/adminManagements/OrderManagement.jsx";
-import { PersonalManagement } from "entities/adminManagements/PersonalManagement.jsx";
+import { ProductManagement } from "entities/adminManagements/ProductManagement";
+import { CategoryManagement } from "entities/adminManagements/CategoryManagement";
+import { UserManagement } from "entities/adminManagements/UserManagement/";
+import { OrderManagement } from "entities/adminManagements/OrderManagement";
+import { PersonalManagement } from "entities/adminManagements/PersonalManagement";
 import { observer } from "mobx-react-lite";
 import cls from "./Admin.module.scss";
 

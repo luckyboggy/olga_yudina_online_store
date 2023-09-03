@@ -10,7 +10,7 @@ import cls from "./MobileMenu.module.scss";
 
 const MobileMenu = observer(({ mobileMenu, setMobileMenu }) => {
   const [collection, setCollection] = useState(false);
-  const { product } = useContext(Context);
+  const { product, user } = useContext(Context);
 
   useEffect(() => {
     fetchTypes().then((data) => product.setTypes(data));
@@ -102,6 +102,38 @@ const MobileMenu = observer(({ mobileMenu, setMobileMenu }) => {
           >
             delivery
           </Link>
+        </div>
+
+        <div className={cls.item}>
+          {user.isAuth && user.user.role === "ADMIN" && (
+            <Link
+              to="admin"
+              className={cls.title}
+              onClick={() => setMobileMenu(false)}
+            >
+              администрирование
+            </Link>
+          )}
+          {user.isAuth && user.user.role === "USER" && (
+            <Link
+              to="user"
+              className={cls.title}
+              onClick={() => setMobileMenu(false)}
+            >
+              личный кабинет
+            </Link>
+          )}
+
+          {!user.isAuth && (
+            <Link
+              to="login"
+              className={cls.title}
+              onClick={() => setMobileMenu(false)}
+            >
+              войти
+              
+            </Link>
+          )}
         </div>
       </div>
       <div className="mobileMenu__nav"></div>

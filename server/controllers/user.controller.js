@@ -1,13 +1,13 @@
 import { ApiError } from "../error/ApiError.js";
-import { User, Basket, Favorites} from "../models/models.js";
+import { User, Basket, Favorites } from "../models/models.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 dotenv.config();
 
-const generateJwt = (id, name, surename, email, phone, role) => {
+const generateJwt = (id, name, surename, email, phone, role, address) => {
   return jwt.sign(
-    { id, name, surename, email, phone, role },
+    { id, name, surename, email, phone, role, address },
     process.env.SECRET_KEY,
     { expiresIn: "24h" }
   );
@@ -15,7 +15,7 @@ const generateJwt = (id, name, surename, email, phone, role) => {
 
 class UserController {
   async registration(req, res, next) {
-    const { name, surename, email, phone, password, role } = req.body;
+    const { name, surename, email, phone, password, role, address } = req.body;
     if (!email || !password) {
       return next(ApiError.badRequest("Некорректный email или пароль"));
     }
@@ -35,6 +35,7 @@ class UserController {
       phone,
       role,
       password: hashPassword,
+      address,
     });
     const basket = await Basket.create({ userId: user.id });
     const favorites = await Favorites.create({ userId: user.id });
@@ -45,7 +46,8 @@ class UserController {
       user.surename,
       user.email,
       user.phone,
-      user.role
+      user.role,
+      user.address
     );
 
     return res.json({ jsonWebToken });
@@ -67,21 +69,22 @@ class UserController {
       user.surename,
       user.email,
       user.phone,
-      user.role
+      user.role,
+      user.address
     );
     try {
       return res.json({ jsonWebToken });
     } catch (error) {}
   }
   async check(req, res, next) {
-
     const jsonWebToken = generateJwt(
       req.user.id,
       req.user.name,
       req.user.surename,
       req.user.email,
       req.user.phone,
-      req.user.role
+      req.user.role,
+      req.user.address
     );
 
     return res.json({ jsonWebToken });

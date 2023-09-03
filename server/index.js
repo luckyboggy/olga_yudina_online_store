@@ -17,6 +17,7 @@ import {
   Product,
   ProductInfo,
   Type,
+  Collection,
 } from "./models/models.js";
 import { router } from "./routes/index.js";
 import { errorHandler } from "./middleware/errorHandlingMiddleware.js";

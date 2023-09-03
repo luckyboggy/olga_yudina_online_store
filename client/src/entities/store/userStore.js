@@ -9,9 +9,11 @@ export class UserStore {
     this._basketCount = 0;
     this._basketItems = [];
     this._favoriteId = 0;
+    this._favoritesCount = 0;
     this._favoritesItems = [];
     //local basket
     this._localBasket = [];
+    this._localFavorites = [];
     makeAutoObservable(this);
   }
 
@@ -35,6 +37,9 @@ export class UserStore {
   setFavoriteId(favoriteId) {
     this._favoriteId = favoriteId;
   }
+  setFavoritesCount(favoritesCount) {
+    this._favoritesCount = favoritesCount;
+  }
   setFavoritesItems(favoritesItems) {
     this._favoritesItems = favoritesItems;
   }
@@ -50,6 +55,21 @@ export class UserStore {
   }
   removeFromLocalBasket(id) {
     this._localBasket = this._localBasket.filter(
+      (item) => item.productId !== id
+    );
+  }
+
+  // local favorite
+  addToLocalFavorites(productId) {
+    if (!this._localFavorites.find((item) => item.productId === productId)) {
+      this._localFavorites.push({ productId: productId });
+    }
+  }
+  parseLocalFavorites(localFavorites) {
+    this._localFavorites = localFavorites;
+  }
+  removeFromLocalFavorites(id) {
+    this._localFavorites = this._localFavorites.filter(
       (item) => item.productId !== id
     );
   }
@@ -77,5 +97,8 @@ export class UserStore {
   }
   get localBasket() {
     return this._localBasket;
+  }
+  get localFavorites() {
+    return this._localFavorites;
   }
 }

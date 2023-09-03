@@ -8,7 +8,8 @@ const __dirname = path.resolve();
 class ProductController {
   async create(req, res, next) {
     try {
-      let { name, price, typeId, description, info } = req.body;
+      let { name, price, typeId, collectionId, description, info, quantity } =
+        req.body;
       let { img } = req.files || false;
       console.log(img);
 
@@ -35,9 +36,11 @@ class ProductController {
         name,
         price,
         typeId,
+        collectionId,
         description,
         info,
         img: imgArr,
+        quantity,
       });
 
       if (info) {
@@ -57,16 +60,30 @@ class ProductController {
     }
   }
   async getAll(req, res) {
-    let { typeId, limit, page, sortType } = req.query;
+    let { typeId, collectionId, limit, page, sortType } = req.query;
 
     sortType = sortType || ["updatedAt", "ASC"];
     limit = limit || 8;
     page = page || 1;
     let offset = limit * page - limit;
     let products;
-    if (typeId) {
+    if (typeId && collectionId) {
+      products = await Product.findAndCountAll({
+        where: { typeId, collectionId },
+        order: [sortType],
+        limit,
+        offset,
+      });
+    } else if (typeId) {
       products = await Product.findAndCountAll({
         where: { typeId },
+        order: [sortType],
+        limit,
+        offset,
+      });
+    } else if (collectionId) {
+      products = await Product.findAndCountAll({
+        where: { collectionId },
         order: [sortType],
         limit,
         offset,

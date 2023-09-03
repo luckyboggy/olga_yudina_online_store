@@ -24,9 +24,9 @@ main {
 
 .container {
   width: 100%;
-  margin-top: 44px;
+  margin-top: var(--header-height-md);
   position: relative;
-  min-height: calc(100vh - var(--header-height-md) - var(--footer-height-md));
+  min-height: var(--container-heighy-md);
   @include breakpoint(md) {
     max-width: 800px;
   }
