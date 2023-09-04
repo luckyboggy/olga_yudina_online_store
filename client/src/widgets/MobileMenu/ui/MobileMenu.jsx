@@ -131,7 +131,6 @@ const MobileMenu = observer(({ mobileMenu, setMobileMenu }) => {
               onClick={() => setMobileMenu(false)}
             >
               войти
-              
             </Link>
           )}
         </div>

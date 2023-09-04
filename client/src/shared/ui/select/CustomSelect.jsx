@@ -1,19 +1,14 @@
 import React from "react";
-import classes from "./CustomSelect.module.scss";
+import cls from "./CustomSelect.module.scss";
 
-const CustomSelect = ({ options, onChange}) => {
+const CustomSelect = ({ options, onChange, size }) => {
   return (
     <select
-      className={classes.cSelect}
+      className={`${cls.cSelect} ${cls[size]}`}
       onChange={(event) => onChange(event.target.value)}
     >
-
       {options.map((option) => (
-        <option
-          className={classes.cSelect}
-          key={option.name}
-          value={option.value}
-        >
+        <option className={cls.cSelect} key={option.name} value={option.value}>
           {option.name}
         </option>
       ))}

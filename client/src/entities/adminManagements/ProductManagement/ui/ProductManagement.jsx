@@ -7,10 +7,15 @@ import { ReactComponent as Close } from "shared/assets/img/svg/close.svg";
 import { CustomInput } from "shared/ui/input/CustomInput.jsx";
 import { CustomTextArea } from "shared/ui/textarea/CustomTextArea.jsx";
 import { CustomSelect } from "shared/ui/select/CustomSelect.jsx";
+import { Text } from "shared/ui/text/Text";
 import { observer } from "mobx-react-lite";
 import { createProduct } from "http/productAPI.js";
 import { ProductList } from "widgets/ProductList/ui/ProductList/ProductList.jsx";
-import { fetchProducts } from "http/productAPI.js";
+import {
+  fetchProducts,
+  fetchTypes,
+  fetchCollections,
+} from "http/productAPI.js";
 import cls from "./ProductManagement.module.scss";
 
 const ProductManagement = observer(() => {
@@ -22,6 +27,7 @@ const ProductManagement = observer(() => {
     img: null,
     description: "",
     typeId: null,
+    collectionId: null,
   });
 
   const selectFile = (event) => {
@@ -37,11 +43,19 @@ const ProductManagement = observer(() => {
     setNewProduct({ ...newProduct, typeId: id });
   };
 
+  const selectCollectionId = (collectionName) => {
+    const id = product.collections.find((collection) => {
+      return collection.name === collectionName;
+    }).id;
+    setNewProduct({ ...newProduct, collectionId: id });
+  };
+
   const addProduct = () => {
     const formData = new FormData();
     formData.append("name", newProduct.name);
     formData.append("price", newProduct.price);
     formData.append("typeId", newProduct.typeId);
+    formData.append("collectionId", newProduct.collectionId);
     formData.append("description", newProduct.description);
     console.log(images);
     images.forEach((img, i) => {
@@ -55,15 +69,42 @@ const ProductManagement = observer(() => {
         img: null,
         description: "",
         typeId: null,
+        collectionId: null,
       });
     });
   };
 
-  useEffect(() => {
-    fetchProducts(null, product.limit, 1).then((data) => {
-      product.setItems(data.rows);
-    });
-  }, []);
+  // useEffect(() => {
+  //   fetchProducts(null, null, product.limit, 1)
+  //     .then((data) => {
+  //       product.setItems(data.rows);
+  //     })
+  //     .then(() => {
+  //       fetchCollections().then((data) => {
+  //         console.log(data);
+  //         product.setCollections(data);
+  //       });
+  //     })
+  //     .then(() => {
+  //       fetchTypes().then((data) => {
+  //         console.log(data);
+  //         product.setTypes(data);
+  //       });
+  //     })
+  //     .then(() => {
+  //       console.log(product.collections[0].id);
+  //       console.log(product.types[0].id);
+
+  //       setNewProduct({
+  //         ...newProduct,
+  //         typeId: product.types[0].id,
+  //         collectionId: product.collections[0].id,
+  //       });
+  //     });
+  // }, []);
+
+  //console.log(product.collections[0].id);
+  console.log(product.types[0].id);
 
   return (
     <div className={cls.products}>
@@ -79,12 +120,17 @@ const ProductManagement = observer(() => {
       {/* Новый товар */}
       {creation && (
         <form className={cls.newProduct}>
-          Новый товар
+          <Text size={"m"} position={"center"}>
+            Новый товар
+          </Text>
           {/* Name */}
           <div className={cls.input}>
-            <div>Назвение</div>
+            <Text size={"s"} position={"left"}>
+              Название
+            </Text>
             <CustomInput
               placeholder="название"
+              size={"s"}
               value={newProduct.name}
               onChange={(event) =>
                 setNewProduct({ ...newProduct, name: event.target.value })
@@ -93,9 +139,12 @@ const ProductManagement = observer(() => {
           </div>
           {/* price */}
           <div className={cls.input}>
-            <div>Цена</div>
+            <Text size={"s"} position={"left"}>
+              Цена
+            </Text>
             <CustomInput
               placeholder="цена"
+              size={"s"}
               value={newProduct.price}
               onChange={(event) =>
                 setNewProduct({
@@ -107,8 +156,24 @@ const ProductManagement = observer(() => {
           </div>
           {/* type */}
           <div className={cls.input}>
-            <div>Категория</div>
-            <CustomSelect options={product.types} onChange={selectTypeId} />
+            <Text size={"s"} position={"left"}>
+              Категория
+            </Text>
+            <CustomSelect
+              options={product.types}
+              onChange={selectTypeId}
+              size={"s"}
+            />
+          </div>
+          <div className={cls.input}>
+            <Text size={"s"} position={"left"}>
+              Коллекция
+            </Text>
+            <CustomSelect
+              options={product.collections}
+              onChange={selectCollectionId}
+              size={"s"}
+            />
           </div>
           {/* images */}
           <div className={cls.images}>
@@ -117,7 +182,7 @@ const ProductManagement = observer(() => {
                 <img
                   key={image.name}
                   src={URL.createObjectURL(image)}
-                  className="imageItem"
+                  className={cls.imageItem}
                 />
               ))}
 
@@ -140,6 +205,7 @@ const ProductManagement = observer(() => {
           {/* description */}
           <CustomTextArea
             placeholder="описание"
+            size={"s"}
             value={newProduct.description}
             onChange={(event) =>
               setNewProduct({
@@ -153,6 +219,7 @@ const ProductManagement = observer(() => {
               type="submit"
               className={cls.acceptBtn}
               onClick={() => {
+                console.log(newProduct);
                 addProduct();
               }}
             />
@@ -168,9 +235,8 @@ const ProductManagement = observer(() => {
       <div></div>
 
       {/* Список товаров */}
-      <div className="shop__products">
-        <ProductList />
-      </div>
+
+      {/* <ProductList /> */}
     </div>
   );
 });

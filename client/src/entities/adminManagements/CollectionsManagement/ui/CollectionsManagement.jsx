@@ -6,74 +6,78 @@ import { ReactComponent as Accept } from "shared/assets/img/svg/accept.svg";
 import { ReactComponent as Close } from "shared/assets/img/svg/close.svg";
 import { CustomInput } from "shared/ui/input/CustomInput.jsx";
 import { Text } from "shared/ui/text/Text";
-import { fetchTypes, deleteType, createType } from "http/productAPI.js";
+import {
+  fetchCollections,
+  deleteCollection,
+  createCollection,
+} from "http/productAPI.js";
 import { observer } from "mobx-react-lite";
-import cls from "./CategoryManagement.module.scss";
+import cls from "./CollectionsManagement.module.scss";
 
-const CategoryManagement = observer(() => {
+const CollectionManagement = observer(() => {
   const { product } = useContext(Context);
   const [creation, setCreation] = useState(false);
-  const [newCategory, setNewCategory] = useState("");
+  const [newCollection, setNewCollection] = useState("");
 
-  // Добавление категории
-  const addType = () => {
-    createType({ name: newCategory })
+  // Добавление коллекции
+  const addCollection = () => {
+    createCollection({ name: newCollection })
       .then((data) => {
-        setNewCategory("");
+        setNewCollection("");
         setCreation(false);
       })
       .then(() => {
-        fetchTypes().then((data1) => {
-          product.setTypes(data1);
+        fetchCollections().then((data1) => {
+          product.setCollections(data1);
         });
       });
   };
 
-  // Удаление категории
-  const removeType = (type) => {
-    deleteType(type.id).then(() => {
-      fetchTypes().then((data1) => {
-        product.setTypes(data1);
+  // Удаление коллекции
+  const removeCollection = (collection) => {
+    deleteCollection(collection.id).then(() => {
+      fetchCollections().then((data1) => {
+        product.setCollections(data1);
       });
     });
   };
 
   useEffect(() => {
-    fetchTypes().then((data) => {
-      product.setTypes(data);
+    fetchCollections().then((data) => {
+      product.setCollections(data);
     });
   }, []);
 
   return (
-    <div className={cls.category}>
+    <div className={cls.collection}>
       {!creation && (
-        <div className={cls.addCategory}>
+        <div className={cls.addCollection}>
           <Add
-            className={cls.addCategoryItem}
+            className={cls.addCollectionItem}
             onClick={() => setCreation(true)}
           />
         </div>
       )}
 
-      {/* Новая категория */}
+      {/* Новая коллекция */}
       {creation && (
-        <form className={cls.newCategory}>
+        <form className={cls.newCollection}>
           <div className={cls.input}>
             <Text size={"m"} position={"left"}>
-              Новая категория
+              Новая коллекция
             </Text>
             <CustomInput
               placeholder={"категория"}
               size={"s"}
-              value={newCategory}
-              onChange={(event) => setNewCategory(event.target.value)}
+              value={newCollection}
+              onChange={(event) => setNewCollection(event.target.value)}
             />
           </div>
           <div className={cls.btns}>
             <Accept
               type="submit"
               className={cls.acceptBtn}
-              onClick={() => addType()}
+              onClick={() => addCollection()}
             />
             <Close
               className={cls.closeBtn}
@@ -83,16 +87,15 @@ const CategoryManagement = observer(() => {
         </form>
       )}
 
-      <div className={cls.categoryLIst}>
-        {product.types.map((type) => (
-          <div key={type.name} className={cls.categoryItem}>
+      <div className={cls.collectionList}>
+        {product.collections.map((collection) => (
+          <div key={collection.name} className={cls.collectionItem}>
             <Text size={"m"} position={"left"}>
-              {type.name}
+              {collection.name}
             </Text>
-
             <Remove
               className={cls.removeBtn}
-              onClick={() => removeType(type)}
+              onClick={() => removeCollection(collection)}
             />
           </div>
         ))}
@@ -101,4 +104,4 @@ const CategoryManagement = observer(() => {
   );
 });
 
-export { CategoryManagement };
+export { CollectionManagement };

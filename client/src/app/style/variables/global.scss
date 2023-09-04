@@ -18,11 +18,9 @@
   --font-line-m: 30px;
   --font-main-m: var(--font-size-m) / var(--font-line-m) var(--font-family-main);
 
-
   --font-size-l: 30px;
   --font-line-l: 48px;
   --font-main-l: var(--font-size-l) / var(--font-line-l) var(--font-family-main);
-
 
   // colors
   --basic-bg-color: white;
@@ -44,9 +42,12 @@
   --container-heighy-md: calc(100vh - 362px);
 
   // paddings
-  --page-padding-md: 1rem;
+  --padding-s: 0.5rem;
+  --padding-m: 1rem;
 
   // margins
+  --margin-s: 0.5rem;
+  --margin-m: 1rem;
 
   // z-index
   --header-z: 5;

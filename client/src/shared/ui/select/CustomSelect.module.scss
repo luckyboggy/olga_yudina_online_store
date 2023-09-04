@@ -1,9 +1,23 @@
 .cSelect {
   width: 100%;
-  padding: 6px;
-  font-size: 18px;
-  margin-bottom: 1rem;
+  padding: var(--padding-s);
+  margin: var(--margin-m) 0;
+  font-size: var(--font-main-m);
   color: var(--primary-color);
   background: transparent;
   border-bottom: 1px solid var(--primary-color);
+}
+
+.s {
+  padding: var(--padding-s);
+  margin: var(--margin-s) 0;
+  font: var(--font-main-s);
+}
+
+.m {
+  font: var(--font-main-m);
+}
+
+.l {
+  font: var(--font-main-l);
 }

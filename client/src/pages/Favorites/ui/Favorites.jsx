@@ -23,7 +23,7 @@ const Favorites = () => {
             </Text>
 
             <Link to="../login">
-              <CustomButton>Войти</CustomButton>
+              <CustomButton fontSize={"m"}>Войти</CustomButton>
             </Link>
           </div>
           <div>

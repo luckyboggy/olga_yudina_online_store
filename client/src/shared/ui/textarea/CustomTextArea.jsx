@@ -1,8 +1,8 @@
 import React from "react";
-import classes from "./CustomTextArea.module.scss";
+import cls from "./CustomTextArea.module.scss";
 
-const CustomTextArea = (props) => {
-  return <textarea {...props} className={classes.cTextAria} />;
+const CustomTextArea = ({ size = "m", ...props }) => {
+  return <textarea {...props} className={`${cls.cTextAria} ${cls[size]}`} />;
 };
 
 export { CustomTextArea };

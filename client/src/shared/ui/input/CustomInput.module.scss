@@ -1,9 +1,23 @@
 .customInput {
   width: 100%;
   padding: 12px;
-  font-size: 18px;
-  margin: 15px 0;
+  font-size: var(--font-main-m);
+  margin: var(--margin-m) 0;
   background: transparent;
   border: none;
   border-bottom: 1px solid var(--primary-color);
+}
+
+.s {
+  padding: var(--padding-s);
+  margin: var(--margin-s) 0;
+  font: var(--font-main-s);
+}
+
+.m {
+  font: var(--font-main-m);
+}
+
+.l {
+  font: var(--font-main-l);
 }

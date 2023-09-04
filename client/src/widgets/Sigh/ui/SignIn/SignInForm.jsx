@@ -8,6 +8,7 @@ const SignInForm = ({ authUser, setAuthUser, signClick }) => {
       <CustomInput
         type="email"
         placeholder="email"
+        size={"m"}
         value={authUser.email}
         onChange={(event) =>
           setAuthUser({ ...authUser, email: event.target.value })
@@ -16,6 +17,7 @@ const SignInForm = ({ authUser, setAuthUser, signClick }) => {
       <CustomInput
         type="password"
         placeholder="пароль"
+        size={"m"}
         value={authUser.password}
         onChange={(event) =>
           setAuthUser({ ...authUser, password: event.target.value })
@@ -23,6 +25,7 @@ const SignInForm = ({ authUser, setAuthUser, signClick }) => {
       />
       <CustomButton
         type="submit"
+        fontSize={"m"}
         onClick={(event) => {
           event.preventDefault();
           signClick(authUser.email, authUser.password);

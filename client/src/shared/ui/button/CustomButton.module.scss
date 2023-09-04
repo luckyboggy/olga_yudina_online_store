@@ -1,8 +1,20 @@
 .customButton {
   width: 100%;
   padding: 12px;
-  font-size: 18px;
+  font-size: var(--font-main-m);
   background-color: var(--primary-color);
   color: var(--secondary-color);
   border: none;
+}
+
+.s {
+  font: var(--font-main-s);
+}
+
+.m {
+  font: var(--font-main-m);
+}
+
+.l {
+  font: var(--font-main-l);
 }

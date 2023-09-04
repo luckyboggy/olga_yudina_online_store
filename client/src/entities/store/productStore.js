@@ -3,8 +3,10 @@ import { makeAutoObservable } from "mobx";
 export class ProductStore {
   constructor() {
     this._types = [];
+    this._collections = [];
     this._items = [];
     this._selectedType = {};
+    this._selectedCollection = {};
     this._page = 1;
     this._totalCount = 0;
     this._limit = 8;
@@ -17,6 +19,10 @@ export class ProductStore {
     this._types = types;
   }
 
+  setCollections(collections) {
+    this._collections = collections;
+  }
+
   setItems(items) {
     this._items = items;
   }
@@ -24,6 +30,11 @@ export class ProductStore {
   setSelectedType(selectedType) {
     this.setPage(1);
     this._selectedType = selectedType;
+  }
+
+  setSelectedCollection(selectedCollection) {
+    this.setPage(1);
+    this._selectedCollection = selectedCollection;
   }
 
   setPage(page) {
@@ -49,11 +60,17 @@ export class ProductStore {
   get types() {
     return this._types;
   }
+  get collections() {
+    return this._collections;
+  }
   get items() {
     return this._items;
   }
   get selectedType() {
     return this._selectedType;
+  }
+  get selectedCollection() {
+    return this._selectedCollection;
   }
   get page() {
     return this._page;

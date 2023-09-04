@@ -26,6 +26,7 @@ const Shop = observer(() => {
   useEffect(() => {
     fetchProducts(
       product.selectedType.id,
+      null,
       product.limit,
       product.page,
       product.sortType.value
@@ -57,9 +58,8 @@ const Shop = observer(() => {
           {product.sortType.name.toLowerCase()}
         </div>
       </div>
-      <div className={cls.products}>
-        <ProductList />
-      </div>
+      <ProductList />
+      <div className={cls.products}></div>
       {product.pageCount > 1 && <Pagination />}
     </div>
   );
