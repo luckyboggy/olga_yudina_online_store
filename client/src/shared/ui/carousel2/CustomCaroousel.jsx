@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import classes from "./CustomCarousel.module.scss";
 import { ReactComponent as Prev } from "shared/assets/img/svg/prev.svg";
 import { IsMobil } from "../../lib/hooks/IsMobil.js";
+import classes from "./CustomCarousel.module.scss";
 
 const CustomCarousel = ({ images, url }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -60,7 +60,7 @@ const CustomCarousel = ({ images, url }) => {
           >
             {images.map((image) => (
               <img
-                src={url + image}
+                src={`${url ? url : ""}${url ? " + " : ""}${image}`}
                 key={image}
                 className={classes.imageItem}
               />

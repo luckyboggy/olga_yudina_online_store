@@ -21,7 +21,13 @@ const CustomCarousel = ({ images, url }) => {
     <div className={classes.carousel}>
       <div className={classes.carouselWrapper}>
         <div className={classes.carouselLine}>
-          <img src={url + images[currentImg]} />
+          {
+            url && <img src={url + images[currentImg]} />
+          }
+          {
+            !url && <img src={images[currentImg]} />
+          }
+          
           {!isMobil && (
             <div
               className={`${classes.btns} ${classes.prev}`}

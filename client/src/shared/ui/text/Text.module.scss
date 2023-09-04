@@ -1,6 +1,5 @@
 .text {
   color: var(--font-color);
-  display: flex;
 }
 
 .s {
@@ -9,6 +8,7 @@
 
 .m {
   font: var(--font-main-m);
+  letter-spacing: 1px;
 }
 
 .l {
@@ -17,6 +17,7 @@
 
 .center {
   justify-content: center;
+  text-align: center;
 }
 
 .right {
@@ -28,5 +29,13 @@
 }
 
 .pv1 {
-  padding: var(--padding-m) 0;
+  padding: var(--padding-m);
+}
+
+.pv2 {
+  margin: 2rem 0;
+  padding: var(--padding-m);
+}
+
+.font_test {
 }

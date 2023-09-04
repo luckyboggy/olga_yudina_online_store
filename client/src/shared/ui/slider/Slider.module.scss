@@ -1,0 +1,19 @@
+.slider {
+  width: 100%; /* ширина блоку зі слайдами */
+  height: 260px;
+  overflow: hidden;
+  position: relative;
+
+  .wrapper {
+    height: 100%;
+    .list {
+      display: flex;
+      height: 100%;
+      transition: transform 0.5s;
+      .item {
+        height: 100%;
+        margin-left: 1rem;
+      }
+    }
+  }
+}
