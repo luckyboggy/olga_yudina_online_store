@@ -74,37 +74,22 @@ const ProductManagement = observer(() => {
     });
   };
 
-  // useEffect(() => {
-  //   fetchProducts(null, null, product.limit, 1)
-  //     .then((data) => {
-  //       product.setItems(data.rows);
-  //     })
-  //     .then(() => {
-  //       fetchCollections().then((data) => {
-  //         console.log(data);
-  //         product.setCollections(data);
-  //       });
-  //     })
-  //     .then(() => {
-  //       fetchTypes().then((data) => {
-  //         console.log(data);
-  //         product.setTypes(data);
-  //       });
-  //     })
-  //     .then(() => {
-  //       console.log(product.collections[0].id);
-  //       console.log(product.types[0].id);
-
-  //       setNewProduct({
-  //         ...newProduct,
-  //         typeId: product.types[0].id,
-  //         collectionId: product.collections[0].id,
-  //       });
-  //     });
-  // }, []);
-
-  //console.log(product.collections[0].id);
-  console.log(product.types[0].id);
+  useEffect(() => {
+    fetchCollections()
+      .then((data) => {
+        product.setCollections(data);
+      })
+      .then(() => {
+        fetchTypes().then((data) => {
+          product.setTypes(data);
+        });
+      })
+      /* .then(() => {
+        fetchProducts(null, null, product.limit, 1).then((data) => {
+          product.setItems(data.rows);
+        });
+      }); */
+  }, []);
 
   return (
     <div className={cls.products}>
@@ -160,6 +145,7 @@ const ProductManagement = observer(() => {
               Категория
             </Text>
             <CustomSelect
+              defValue={"выбор категории"}
               options={product.types}
               onChange={selectTypeId}
               size={"s"}
@@ -170,6 +156,7 @@ const ProductManagement = observer(() => {
               Коллекция
             </Text>
             <CustomSelect
+              defValue={"выбор коллекции"}
               options={product.collections}
               onChange={selectCollectionId}
               size={"s"}

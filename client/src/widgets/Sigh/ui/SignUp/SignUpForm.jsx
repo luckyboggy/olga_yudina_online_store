@@ -5,7 +5,7 @@ import { CustomButton } from "shared/ui/button/CustomButton";
 const SignUpForm = ({ authUser, setAuthUser, signClick }) => {
   return (
     <form>
-      <CustomInput type="text" placeholder="логин" fontSize={"m"} />
+      <CustomInput type="text" placeholder="логин" size={"m"} />
       <CustomInput
         type="email"
         placeholder="email"

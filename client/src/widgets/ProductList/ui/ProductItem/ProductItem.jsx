@@ -28,6 +28,7 @@ const ProductItem = observer(({ item }) => {
     } else {
       handleAddToFavorites(id);
     }
+    console.log(favorite);
   };
 
   return (

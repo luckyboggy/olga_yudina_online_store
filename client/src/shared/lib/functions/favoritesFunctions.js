@@ -45,7 +45,7 @@ const isInFavorites = (id) => {
   if (user.isAuth) {
     foundProduct = user.favoritesItems.find((item) => item.productId === id);
   } else {
-    foundProduct = user.favoritesItems.find((item) => item.productId === id);
+    foundProduct = user.localFavorites.find((item) => item.productId === id);
   }
 
   if (foundProduct) {
