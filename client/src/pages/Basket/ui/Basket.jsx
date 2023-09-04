@@ -6,6 +6,7 @@ import { basketTotalPrice } from "shared/lib/functions/basketFunctions.js";
 import { observer } from "mobx-react-lite";
 import { CustomButton } from "shared/ui/button/CustomButton.jsx";
 import cls from "./Basket.module.scss";
+import { Text } from "shared/ui/text/Text";
 
 const Basket = observer(() => {
   const { user } = useContext(Context);
@@ -19,7 +20,9 @@ const Basket = observer(() => {
     <div className={cls.basket}>
       {(user.isAuth && user.basketCount === 0) ||
       (!user.isAuth && user.localBasket.length === 0) ? (
-        <h3 style={{ textAlign: "center" }}>Ваша корзина пуста</h3>
+        <Text size={"m"} position={"center"}>
+          Ваша корзина пуста
+        </Text>
       ) : (
         <div className={cls.check}>
           <div className={cls.products}>

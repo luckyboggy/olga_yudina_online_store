@@ -3,6 +3,7 @@ import { Context } from "index.js";
 import { Link } from "react-router-dom";
 import { ReactComponent as Arrow } from "shared/assets/img/svg/arrow.svg";
 import { CustomButton } from "shared/ui/button/CustomButton.jsx";
+import { Text } from "shared/ui/text/Text";
 import cls from "./Favorites.module.scss";
 
 const Favorites = () => {
@@ -14,10 +15,12 @@ const Favorites = () => {
       ) : (
         <div className={cls.unauthorized}>
           <div className={cls.toAuth}>
-            <div className="text fs22">Избранное</div>
-            <div className="text fs20">
+            <Text size={"m"} position={"left"} padding={"pv1"}>
+              Избранное
+            </Text>
+            <Text size={"s"} position={"left"} padding={"pv1"}>
               Войдите в аккаунт, чтобы смотреть избранное на любом устройстве
-            </div>
+            </Text>
 
             <Link to="../login">
               <CustomButton>Войти</CustomButton>

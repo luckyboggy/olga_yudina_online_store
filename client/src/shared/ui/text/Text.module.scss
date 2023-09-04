@@ -1,0 +1,32 @@
+.text {
+  color: var(--font-color);
+  display: flex;
+}
+
+.s {
+  font: var(--font-main-s);
+}
+
+.m {
+  font: var(--font-main-m);
+}
+
+.l {
+  font: var(--font-main-l);
+}
+
+.center {
+  justify-content: center;
+}
+
+.right {
+  justify-content: right;
+}
+
+.left {
+  justify-content: left;
+}
+
+.pv1 {
+  padding: var(--page-padding-md) 0;
+}
