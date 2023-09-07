@@ -19,6 +19,13 @@ import slide04 from "shared/assets/img/png/main/slide04.png";
 import { Slider } from "shared/ui/slider/Slider";
 
 const MainPage = () => {
+  const sliderImages = [
+    { img: slide01, title: "title01", description: "description01" },
+    { img: slide02, title: "title02", description: "description02" },
+    { img: slide03, title: "title03", description: "description03" },
+    { img: slide04, title: "title04", description: "description04" },
+  ];
+
   return (
     <div className={cls.mainPage}>
       <div className={cls.startImg}>
@@ -35,16 +42,7 @@ const MainPage = () => {
           чувственной героиней любимого романа и привнести в обычный день
           ощущение праздника.
         </Text>
-        {/* <img src={mainImg03} alt="main" /> */}
-        <Slider images={[slide01, slide02, slide03, slide04]} />
-        {/* <CustomCarousel
-          images={[mainImg04, mainImg05, mainImg06, mainImg07, mainImg08]}
-        /> */}
-        {/* <img src={mainImg04} alt="main" />
-        <img src={mainImg05} alt="main" />
-        <img src={mainImg06} alt="main" />
-        <img src={mainImg07} alt="main" />
-        <img src={mainImg08} alt="main" /> */}
+        <Slider images={sliderImages} />
       </div>
     </div>
   );
