@@ -60,7 +60,7 @@ const CustomCarousel = ({ images, url }) => {
           >
             {images.map((image) => (
               <img
-                src={`${url ? url : ""}${url ? " + " : ""}${image}`}
+                src={`${url}${image}`}
                 key={image}
                 className={classes.imageItem}
               />
