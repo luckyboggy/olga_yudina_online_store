@@ -2,10 +2,11 @@
   width: 100%;
   display: flex;
   flex-direction: column;
+
   .wrapper {
     width: 100%;
     position: relative;
-    .constent {
+    .content {
       overflow: hidden;
       width: 100%;
       height: 100%;
@@ -18,6 +19,24 @@
           max-height: 100%;
           width: auto;
         }
+      }
+    }
+
+    .dots {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      position: absolute;
+      bottom: 15px;
+      .dotItem {
+        margin: 5px;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background-color: rgb(206, 206, 206);
+      }
+      .current {
+        background-color: var(--primary-color);
       }
     }
 
@@ -55,20 +74,4 @@
       }
     }
   }
-
-  .dots {
-    display: flex;
-    justify-content: center;
-    .dotItem {
-      margin: 5px;
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background-color: rgb(206, 206, 206);
-    }
-    .current {
-      background-color: var(--primary-color);
-    }
-  }
 }
-

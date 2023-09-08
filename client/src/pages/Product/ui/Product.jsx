@@ -6,7 +6,12 @@ import {
   handleAddToBasket,
   isInBasket,
 } from "shared/lib/functions/basketFunctions.js";
+import {
+  isInFavorites,
+  toggleFavorite,
+} from "shared/lib/functions/favoritesFunctions.js";
 import { ReactComponent as Basket } from "shared/assets/img/svg/basket.svg";
+import { ReactComponent as Like } from "shared/assets/img/svg/like.svg";
 import { observer } from "mobx-react-lite";
 import { BASKET_ROUTE } from "app/utils/consts";
 import cls from "./Product.module.scss";
@@ -17,6 +22,7 @@ const Product = observer(() => {
   const navigate = useNavigate();
 
   const inBasket = isInBasket(item.id);
+  const favorite = isInFavorites(item.id);
 
   useEffect(() => {
     fetchOneProduct(id).then((data) => setItem(data));
@@ -30,23 +36,37 @@ const Product = observer(() => {
 
       <div className={cls.content}>
         <div className={cls.title}>{item.name}</div>
-        <div className={cls.price}>{item.price}</div>
+        <div className={cls.price}>{item.price} р</div>
         <div className={cls.description}>{item.description}</div>
-        {inBasket ? (
-          <button
-            className={cls.buttonOrder}
-            onClick={() => navigate("../" + BASKET_ROUTE)}
+        <div className={cls.materials}></div>
+
+        <div className={cls.btns}>
+          {inBasket ? (
+            <button
+              className={`${cls.btn} ${cls.ordered}`}
+              onClick={() => navigate("../" + BASKET_ROUTE)}
+            >
+              оформить
+            </button>
+          ) : (
+            <button
+              className={cls.btn}
+              onClick={() => handleAddToBasket(item.id)}
+            >
+              <Basket className={cls.icon} />
+            </button>
+          )}
+          <div
+            className={cls.like}
+            onClick={(event) => {
+              toggleFavorite(event, item.id, favorite);
+            }}
           >
-            оформить
-          </button>
-        ) : (
-          <button
-            className={cls.button}
-            onClick={() => handleAddToBasket(item.id)}
-          >
-            <Basket className={cls.icon} />
-          </button>
-        )}
+            <Like
+              className={`${cls.prodictLike} ${favorite ? cls.liked : ""}`}
+            />
+          </div>
+        </div>
       </div>
     </div>
   );

@@ -53,7 +53,7 @@ const CustomCarousel = ({ images, url }) => {
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
       >
-        <div className={classes.constent}>
+        <div className={classes.content}>
           <div
             className={classes.imagesLine}
             style={{ transform: `translateX(-${currentIndex * 100}%)` }}
@@ -77,17 +77,18 @@ const CustomCarousel = ({ images, url }) => {
             <Prev className={classes.nextArrow} />
           </div>
         )}
-      </div>
-      <div className={classes.dots}>
-        {images.map((i, index) => (
-          <div
-            className={`${classes.dotItem} ${
-              index === currentIndex ? classes.current : ""
-            }`}
-            key={i}
-            onClick={() => setCurrentIndex(index)}
-          ></div>
-        ))}
+
+        <div className={classes.dots}>
+          {images.map((i, index) => (
+            <div
+              className={`${classes.dotItem} ${
+                index === currentIndex ? classes.current : ""
+              }`}
+              key={i}
+              onClick={() => setCurrentIndex(index)}
+            ></div>
+          ))}
+        </div>
       </div>
     </div>
   );

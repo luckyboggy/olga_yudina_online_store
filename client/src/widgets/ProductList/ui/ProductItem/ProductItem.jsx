@@ -6,9 +6,8 @@ import {
   isInBasket,
 } from "shared/lib/functions/basketFunctions.js";
 import {
-  handleAddToFavorites,
-  handleRemoveFromFavorites,
   isInFavorites,
+  toggleFavorite,
 } from "shared/lib/functions/favoritesFunctions.js";
 import { ReactComponent as Basket } from "shared/assets/img/svg/basket.svg";
 import { ReactComponent as Like } from "shared/assets/img/svg/like.svg";
@@ -20,16 +19,6 @@ const ProductItem = observer(({ item }) => {
   const navigate = useNavigate();
   const inBasket = isInBasket(id);
   const favorite = isInFavorites(id);
-
-  const toggleFavorite = (event) => {
-    event.stopPropagation();
-    if (favorite) {
-      handleRemoveFromFavorites(id);
-    } else {
-      handleAddToFavorites(id);
-    }
-    console.log(favorite);
-  };
 
   return (
     <div
@@ -52,7 +41,7 @@ const ProductItem = observer(({ item }) => {
         <div
           className={cls.like}
           onClick={(event) => {
-            toggleFavorite(event);
+            toggleFavorite(event, id, favorite);
           }}
         >
           <Like className={`${cls.prodictLike} ${favorite ? cls.liked : ""}`} />
@@ -61,7 +50,7 @@ const ProductItem = observer(({ item }) => {
 
       <div className={cls.productContent}>
         <div className={cls.productName}>{name}</div>
-        <div className={cls.productPrice}>{price} р.</div>
+        <div className={cls.productPrice}>{price.toLocaleString()} р.</div>
         {inBasket ? (
           <button
             className={`${cls.productBtn} ${cls.ordered}`}

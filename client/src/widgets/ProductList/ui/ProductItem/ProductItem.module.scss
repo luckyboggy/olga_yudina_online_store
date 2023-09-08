@@ -22,11 +22,11 @@
       .prodictLike {
         width: 35px;
         height: 35px;
-        fill: white;
-        stroke: var(--primary-color);
+        fill: transparent;
+        stroke: var(--secondary-color);
       }
       .liked {
-        fill: var(--primary-color);
+        fill: var(--secondary-color);
       }
     }
   }

@@ -54,4 +54,14 @@ const isInFavorites = (id) => {
   return false;
 };
 
-export { handleAddToFavorites, handleRemoveFromFavorites, isInFavorites };
+const toggleFavorite = (event, id, favorite) => {
+  event.stopPropagation();
+  if (favorite) {
+    handleRemoveFromFavorites(id);
+  } else {
+    handleAddToFavorites(id);
+  }
+  console.log(favorite);
+};
+
+export { handleAddToFavorites, handleRemoveFromFavorites, isInFavorites, toggleFavorite };
