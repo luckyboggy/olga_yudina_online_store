@@ -51,24 +51,6 @@ const ProductItem = observer(({ item }) => {
       <div className={cls.productContent}>
         <div className={cls.productName}>{name}</div>
         <div className={cls.productPrice}>{price.toLocaleString()} р.</div>
-        {inBasket ? (
-          <button
-            className={`${cls.productBtn} ${cls.ordered}`}
-            onClick={() => navigate("../" + BASKET_ROUTE)}
-          >
-            оформить
-          </button>
-        ) : (
-          <button
-            className={cls.productBtn}
-            onClick={(event) => {
-              event.stopPropagation();
-              handleAddToBasket(id);
-            }}
-          >
-            <Basket className={cls.basketIcon} />
-          </button>
-        )}
       </div>
     </div>
   );

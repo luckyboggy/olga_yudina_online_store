@@ -1,5 +1,5 @@
 .shop {
-  padding: var(--padding-m);
+  padding: calc(var(--padding-m)/2);
 
   .toolbar {
     display: flex;

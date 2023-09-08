@@ -17,10 +17,10 @@ import { BASKET_ROUTE } from "app/utils/consts";
 import cls from "./Product.module.scss";
 
 const Product = observer(() => {
-  const [item, setItem] = useState({});
   const { id } = useParams();
   const navigate = useNavigate();
 
+  const [item, setItem] = useState({});
   const inBasket = isInBasket(item.id);
   const favorite = isInFavorites(item.id);
 
@@ -36,7 +36,7 @@ const Product = observer(() => {
 
       <div className={cls.content}>
         <div className={cls.title}>{item.name}</div>
-        <div className={cls.price}>{item.price} р</div>
+        <div className={cls.price}>{item.price && item.price.toLocaleString()} р</div>
         <div className={cls.description}>{item.description}</div>
         <div className={cls.materials}></div>
 
