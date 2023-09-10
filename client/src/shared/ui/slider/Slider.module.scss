@@ -19,6 +19,7 @@
         position: relative;
         overflow: hidden;
         border-radius: 5px;
+        text-decoration: none;
         &:first-child {
           margin: 0 var(--margin-m) 0 var(--margin-m);
         }
@@ -33,6 +34,7 @@
           pointer-events: none;
           .title {
             font: var(--font-main-m);
+            text-decoration: none;
           }
           .description {
             font: var(--font-main-s);

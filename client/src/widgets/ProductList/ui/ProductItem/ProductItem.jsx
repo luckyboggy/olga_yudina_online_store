@@ -1,15 +1,10 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { BASKET_ROUTE, PRODUCT_ROUTE } from "app/utils/consts.js";
-import {
-  handleAddToBasket,
-  isInBasket,
-} from "shared/lib/functions/basketFunctions.js";
+import { PRODUCT_ROUTE } from "app/utils/consts.js";
 import {
   isInFavorites,
   toggleFavorite,
 } from "shared/lib/functions/favoritesFunctions.js";
-import { ReactComponent as Basket } from "shared/assets/img/svg/basket.svg";
 import { ReactComponent as Like } from "shared/assets/img/svg/like.svg";
 import { observer } from "mobx-react-lite";
 import cls from "./ProductItem.module.scss";
@@ -17,7 +12,6 @@ import cls from "./ProductItem.module.scss";
 const ProductItem = observer(({ item }) => {
   const { id, name, price, img } = item;
   const navigate = useNavigate();
-  const inBasket = isInBasket(id);
   const favorite = isInFavorites(id);
 
   return (

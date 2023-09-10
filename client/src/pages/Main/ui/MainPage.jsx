@@ -18,11 +18,11 @@ import { Slider } from "shared/ui/slider/Slider";
 
 const MainPage = () => {
   const sliderImages = [
-    { img: slide02, title: "Кольца", description: "description02" },
-    { img: slide01, title: "Сумки", description: "description01" },
-    { img: slide03, title: "Колье", description: "description03" },
-    { img: slide07, title: "Броши", description: "description04" },
-    { img: slide05, title: "Одежда", description: "description04" },
+    { img: slide02, description: "description02" },
+    { img: slide01, description: "description01" },
+    { img: slide03, description: "description03" },
+    { img: slide07, description: "description04" },
+    { img: slide05, description: "description04" },
   ];
 
   return (

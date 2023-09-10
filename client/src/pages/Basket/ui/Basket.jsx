@@ -24,16 +24,20 @@ const Basket = observer(() => {
           Ваша корзина пуста
         </Text>
       ) : (
-        <div className={cls.check}>
-          <div className={cls.products}>
-            <BasketList />
-          </div>
-          <div className={cls.confirm}>
-            <div className={cls.totalPrice}>{totalPrice} р</div>
-            <div className={cls.order}>
-              <Link to="/ordering">
-                <CustomButton>Оформить заказ</CustomButton>
-              </Link>
+        <div>
+          <div className={cls.check}>
+            <div className={cls.title}>Корзина</div>
+            <div className={cls.products}>
+              <BasketList />
+            </div>
+
+            <div className={cls.confirm}>
+              <div className={cls.totalPrice}>итого: {totalPrice.toLocaleString()} р</div>
+              <div className={cls.order}>
+                <Link to="/ordering">
+                  <CustomButton fontSize={"m"}>Оформить заказ</CustomButton>
+                </Link>
+              </div>
             </div>
           </div>
         </div>
