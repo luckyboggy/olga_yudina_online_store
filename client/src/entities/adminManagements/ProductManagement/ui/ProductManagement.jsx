@@ -7,6 +7,7 @@ import { ReactComponent as Close } from "shared/assets/img/svg/close.svg";
 import { CustomInput } from "shared/ui/input/CustomInput.jsx";
 import { CustomTextArea } from "shared/ui/textarea/CustomTextArea.jsx";
 import { CustomSelect } from "shared/ui/select/CustomSelect.jsx";
+import { CustomButton } from "shared/ui/button/CustomButton";
 import { Text } from "shared/ui/text/Text";
 import { observer } from "mobx-react-lite";
 import { createProduct } from "http/productAPI.js";
@@ -21,6 +22,7 @@ import cls from "./ProductManagement.module.scss";
 const ProductManagement = observer(() => {
   const { product } = useContext(Context);
   const [creation, setCreation] = useState(false);
+  const [sizes, setSizes] = useState([]);
   const [newProduct, setNewProduct] = useState({
     name: "",
     price: "",
@@ -53,6 +55,11 @@ const ProductManagement = observer(() => {
     setNewProduct({ ...newProduct, collectionId: id });
   };
 
+  const addSize = (event) => {
+    event.preventDefault();
+    setSizes([...sizes, { size: "", quantity: "" }]);
+  };
+
   const addProduct = () => {
     const formData = new FormData();
     formData.append("name", newProduct.name);
@@ -61,6 +68,13 @@ const ProductManagement = observer(() => {
     formData.append("collectionId", newProduct.collectionId);
     formData.append("description", newProduct.description);
     formData.append("materials", newProduct.materials);
+
+    if (sizes.length > 0) {
+      formData.append("productSize", JSON.stringify(sizes));
+    } else {
+      formData.append("productSize", JSON.stringify(newProduct.productSize));
+    }
+
     console.log(images);
     images.forEach((img, i) => {
       formData.append(`img`, img);
@@ -72,9 +86,12 @@ const ProductManagement = observer(() => {
         price: "",
         img: null,
         description: "",
+        materials: "",
         typeId: null,
         collectionId: null,
+        productSize: [{ size: "unified", quantity: 1 }],
       });
+      setSizes([]);
     });
   };
 
@@ -206,7 +223,48 @@ const ProductManagement = observer(() => {
             }
           />
 
-          <div className={cls.sizes}></div>
+          <div className={cls.sizes}>
+            <Text size={"s"} position={"left"}>
+              Размеры
+            </Text>
+            {sizes.map((size, index) => (
+              <div className={cls.sizeItem} key={index}>
+                <CustomInput
+                  placeholder="размер"
+                  size={"s"}
+                  value={size.size}
+                  onChange={(event) =>
+                    setSizes(
+                      sizes.map((item, i) =>
+                        i === index
+                          ? { ...item, size: event.target.value }
+                          : item
+                      )
+                    )
+                  }
+                />
+                <CustomInput
+                  placeholder="количество"
+                  size={"s"}
+                  value={size.quantity}
+                  onChange={(event) =>
+                    setSizes(
+                      sizes.map((item, i) =>
+                        i === index
+                          ? { ...item, quantity: event.target.value }
+                          : item
+                      )
+                    )
+                  }
+                />
+              </div>
+            ))}
+            <div className={cls.addSize}>
+              <CustomButton fontSize={"s"} onClick={(event) => addSize(event)}>
+                добавить размер
+              </CustomButton>
+            </div>
+          </div>
 
           <div className={cls.btns}>
             <Accept
@@ -214,6 +272,7 @@ const ProductManagement = observer(() => {
               className={cls.acceptBtn}
               onClick={() => {
                 console.log(newProduct);
+
                 addProduct();
               }}
             />

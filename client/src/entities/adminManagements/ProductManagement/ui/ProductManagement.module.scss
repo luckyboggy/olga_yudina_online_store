@@ -21,7 +21,7 @@
     margin: 0.5rem 0;
     color: var(--font-color);
     font-size: 20px;
-    text-align: center;
+    //text-align: center;
 
     .input {
       display: grid;
@@ -74,12 +74,19 @@
     }
 
     .sizes {
-      .size {
+      .sizeItem {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--margin-m);
+        .size {
 
+        }
+        .quantity {
+          
+        }
       }
-      .quantity {
-        
-      }
+     
     }
   }
 }

@@ -8,8 +8,16 @@ const __dirname = path.resolve();
 class ProductController {
   async create(req, res, next) {
     try {
-      let { name, price, typeId, collectionId, description, materials, info, productSize } =
-        req.body;
+      let {
+        name,
+        price,
+        typeId,
+        collectionId,
+        description,
+        materials,
+        info,
+        productSize,
+      } = req.body;
       let { img } = req.files || false;
       console.log(img);
 
@@ -55,7 +63,7 @@ class ProductController {
       }
 
       if (productSize) {
-        // productSize = JSON.parse(productSize);
+        productSize = JSON.parse(productSize);
         productSize.forEach((item) => {
           ProductSize.create({
             size: item.size,
@@ -71,12 +79,20 @@ class ProductController {
     }
   }
 
-
   // Обновление продукта
   async update(req, res, next) {
     try {
       const { id } = req.params;
-      const { name, price, typeId, collectionId, description, materials, info, productSize } = req.body;
+      const {
+        name,
+        price,
+        typeId,
+        collectionId,
+        description,
+        materials,
+        info,
+        productSize,
+      } = req.body;
       let { img } = req.files || false;
 
       // Обновление изображений
@@ -90,14 +106,24 @@ class ProductController {
 
         for (let i = 0; i < img.length; i++) {
           let fileName = v4() + ".png";
-          img[i].mv(path.resolve(__dirname, "..", "server", "static", fileName));
+          img[i].mv(
+            path.resolve(__dirname, "..", "server", "static", fileName)
+          );
           imgArr.push(fileName);
         }
       }
 
       // Обновление параметров модели
       await Product.update(
-        { name, price, typeId, collectionId, description, materials, img: imgArr },
+        {
+          name,
+          price,
+          typeId,
+          collectionId,
+          description,
+          materials,
+          img: imgArr,
+        },
         { where: { id } }
       );
 
@@ -108,7 +134,7 @@ class ProductController {
           ProductInfo.create({
             title: i.title,
             description: i.description,
-            productId: id
+            productId: id,
           });
         });
       }
@@ -120,7 +146,7 @@ class ProductController {
           ProductSize.create({
             size: item.size,
             quantity: item.quantity,
-            productId: id
+            productId: id,
           });
         });
       }
@@ -130,8 +156,8 @@ class ProductController {
         where: { id },
         include: [
           { model: ProductInfo, as: "info" },
-          { model: ProductSize, as: "productSize" }
-        ]
+          { model: ProductSize, as: "productSize" },
+        ],
       });
 
       return res.json(updatedProduct);
@@ -139,9 +165,6 @@ class ProductController {
       next(ApiError.badRequest(err.message));
     }
   }
-
-
-
 
   async getAll(req, res) {
     let { typeId, collectionId, limit, page, sortType } = req.query;
@@ -180,15 +203,16 @@ class ProductController {
       });
     }
 
-
     return res.json(products);
   }
   async getOne(req, res) {
     const { id } = req.params;
     const product = await Product.findOne({
       where: { id },
-      include: [{ model: ProductInfo, as: "info" }, { model: ProductSize, as: "productSize" }],
-
+      include: [
+        { model: ProductInfo, as: "info" },
+        { model: ProductSize, as: "productSize" },
+      ],
     });
     res.json(product);
   }
