@@ -9,8 +9,18 @@ const User = sequelize.define("user", {
   email: { type: DataTypes.STRING, unique: true },
   password: { type: DataTypes.STRING },
   role: { type: DataTypes.STRING, defaultValue: "USER" },
-  addres: { type: DataTypes.JSON },
+  // address_id
 });
+
+const Address = sequelize.define('address', {
+  id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+  region: { type: DataTypes.STRING },
+  city: { type: DataTypes.STRING },
+  street: { type: DataTypes.STRING },
+  house: { type: DataTypes.STRING },
+  flat: { type: DataTypes.STRING },
+  zipcode: { type: DataTypes.STRING },
+})
 
 const Basket = sequelize.define("basket", {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
@@ -53,7 +63,17 @@ const Product = sequelize.define("product", {
   price: { type: DataTypes.INTEGER, allowNull: false },
   img: { type: DataTypes.ARRAY(DataTypes.STRING) },
   description: { type: DataTypes.STRING },
+  materials: { type: DataTypes.STRING },
   // type_id
+  // collection_id
+  // product_size
+  // product_info
+});
+
+const ProductSize = sequelize.define("product_size", {
+  id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+  size: { type: DataTypes.STRING, allowNull: false },
+  quantity: { type: DataTypes.INTEGER, allowNull: false },
 });
 
 const ProductInfo = sequelize.define("product_info", {
@@ -73,6 +93,9 @@ const Collection = sequelize.define("collection", {
   name: { type: DataTypes.STRING, unique: true, allowNull: false },
 });
 
+User.hasOne(Address);
+Address.belongsTo(User);
+
 User.hasOne(Basket);
 Basket.belongsTo(User);
 
@@ -90,6 +113,9 @@ OrderProduct.belongsTo(Order);
 
 Favorites.hasMany(FavoritesProduct);
 FavoritesProduct.belongsTo(Favorites);
+
+Product.hasMany(ProductSize, { as: "productSize" });
+ProductSize.belongsTo(Product);
 
 Product.hasMany(ProductInfo, { as: "info" });
 ProductInfo.belongsTo(Product);
@@ -110,6 +136,7 @@ Collection.hasMany(Product);
 Product.belongsTo(Collection);
 
 export {
+  Address,
   User,
   Basket,
   Order,
@@ -118,6 +145,7 @@ export {
   OrderProduct,
   FavoritesProduct,
   Product,
+  ProductSize,
   ProductInfo,
   Type,
   Collection,

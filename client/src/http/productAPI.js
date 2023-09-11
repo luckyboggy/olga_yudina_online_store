@@ -44,6 +44,11 @@ const createProduct = async (product) => {
   return data;
 };
 
+const updateProduct = async (updProduct, id) => {
+  const { data } = await $authHost.post(`api/product/${id}`, updProduct);
+  return data;
+}
+
 const fetchProducts = async (typeId, collectionId, limit, page, sortType) => {
   const { data } = await $host.get("api/product", {
     params: {
@@ -70,6 +75,7 @@ export {
   fetchCollections,
   deleteCollection,
   createProduct,
+  updateProduct,
   fetchProducts,
   fetchOneProduct,
 };

@@ -1,13 +1,13 @@
 import { ApiError } from "../error/ApiError.js";
-import { User, Basket, Favorites } from "../models/models.js";
+import { User, Basket, Favorites, Address } from "../models/models.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 dotenv.config();
 
-const generateJwt = (id, name, surename, email, phone, role, address) => {
+const generateJwt = (id, name, surename, email, phone, role) => {
   return jwt.sign(
-    { id, name, surename, email, phone, role, address },
+    { id, name, surename, email, phone, role },
     process.env.SECRET_KEY,
     { expiresIn: "24h" }
   );
@@ -15,7 +15,7 @@ const generateJwt = (id, name, surename, email, phone, role, address) => {
 
 class UserController {
   async registration(req, res, next) {
-    const { name, surename, email, phone, password, role, address } = req.body;
+    const { name, surename, email, phone, password, role } = req.body;
     if (!email || !password) {
       return next(ApiError.badRequest("Некорректный email или пароль"));
     }
@@ -35,10 +35,10 @@ class UserController {
       phone,
       role,
       password: hashPassword,
-      address,
     });
     const basket = await Basket.create({ userId: user.id });
     const favorites = await Favorites.create({ userId: user.id });
+    const address = await Address.create({ userId: user.id });
 
     const jsonWebToken = generateJwt(
       user.id,
@@ -47,7 +47,6 @@ class UserController {
       user.email,
       user.phone,
       user.role,
-      user.address
     );
 
     return res.json({ jsonWebToken });
@@ -70,11 +69,10 @@ class UserController {
       user.email,
       user.phone,
       user.role,
-      user.address
     );
     try {
       return res.json({ jsonWebToken });
-    } catch (error) {}
+    } catch (error) { }
   }
   async check(req, res, next) {
     const jsonWebToken = generateJwt(
@@ -84,7 +82,6 @@ class UserController {
       req.user.email,
       req.user.phone,
       req.user.role,
-      req.user.address
     );
 
     return res.json({ jsonWebToken });

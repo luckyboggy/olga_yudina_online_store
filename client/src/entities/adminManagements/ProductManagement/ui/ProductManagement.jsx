@@ -25,9 +25,12 @@ const ProductManagement = observer(() => {
     name: "",
     price: "",
     img: null,
+    materials: "",
     description: "",
+    materials: "",
     typeId: null,
     collectionId: null,
+    productSize: [{ size: "unified", quantity: 1 }],
   });
 
   const selectFile = (event) => {
@@ -57,6 +60,7 @@ const ProductManagement = observer(() => {
     formData.append("typeId", newProduct.typeId);
     formData.append("collectionId", newProduct.collectionId);
     formData.append("description", newProduct.description);
+    formData.append("materials", newProduct.materials);
     console.log(images);
     images.forEach((img, i) => {
       formData.append(`img`, img);
@@ -83,8 +87,8 @@ const ProductManagement = observer(() => {
         fetchTypes().then((data) => {
           product.setTypes(data);
         });
-      })
-      /* .then(() => {
+      });
+    /* .then(() => {
         fetchProducts(null, null, product.limit, 1).then((data) => {
           product.setItems(data.rows);
         });
@@ -201,6 +205,9 @@ const ProductManagement = observer(() => {
               })
             }
           />
+
+          <div className={cls.sizes}></div>
+
           <div className={cls.btns}>
             <Accept
               type="submit"
