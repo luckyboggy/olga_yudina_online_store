@@ -13,16 +13,15 @@ import slide05 from "shared/assets/img/png/main/slider/slide05.png";
 import slide06 from "shared/assets/img/png/main/slider/slide06.png";
 import slide07 from "shared/assets/img/png/main/slider/slide07.png";
 
-
 import { Slider } from "shared/ui/slider/Slider";
 
 const MainPage = () => {
   const sliderImages = [
-    { img: slide02, description: "description02" },
-    { img: slide01, description: "description01" },
-    { img: slide03, description: "description03" },
-    { img: slide07, description: "description04" },
-    { img: slide05, description: "description04" },
+    { img: slide02, description: "description02" }, //Кольца
+    { img: slide01, description: "description01" }, //Сумки
+    { img: slide03, description: "description03" }, //Ожерелья
+    { img: slide07, description: "description04" }, //Броши
+    { img: slide05, description: "description04" }, //Одежда
   ];
 
   return (

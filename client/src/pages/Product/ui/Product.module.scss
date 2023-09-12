@@ -29,49 +29,72 @@
     .materials {
     }
 
-    .btns {
-      margin: 2rem 0;
-      width: 100%;
-      display: grid;
-      grid-template-columns: 4fr 1fr;
-
-      .btn {
-        width: 100%;
-        height: 47px;
-        padding: 6px;
-        font-size: 18px;
-        background-color: var(--primary-color);
-        color: var(--secondary-color);
-        border: none;
-        cursor: pointer;
-        .icon {
-          width: 30px;
-          height: 30px;
-          fill: var(--secondary-color);
-        }
-      }
-      .ordered {
-        background-color: var(--secondary-color);
-        color: var(--primary-color);
-        border: 1px solid var(--primary-color);
-        cursor: pointer;
-      }
-
-      .like {
-        width: 100%;
-        height: 100%;
+    .sizes {
+      margin: 1rem 0;
+      .selectSize {
+        margin-top: 1rem;
         display: flex;
-        justify-content: center;
-        align-items: center;
-        .prodictLike {
-          width: 35px;
-          height: 35px;
-          fill: white;
-          stroke: var(--primary-color);
+        .sizeItem {
+          font: var(--font-main-s);
+          border: 2px solid var(--supporting-color);
+          color: var(--supporting-color);
+          padding: 0.25rem 1.25rem;
+          margin-right: 1rem;
         }
-        .liked {
-          fill: var(--primary-color);
+        .selectesSize {
+          border: 2px solid var(--primary-color);
+          color: var(--primary-color);
         }
+      }
+    }
+  }
+
+  .btns {
+    position: fixed;
+    bottom: 0;
+    background-color: var(--basic-bg-color);
+    padding: 0.5rem 1rem;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 4fr 1fr;
+    gap: 1rem;
+
+    .btn {
+      width: 100%;
+      height: 47px;
+      padding: 6px;
+      font-size: 18px;
+      background-color: var(--primary-color);
+      color: var(--secondary-color);
+      border: none;
+      cursor: pointer;
+      .icon {
+        width: 30px;
+        height: 30px;
+        fill: var(--secondary-color);
+      }
+    }
+    .ordered {
+      background-color: var(--secondary-color);
+      color: var(--primary-color);
+      border: 1px solid var(--primary-color);
+      cursor: pointer;
+    }
+
+    .like {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .prodictLike {
+        width: 35px;
+        height: 35px;
+        fill: white;
+        stroke: var(--primary-color);
+      }
+      .liked {
+        fill: var(--primary-color);
       }
     }
   }

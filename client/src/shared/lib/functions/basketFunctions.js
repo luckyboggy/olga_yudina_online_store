@@ -6,7 +6,7 @@ import {
 } from "http/basketProductAPI.js";
 import { fetchOneProduct } from "http/productAPI.js";
 
-const handleAddToBasket = (id) => {
+const handleAddToBasket = (id, selectedSize = 'unified') => {
   if (user.isAuth) {
     addToBasket({ basketId: user.basketId, productId: id });
     fetchBasketProduct(user.basketId).then((data) => {
