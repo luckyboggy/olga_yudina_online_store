@@ -30,8 +30,9 @@
         }
       }
 
-      .price {
-        font: var(--font-main-m);
+      .price,
+      .size {
+        font: var(--font-main-s);
         display: flex;
         align-items: center;
       }

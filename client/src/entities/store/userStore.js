@@ -45,9 +45,9 @@ export class UserStore {
   }
 
   // local basket
-  addToLocalBasket(productId) {
+  addToLocalBasket(productId, selectedSize) {
     if (!this._localBasket.find((item) => item.productId === productId)) {
-      this._localBasket.push({ productId: productId });
+      this._localBasket.push({ productId: productId, selectedSize: selectedSize });
     }
   }
   parseLocalBasket(localBasket) {

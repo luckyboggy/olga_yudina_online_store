@@ -19,7 +19,7 @@ const MainPage = () => {
   const sliderImages = [
     { img: slide02, description: "description02" }, //Кольца
     { img: slide01, description: "description01" }, //Сумки
-    { img: slide03, description: "description03" }, //Ожерелья
+    { img: slide03, description: "description03" }, //Колье
     { img: slide07, description: "description04" }, //Броши
     { img: slide05, description: "description04" }, //Одежда
   ];

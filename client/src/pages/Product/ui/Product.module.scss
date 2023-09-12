@@ -45,6 +45,10 @@
           border: 2px solid var(--primary-color);
           color: var(--primary-color);
         }
+        .notAvailable {
+          border: 2px solid rgb(184, 184, 184);
+          color:  rgb(184, 184, 184);
+        }
       }
     }
   }

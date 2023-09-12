@@ -22,15 +22,17 @@ const Product = observer(() => {
   const navigate = useNavigate();
 
   const [item, setItem] = useState({});
-  const [selectedSize, setSelectedSize] = useState("");
+  const [selectedSize, setSelectedSize] = useState("unified");
   const inBasket = isInBasket(item.id);
   const favorite = isInFavorites(item.id);
 
   const toggleSize = (newSize) => {
-    if (newSize === selectedSize) {
+    if (newSize.size === selectedSize) {
       setSelectedSize("");
     } else {
-      setSelectedSize(newSize);
+      if (newSize.quantity > 0) {
+        setSelectedSize(newSize.size);
+      }
     }
   };
 
@@ -61,13 +63,13 @@ const Product = observer(() => {
               Размеры
             </Text>
             <div className={cls.selectSize}>
-              {item.productSize.map((size) => (
+              {item.productSize.sort((a, b) => a.size - b.size).map((size) => (
                 <div
                   key={size.size}
                   className={`${cls.sizeItem} ${
                     size.size === selectedSize ? cls.selectesSize : ""
-                  }`}
-                  onClick={() => toggleSize(size.size)}
+                  } ${size.quantity > 0 ? "" : cls.notAvailable}`}
+                  onClick={() => toggleSize(size)}
                 >
                   {size.size}
                 </div>

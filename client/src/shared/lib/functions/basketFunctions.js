@@ -14,7 +14,7 @@ const handleAddToBasket = (id, selectedSize = 'unified') => {
       user.setBasketItems(data.rows);
     });
   } else {
-    user.addToLocalBasket(id);
+    user.addToLocalBasket(id, selectedSize);
     window.localStorage.setItem(
       "localBasket",
       JSON.stringify(user.localBasket)
