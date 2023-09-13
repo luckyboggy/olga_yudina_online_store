@@ -20,6 +20,7 @@ const App = observer(() => {
   const [mobileMenu, setMobileMenu] = useState(false);
   const [mobilSearch, setMobilSearch] = useState(false);
   const [headerTheme, setHeaderTheme] = useState("");
+  const [footerTheme, setFooterTheme] = useState("");
 
   const location = useLocation();
 
@@ -29,6 +30,12 @@ const App = observer(() => {
     } else {
       setHeaderTheme("");
     }
+    if (location.pathname.match(/^\/product\/\d+$/)) {
+      setFooterTheme('product')
+    } else {
+      setFooterTheme("")
+    }
+
   }, [location]);
 
   useEffect(() => {
@@ -84,7 +91,7 @@ const App = observer(() => {
       {mobilSearch && <MobilSearch setMobilSearch={setMobilSearch} />}
       <AppRouter user={user} />
 
-      <Footer />
+      <Footer theme={footerTheme} />
     </div>
   );
 });

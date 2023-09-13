@@ -5,10 +5,11 @@ import { ReactComponent as ToTg } from "shared/assets/img/svg/linkTg.svg";
 import { ReactComponent as ToEmail } from "shared/assets/img/svg/linkEmail.svg";
 import cls from "./Footer.module.scss";
 
-const Footer = () => {
+const Footer = ({ theme }) => {
   const year = new Date().getFullYear();
+
   return (
-    <footer className={cls.footer}>
+    <footer className={`${cls.footer} ${cls[theme]}`}>
       <div className={cls.wrapper}>
         {/* <hr /> */}
         <div className={cls.menu}>

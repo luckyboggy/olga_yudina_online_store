@@ -24,7 +24,7 @@ export class UserStore {
   setUser(user) {
     this._user = user;
   }
-
+  // basket
   setBasketId(basketId) {
     this._basketId = basketId;
   }
@@ -34,6 +34,8 @@ export class UserStore {
   setBasketItems(basketItems) {
     this._basketItems = basketItems;
   }
+
+  // favorite
   setFavoriteId(favoriteId) {
     this._favoriteId = favoriteId;
   }

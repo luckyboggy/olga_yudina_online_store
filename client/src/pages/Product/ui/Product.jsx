@@ -11,11 +11,11 @@ import {
   isInFavorites,
   toggleFavorite,
 } from "shared/lib/functions/favoritesFunctions.js";
-import { ReactComponent as Basket } from "shared/assets/img/svg/basket.svg";
 import { ReactComponent as Like } from "shared/assets/img/svg/like.svg";
 import { observer } from "mobx-react-lite";
 import { BASKET_ROUTE } from "app/utils/consts";
 import cls from "./Product.module.scss";
+import { CustomButton } from "shared/ui/button/CustomButton";
 
 const Product = observer(() => {
   const { id } = useParams();
@@ -23,6 +23,7 @@ const Product = observer(() => {
 
   const [item, setItem] = useState({});
   const [selectedSize, setSelectedSize] = useState("unified");
+  const [btnsShow, setBtnsShow] = useState(false);
   const inBasket = isInBasket(item.id);
   const favorite = isInFavorites(item.id);
 
@@ -35,6 +36,14 @@ const Product = observer(() => {
       }
     }
   };
+
+  window.addEventListener("scroll", () => {
+    if (window.pageYOffset > 10) {
+      setBtnsShow(true);
+    } else {
+      setBtnsShow(false);
+    }
+  });
 
   useEffect(() => {
     fetchOneProduct(id).then((data) => setItem(data));
@@ -49,7 +58,19 @@ const Product = observer(() => {
 
       {/* описание */}
       <div className={cls.content}>
-        <div className={cls.title}>{item.name}</div>
+        <div className={cls.titleWrapper}>
+          <div className={cls.title}>{item.name}</div>
+          <div
+            className={cls.like}
+            onClick={(event) => {
+              toggleFavorite(event, item.id, favorite);
+            }}
+          >
+            <Like
+              className={`${cls.prodictLike} ${favorite ? cls.liked : ""}`}
+            />
+          </div>
+        </div>
         <div className={cls.price}>
           {item.price && item.price.toLocaleString()} р
         </div>
@@ -63,47 +84,37 @@ const Product = observer(() => {
               Размеры
             </Text>
             <div className={cls.selectSize}>
-              {item.productSize.sort((a, b) => a.size - b.size).map((size) => (
-                <div
-                  key={size.size}
-                  className={`${cls.sizeItem} ${
-                    size.size === selectedSize ? cls.selectesSize : ""
-                  } ${size.quantity > 0 ? "" : cls.notAvailable}`}
-                  onClick={() => toggleSize(size)}
-                >
-                  {size.size}
-                </div>
-              ))}
+              {item.productSize
+                .sort((a, b) => a.size - b.size)
+                .map((size) => (
+                  <div
+                    key={size.size}
+                    className={`${cls.sizeItem} ${
+                      size.size === selectedSize ? cls.selectesSize : ""
+                    } ${size.quantity > 0 ? "" : cls.notAvailable}`}
+                    onClick={() => toggleSize(size)}
+                  >
+                    {size.size}
+                  </div>
+                ))}
             </div>
           </div>
         )}
       </div>
 
       {/* кнопки */}
-      <div className={cls.btns}>
-        {inBasket ? (
-          <button
-            className={`${cls.btn} ${cls.ordered}`}
-            onClick={() => navigate("../" + BASKET_ROUTE)}
-          >
-            оформить
-          </button>
-        ) : (
-          <button
-            className={cls.btn}
-            onClick={() => handleAddToBasket(item.id, selectedSize)}
-          >
-            <Basket className={cls.icon} />
-          </button>
-        )}
-        <div
-          className={cls.like}
-          onClick={(event) => {
-            toggleFavorite(event, item.id, favorite);
+      <div className={`${cls.btns} ${btnsShow ? "" : cls.hide}`}>
+        <CustomButton
+          fontSize={"m"}
+          theme={inBasket ? "inverted" : ""}
+          onClick={() => {
+            inBasket
+              ? navigate("../" + BASKET_ROUTE)
+              : handleAddToBasket(item.id, selectedSize);
           }}
         >
-          <Like className={`${cls.prodictLike} ${favorite ? cls.liked : ""}`} />
-        </div>
+          {inBasket ? "оформить" : "добавить в корзину"}
+        </CustomButton>
       </div>
     </div>
   );
