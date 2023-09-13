@@ -41,6 +41,7 @@ const Favorites = sequelize.define("favorites", {
 
 const BasketProduct = sequelize.define("basket_product", {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+  selectedSize: { type: DataTypes.STRING, defaultValue: "unified" },
   // basket_id
   // product_id
 });

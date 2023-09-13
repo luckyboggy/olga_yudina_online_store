@@ -29,7 +29,7 @@ const Product = observer(() => {
 
   const toggleSize = (newSize) => {
     if (newSize.size === selectedSize) {
-      setSelectedSize("");
+      setSelectedSize("unified");
     } else {
       if (newSize.quantity > 0) {
         setSelectedSize(newSize.size);
@@ -108,12 +108,26 @@ const Product = observer(() => {
           fontSize={"m"}
           theme={inBasket ? "inverted" : ""}
           onClick={() => {
-            inBasket
-              ? navigate("../" + BASKET_ROUTE)
-              : handleAddToBasket(item.id, selectedSize);
+            if (
+              !(
+                item.productSize &&
+                item.productSize.length > 1 &&
+                selectedSize === "unified"
+              )
+            ) {
+              inBasket
+                ? navigate("../" + BASKET_ROUTE)
+                : handleAddToBasket(item.id, selectedSize);
+            }
           }}
         >
-          {inBasket ? "оформить" : "добавить в корзину"}
+          {item.productSize &&
+          item.productSize.length > 1 &&
+          selectedSize === "unified"
+            ? "выберите размер"
+            : inBasket
+            ? "оформить"
+            : "добавить в корзину"}
         </CustomButton>
       </div>
     </div>

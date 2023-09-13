@@ -8,7 +8,7 @@ import { fetchOneProduct } from "http/productAPI.js";
 
 const handleAddToBasket = (id, selectedSize = 'unified') => {
   if (user.isAuth) {
-    addToBasket({ basketId: user.basketId, productId: id });
+    addToBasket({ basketId: user.basketId, productId: id, selectedSize: selectedSize });
     fetchBasketProduct(user.basketId).then((data) => {
       user.setBasketCount(data.count);
       user.setBasketItems(data.rows);

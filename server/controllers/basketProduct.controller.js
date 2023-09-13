@@ -3,7 +3,7 @@ import { BasketProduct } from "../models/models.js";
 class BasketProductController {
   async addToBasket(req, res) {
     try {
-      const { productId, basketId } = req.body;
+      const { productId, basketId, selectedSize } = req.body;
 
       // Проверка, есть ли данный товар в корзине
       const basketItem = await BasketProduct.findOne({
@@ -15,6 +15,7 @@ class BasketProductController {
         const basketProduct = await BasketProduct.create({
           basketId,
           productId,
+          selectedSize
         });
         return res.json(basketProduct);
       }
