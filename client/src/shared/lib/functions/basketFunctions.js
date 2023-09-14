@@ -6,9 +6,13 @@ import {
 } from "http/basketProductAPI.js";
 import { fetchOneProduct } from "http/productAPI.js";
 
-const handleAddToBasket = async (id, selectedSize = 'unified') => {
+const handleAddToBasket = async (id, selectedSize = "unified") => {
   if (user.isAuth) {
-    addToBasket({ basketId: user.basketId, productId: id, selectedSize: selectedSize });
+    addToBasket({
+      basketId: user.basketId,
+      productId: id,
+      selectedSize: selectedSize,
+    });
     await fetchBasketProduct(user.basketId).then((data) => {
       user.setBasketCount(data.count);
       user.setBasketItems(data.rows);
@@ -24,12 +28,14 @@ const handleAddToBasket = async (id, selectedSize = 'unified') => {
 
 const handleRemoveFromBasket = (productId, selectedSize) => {
   if (user.isAuth) {
-    deleteFromBasket(productId).then(() => {
-      fetchBasketProduct(user.basketId).then((data) => {
-        user.setBasketCount(data.count);
-        user.setBasketItems(data.rows);
-      });
-    });
+    deleteFromBasket({ productId: productId, selectedSize: selectedSize }).then(
+      () => {
+        fetchBasketProduct(user.basketId).then((data) => {
+          user.setBasketCount(data.count);
+          user.setBasketItems(data.rows);
+        });
+      }
+    );
   } else {
     user.removeFromLocalBasket(productId, selectedSize);
     window.localStorage.setItem(
@@ -43,16 +49,19 @@ const isInBasket = (id, size) => {
   let foundProduct = null;
 
   if (user.isAuth) {
-    foundProduct = user.basketItems.find((item) => item.productId === id);
+    foundProduct = user.basketItems.find(
+      (item) => item.productId === id && item.selectedSize === size
+    );
   } else {
-    foundProduct = user.localBasket.find((item) => item.productId === id);
+    foundProduct = user.localBasket.find(
+      (item) => item.productId === id && item.selectedSize === size
+    );
   }
-  if (foundProduct && foundProduct.selectedSize === 'unified') {
+
+  if (foundProduct && foundProduct.selectedSize === "unified") {
     return true;
   } else if (foundProduct && foundProduct.selectedSize === size) {
-    console.log(foundProduct.selectedSize)
-    console.log(foundProduct.size)
-    return true
+    return true;
   }
   return false;
 };

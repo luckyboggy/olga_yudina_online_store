@@ -7,7 +7,7 @@ class BasketProductController {
 
       // Проверка, есть ли данный товар в корзине
       const basketItem = await BasketProduct.findOne({
-        where: { productId, basketId },
+        where: { productId, basketId, selectedSize },
       });
 
       if (basketItem) {
@@ -15,7 +15,7 @@ class BasketProductController {
         const basketProduct = await BasketProduct.create({
           basketId,
           productId,
-          selectedSize
+          selectedSize,
         });
         return res.json(basketProduct);
       }
@@ -32,13 +32,16 @@ class BasketProductController {
         where: { basketId },
       });
       return res.json(basketProduct);
-    } catch (error) { }
+    } catch (error) {}
   }
 
   async delete(req, res) {
     const { productId } = req.params;
-    const basketProduct = await BasketProduct.destroy({ where: { productId } });
-    return res.json(basketProduct)
+    const { selectedSize } = req.body;
+    const basketProduct = await BasketProduct.destroy({
+      where: { productId, selectedSize },
+    });
+    return res.json(basketProduct);
   }
 }
 

@@ -125,10 +125,27 @@ const Product = observer(() => {
         {/* кнопки */}
         <div className={`${cls.btns} ${btnsShow ? "" : cls.hide}`}>
           {isOneSize ? (
-            <CustomButton fontSize={"m"} onClick={() => {}}></CustomButton>
+            <CustomButton
+              fontSize={"m"}
+              theme={isInBasket(item.id, selectedSize) ? "inverted" : ""}
+              onClick={() => {
+                isInBasket(item.id, selectedSize)
+                  ? navigate("../" + BASKET_ROUTE)
+                  : handleAddToBasket(item.id, selectedSize);
+              }}
+            >
+              {isInBasket(item.id, selectedSize)
+                ? "оформить"
+                : "добавить в корзину"}
+            </CustomButton>
           ) : (
             <CustomButton
               fontSize={"m"}
+              theme={
+                sizeChosen || isInBasket(item.id, selectedSize)
+                  ? "inverted"
+                  : ""
+              }
               onClick={() => {
                 if (!sizeChosen) {
                   isInBasket(item.id, selectedSize)
