@@ -4,7 +4,6 @@ import {
   fetchFavoritesProduct,
   deleteFromFavorites,
 } from "http/favoritesProductAPI.js";
-import { fetchOneProduct } from "http/productAPI.js";
 
 const handleAddToFavorites = (id) => {
   if (user.isAuth) {
@@ -54,14 +53,13 @@ const isInFavorites = (id) => {
   return false;
 };
 
-const toggleFavorite = (event, id, favorite) => {
+const toggleFavorite = async (event, id, favorite) => {
   event.stopPropagation();
   if (favorite) {
-    handleRemoveFromFavorites(id);
+    await handleRemoveFromFavorites(id);
   } else {
-    handleAddToFavorites(id);
+    await handleAddToFavorites(id);
   }
-  console.log(favorite);
 };
 
 export { handleAddToFavorites, handleRemoveFromFavorites, isInFavorites, toggleFavorite };

@@ -24,7 +24,8 @@ const Product = observer(() => {
   const [item, setItem] = useState({});
   const [selectedSize, setSelectedSize] = useState("unified");
   const [btnsShow, setBtnsShow] = useState(false);
-  const inBasket = isInBasket(item.id);
+  const [isOneSize, setIsOneSize] = useState(true);
+  //const inBasket = isInBasket(item.id);
   const favorite = isInFavorites(item.id);
 
   const toggleSize = (newSize) => {
@@ -46,89 +47,123 @@ const Product = observer(() => {
   });
 
   useEffect(() => {
-    fetchOneProduct(id).then((data) => setItem(data));
+    fetchOneProduct(id).then((data) => {
+      setItem(data);
+    });
   }, []);
+
+  useEffect(() => {
+    if (item.productSize && item.productSize[0].size === "unified") {
+      setIsOneSize(true);
+    } else {
+      setIsOneSize(false);
+    }
+  }, [item]);
+
+  const sizeChosen =
+    item.productSize &&
+    item.productSize.length > 1 &&
+    selectedSize === "unified";
 
   return (
     <div className={cls.product}>
-      {/* изображения */}
-      {item.img && (
-        <CustomCarousel url={process.env.REACT_APP_API_URL} images={item.img} />
-      )}
+      <div>
+        {/* изображения */}
+        {item.img && (
+          <CustomCarousel
+            url={process.env.REACT_APP_API_URL}
+            images={item.img}
+          />
+        )}
 
-      {/* описание */}
-      <div className={cls.content}>
-        <div className={cls.titleWrapper}>
-          <div className={cls.title}>{item.name}</div>
-          <div
-            className={cls.like}
-            onClick={(event) => {
-              toggleFavorite(event, item.id, favorite);
-            }}
-          >
-            <Like
-              className={`${cls.prodictLike} ${favorite ? cls.liked : ""}`}
-            />
-          </div>
-        </div>
-        <div className={cls.price}>
-          {item.price && item.price.toLocaleString()} р
-        </div>
-        <div className={cls.description}>{item.description}</div>
-        <div className={cls.materials}></div>
-
-        {/* Размеры */}
-        {item.productSize && !(item.productSize[0].size === "unified") && (
-          <div className={cls.sizes}>
-            <Text size={"s"} position={"left"}>
-              Размеры
-            </Text>
-            <div className={cls.selectSize}>
-              {item.productSize
-                .sort((a, b) => a.size - b.size)
-                .map((size) => (
-                  <div
-                    key={size.size}
-                    className={`${cls.sizeItem} ${
-                      size.size === selectedSize ? cls.selectesSize : ""
-                    } ${size.quantity > 0 ? "" : cls.notAvailable}`}
-                    onClick={() => toggleSize(size)}
-                  >
-                    {size.size}
-                  </div>
-                ))}
+        {/* описание */}
+        <div className={cls.content}>
+          <div className={cls.titleWrapper}>
+            <div className={cls.title}>{item.name}</div>
+            <div
+              className={cls.like}
+              onClick={(event) => {
+                toggleFavorite(event, item.id, favorite);
+              }}
+            >
+              <Like
+                className={`${cls.prodictLike} ${favorite ? cls.liked : ""}`}
+              />
             </div>
           </div>
-        )}
-      </div>
+          <div className={cls.price}>
+            {item.price && item.price.toLocaleString()} р
+          </div>
+          <div className={cls.description}>{item.description}</div>
+          <div className={cls.materials}></div>
 
-      {/* кнопки */}
-      <div className={`${cls.btns} ${btnsShow ? "" : cls.hide}`}>
-        <CustomButton
-          fontSize={"m"}
-          theme={inBasket ? "inverted" : ""}
-          onClick={() => {
-            if (
-              !(
-                item.productSize &&
-                item.productSize.length > 1 &&
-                selectedSize === "unified"
-              )
-            ) {
-              inBasket
-                ? navigate("../" + BASKET_ROUTE)
-                : handleAddToBasket(item.id, selectedSize);
-            }
-          }}
-        >
-          {item.productSize &&
-          item.productSize.length > 1 &&
-          selectedSize === "unified"
-            ? "выберите размер"
-            : inBasket
-            ? "оформить"
-            : "добавить в корзину"}
-        </CustomButton>
+          {/* Размеры */}
+          {item.productSize && !(item.productSize[0].size === "unified") && (
+            <div className={cls.sizes}>
+              <Text size={"s"} position={"left"}>
+                Размеры
+              </Text>
+              <div className={cls.selectSize}>
+                {item.productSize
+                  .sort((a, b) => a.size - b.size)
+                  .map((size) => (
+                    <div
+                      key={size.size}
+                      className={`${cls.sizeItem} ${
+                        size.size === selectedSize ? cls.selectesSize : ""
+                      } ${size.quantity > 0 ? "" : cls.notAvailable}`}
+                      onClick={() => toggleSize(size)}
+                    >
+                      {size.size}
+                    </div>
+                  ))}
+              </div>
+            </div>
+          )}
+        </div>
+
+        {/* кнопки */}
+        <div className={`${cls.btns} ${btnsShow ? "" : cls.hide}`}>
+          {isOneSize ? (
+            <CustomButton fontSize={"m"} onClick={() => {}}></CustomButton>
+          ) : (
+            <CustomButton
+              fontSize={"m"}
+              onClick={() => {
+                if (!sizeChosen) {
+                  isInBasket(item.id, selectedSize)
+                    ? navigate("../" + BASKET_ROUTE)
+                    : handleAddToBasket(item.id, selectedSize);
+                }
+              }}
+            >
+              {sizeChosen
+                ? "выберите размер"
+                : isInBasket(item.id, selectedSize)
+                ? "оформить"
+                : "добавить в корзину"}
+            </CustomButton>
+          )}
+          {/* <CustomButton
+            fontSize={"m"}
+            //theme={inBasket ? "inverted" : ""}
+            onClick={() => {
+              if (!sizeChosen) {
+                inBasket
+                  ? navigate("../" + BASKET_ROUTE)
+                  : handleAddToBasket(item.id, selectedSize);
+              }
+            }}
+          >
+            {item.productSize &&
+            item.productSize.length > 1 &&
+            selectedSize === "unified"
+              ? "выберите размер"
+              : inBasket
+              ? "оформить"
+              : "добавить в корзину"}
+          </CustomButton> */}
+        </div>
       </div>
     </div>
   );

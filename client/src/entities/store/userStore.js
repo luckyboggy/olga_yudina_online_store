@@ -48,16 +48,16 @@ export class UserStore {
 
   // local basket
   addToLocalBasket(productId, selectedSize) {
-    if (!this._localBasket.find((item) => item.productId === productId)) {
+    if (!this._localBasket.find((item) => item.productId === productId && item.selectedSize === selectedSize)) {
       this._localBasket.push({ productId: productId, selectedSize: selectedSize });
     }
   }
   parseLocalBasket(localBasket) {
     this._localBasket = localBasket;
   }
-  removeFromLocalBasket(id) {
+  removeFromLocalBasket(id, selectedSize) {
     this._localBasket = this._localBasket.filter(
-      (item) => item.productId !== id
+      (item) => item.productId !== id || item.selectedSize !== selectedSize
     );
   }
 

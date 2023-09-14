@@ -10,10 +10,10 @@ const BasketList = () => {
     <div className={cls.basketList}>
       {user.isAuth
         ? user.basketItems.map((item) => (
-            <BasketItem key={item.id} item={item} />
+            <BasketItem key={item.id + item.selectedSize} item={item} />
           ))
         : user.localBasket.map((item) => (
-            <BasketItem key={item.productId} item={item} />
+            <BasketItem key={item.productId + item.selectedSize} item={item} />
           ))}
     </div>
   );

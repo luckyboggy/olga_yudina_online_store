@@ -36,7 +36,7 @@ const BasketItem = ({ item }) => {
             <div className={cls.name}>{basketItem.name}</div>
             <Close
               className={cls.removeBtn}
-              onClick={() => handleRemoveFromBasket(productId)}
+              onClick={() => handleRemoveFromBasket(productId, selectedSize)}
             />
           </div>
           <div className={cls.price}>
