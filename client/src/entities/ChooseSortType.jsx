@@ -13,7 +13,21 @@ const ChooseSortType = ({ closeModal }) => {
   return (
     <div className="sortTypes">
       {sortTypes.map((sortType) => (
-        <div
+        <div key={sortType.name}>
+          <label>
+            <input
+              type="checkbox"
+              checked={product.sortType.name === sortType.name}
+              onClick={() => {
+                product.setSortType(sortType);
+                closeModal(false);
+              }}
+            />
+            {sortType.name}
+          </label>
+        </div>
+
+        /*         <div
           className="sortType"
           key={sortType.name}
           onClick={() => {
@@ -22,7 +36,7 @@ const ChooseSortType = ({ closeModal }) => {
           }}
         >
           {sortType.name}
-        </div>
+        </div> */
       ))}
     </div>
   );

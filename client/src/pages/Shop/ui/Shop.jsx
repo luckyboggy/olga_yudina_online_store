@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import { ProductList } from "widgets/ProductList/ui/ProductList/ProductList.jsx";
 import { ChooseSortType } from "entities/ChooseSortType.jsx";
+import { ReactComponent as Sort } from "shared/assets/img/svg/sort.svg";
 import { Context } from "index.js";
 import { observer } from "mobx-react-lite";
 import { fetchTypes, fetchProducts } from "http/productAPI.js";
@@ -55,7 +56,13 @@ const Shop = observer(() => {
             setSort(!sort);
           }}
         >
-          {product.sortType.name.toLowerCase()}
+          {product.sortType.name === "сортировка" ? (
+            <Sort className={cls.sortIcon} />
+          ) : (
+            <div className={cls.sortType}>
+              {product.sortType.name.toLowerCase()}
+            </div>
+          )}
         </div>
       </div>
       <ProductList />

@@ -1,26 +1,37 @@
 .shop {
-  padding: calc(var(--padding-m)/2);
+  padding: calc(var(--padding-m) / 2);
 
   .toolbar {
     display: flex;
     justify-content: space-between;
-  }
+    height: 40px;
 
-  .selected {
-    font-size: 20px;
-    color: var(--primary-color);
-  }
-
-  .sort,
-  .filter {
-    font-size: 20px;
-    color: var(--primary-color);
-    cursor: pointer;
-    &:hover {
-      color: #0e3838;
+    .selected {
+      font-size: 20px;
+      color: var(--primary-color);
     }
-  }
 
-  .products {
+    .sort,
+    .filter {
+      font-size: 20px;
+      color: var(--primary-color);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      &:hover {
+        color: #0e3838;
+      }
+
+      .sortIcon {
+        height: 34px;
+        width: 34px;
+        fill: var(--primary-color);
+        stroke: var(--primary-color);
+        margin: auto;
+      }
+      .sortType {
+        font: var(--font-main-m);
+      }
+    }
   }
 }
