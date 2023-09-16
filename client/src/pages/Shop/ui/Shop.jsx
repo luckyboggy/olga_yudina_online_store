@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import { ProductList } from "widgets/ProductList/ui/ProductList/ProductList.jsx";
-import { ChooseSortType } from "entities/ChooseSortType.jsx";
+import { ChooseSortType } from "widgets/ChooseSortType/ui/ChooseSortType.jsx";
 import { ReactComponent as Sort } from "shared/assets/img/svg/sort.svg";
 import { Context } from "index.js";
 import { observer } from "mobx-react-lite";

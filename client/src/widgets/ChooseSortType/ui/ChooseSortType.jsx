@@ -1,5 +1,7 @@
 import React, { useContext } from "react";
-import { Context } from "../index.js";
+import { Context } from "index.js";
+import { CheckBox } from "shared/ui/checkbox/CheckBox";
+import cls from "./ChooseSortType.module.scss";
 
 const ChooseSortType = ({ closeModal }) => {
   const sortTypes = [
@@ -11,32 +13,19 @@ const ChooseSortType = ({ closeModal }) => {
   const { product } = useContext(Context);
 
   return (
-    <div className="sortTypes">
+    <div className={cls.sortTypes}>
       {sortTypes.map((sortType) => (
-        <div key={sortType.name}>
-          <label>
-            <input
-              type="checkbox"
-              checked={product.sortType.name === sortType.name}
-              onClick={() => {
-                product.setSortType(sortType);
-                closeModal(false);
-              }}
-            />
-            {sortType.name}
-          </label>
-        </div>
-
-        /*         <div
-          className="sortType"
+        <CheckBox
           key={sortType.name}
-          onClick={() => {
+          type={"radio"}
+          checked={product.sortType.name === sortType.name}
+          onChange={() => {
             product.setSortType(sortType);
             closeModal(false);
           }}
         >
           {sortType.name}
-        </div> */
+        </CheckBox>
       ))}
     </div>
   );
