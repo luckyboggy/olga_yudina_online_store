@@ -4,14 +4,14 @@
   .toolbar {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     height: 40px;
 
     .selected {
-      font-size: 20px;
+      font: var(--font-main-m);
       color: var(--primary-color);
     }
 
-    .sort,
     .filter {
       font-size: 20px;
       color: var(--primary-color);
@@ -21,14 +21,19 @@
       &:hover {
         color: #0e3838;
       }
-
-      .sortIcon {
-        height: 34px;
-        width: 34px;
-        fill: var(--primary-color);
-        stroke: var(--primary-color);
-        margin: auto;
+      .filterTitle {
+        display: flex;
+        align-items: center;
+        font: var(--font-main-m);
+        .filterIcon {
+          height: 34px;
+          width: 34px;
+          fill: white;
+          stroke: var(--primary-color);
+          margin: auto;
+        }
       }
+
       .sortType {
         font: var(--font-main-m);
       }

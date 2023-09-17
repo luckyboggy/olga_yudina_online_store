@@ -15,7 +15,7 @@ const Shop = observer(() => {
 
   useEffect(() => {
     fetchTypes().then((data) => product.setTypes(data));
-    fetchProducts(null, product.limit, 1, product.sortType.value).then(
+    fetchProducts(null, null, product.limit, 1, product.sortType.value).then(
       (data) => {
         product.setItems(data.rows);
         product.setTotalCount(data.count);
@@ -41,7 +41,7 @@ const Shop = observer(() => {
   return (
     <div className={cls.shop}>
       {sort && (
-        <CurrentModal close={setSort}>
+        <CurrentModal type={"lower"} title={"Фильтры"} close={setSort}>
           <ChooseSortType closeModal={setSort} />
         </CurrentModal>
       )}
@@ -51,13 +51,16 @@ const Shop = observer(() => {
           {product.selectedType.name /* .toLowerCase() */}
         </div>
         <div
-          className={cls.sort}
+          className={cls.filter}
           onClick={() => {
             setSort(!sort);
           }}
         >
           {product.sortType.name === "сортировка" ? (
-            <Sort className={cls.sortIcon} />
+            <div className={cls.filterTitle}>
+              <span>фильтры</span>
+              <Sort className={cls.filterIcon} />
+            </div>
           ) : (
             <div className={cls.sortType}>
               {product.sortType.name.toLowerCase()}
@@ -66,7 +69,6 @@ const Shop = observer(() => {
         </div>
       </div>
       <ProductList />
-      <div className={cls.products}></div>
       {product.pageCount > 1 && <Pagination />}
     </div>
   );

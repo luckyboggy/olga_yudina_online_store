@@ -1,16 +1,45 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { ReactComponent as Close } from "shared/assets/img/svg/close.svg";
 import cl from "./CurrentModal.module.scss";
 
-const CurrentModal = ({ close, children }) => {
+const CurrentModal = ({ children, type, title = "", close }) => {
+  const [show, setShow] = useState("");
+
   const handleClose = (event) => {
-    if (event.target.className === cl.currentModal) {
-      close(false);
-    }
+    setShow("");
+    setTimeout(() => {
+      if (event.target.className === `${cl.Modal} ${cl[type]}`) {
+        close(false);
+      }
+    }, 200);
   };
 
+  useEffect(() => {
+    setShow("show");
+  }, []);
+
   return (
-    <div className={cl.currentModal} onClick={(event) => handleClose(event)}>
-      <div className={cl.modal__content}>{children}</div>
+    <div
+      className={`${cl.Modal} ${cl[type]}`}
+      onClick={(event) => handleClose(event)}
+    >
+      <div className={`${cl[type]} ${cl[show]}`}>
+        {title && (
+          <div class={cl.modalHeader}>
+            <div className={cl.title}>{title}</div>
+            <Close
+              className={cl.close}
+              onClick={() => {
+                setShow("");
+                setTimeout(() => {
+                  close(false);
+                }, 200);
+              }}
+            />
+          </div>
+        )}
+        {children}
+      </div>
     </div>
   );
 };
