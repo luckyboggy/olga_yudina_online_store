@@ -5,7 +5,8 @@
   bottom: 0;
   right: 0;
   left: 0;
-  background: var(--opacity-color);
+  background-color: #00000010;
+  transition: background-color 0.2s ease-in-out;
   display: flex;
   //align-items: center;
   .central {
@@ -49,7 +50,9 @@
 }
 
 .lower {
+  background-color: var(--opacity-color);
 }
 .central {
+  background-color: var(--opacity-color);
   align-items: center;
 }

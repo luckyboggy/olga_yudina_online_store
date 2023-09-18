@@ -1,12 +1,12 @@
 import React, { useState, useContext, useEffect } from "react";
 import { ProductList } from "widgets/ProductList/ui/ProductList/ProductList.jsx";
-import { ChooseSortType } from "widgets/ChooseSortType/ui/ChooseSortType.jsx";
+import { Filters } from "widgets/Filters/ui/Filters.jsx";
 import { ReactComponent as Sort } from "shared/assets/img/svg/sort.svg";
 import { Context } from "index.js";
 import { observer } from "mobx-react-lite";
 import { fetchTypes, fetchProducts } from "http/productAPI.js";
 import { Pagination } from "shared/ui/search/pagination/Pagination.jsx";
-import CurrentModal from "shared/ui/modal/CurrentModal";
+import {Modal} from "shared/ui/modal/Modal";
 import cls from "./Shop.module.scss";
 
 const Shop = observer(() => {
@@ -41,9 +41,9 @@ const Shop = observer(() => {
   return (
     <div className={cls.shop}>
       {sort && (
-        <CurrentModal type={"lower"} title={"Фильтры"} close={setSort}>
-          <ChooseSortType closeModal={setSort} />
-        </CurrentModal>
+        <Modal type={"lower"} title={"Фильтры"} close={setSort}>
+          <Filters closeModal={setSort} />
+        </Modal>
       )}
 
       <div className={cls.toolbar}>
@@ -58,7 +58,7 @@ const Shop = observer(() => {
         >
           {product.sortType.name === "сортировка" ? (
             <div className={cls.filterTitle}>
-              <span>фильтры</span>
+              <div className={cls.filterName}>Фильтры</div>
               <Sort className={cls.filterIcon} />
             </div>
           ) : (

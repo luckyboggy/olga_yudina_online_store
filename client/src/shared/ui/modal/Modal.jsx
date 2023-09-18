@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { ReactComponent as Close } from "shared/assets/img/svg/close.svg";
-import cl from "./CurrentModal.module.scss";
+import cl from "./Modal.module.scss";
 
-const CurrentModal = ({ children, type, title = "", close }) => {
+const Modal = ({ children, type, title = "", close }) => {
   const [show, setShow] = useState("");
 
   const handleClose = (event) => {
@@ -25,7 +25,7 @@ const CurrentModal = ({ children, type, title = "", close }) => {
     >
       <div className={`${cl[type]} ${cl[show]}`}>
         {title && (
-          <div class={cl.modalHeader}>
+          <div className={cl.modalHeader}>
             <div className={cl.title}>{title}</div>
             <Close
               className={cl.close}
@@ -44,4 +44,4 @@ const CurrentModal = ({ children, type, title = "", close }) => {
   );
 };
 
-export default CurrentModal;
+export  {Modal};
