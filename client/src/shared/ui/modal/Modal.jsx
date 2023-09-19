@@ -6,12 +6,12 @@ const Modal = ({ children, type, title = "", close }) => {
   const [show, setShow] = useState("");
 
   const handleClose = (event) => {
-    setShow("");
-    setTimeout(() => {
-      if (event.target.className === `${cl.Modal} ${cl[type]}`) {
+    if (event.target.className === `${cl.Modal} ${cl[type]}`) {
+      setShow("");
+      setTimeout(() => {
         close(false);
-      }
-    }, 200);
+      }, 200);
+    }
   };
 
   useEffect(() => {
@@ -44,4 +44,4 @@ const Modal = ({ children, type, title = "", close }) => {
   );
 };
 
-export  {Modal};
+export { Modal };

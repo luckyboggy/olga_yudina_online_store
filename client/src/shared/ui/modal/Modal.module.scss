@@ -18,10 +18,10 @@
   }
   .lower {
     position: absolute;
-    height: 75%;
+    height: calc(100vh - var(--header-height-md));
     width: 100%;
     padding: var(--padding-m);
-    bottom: -75%;
+    bottom: calc(-100vh + var(--header-height-md));
     transition: 0.2s ease-in-out;
     border-top-left-radius: var(--padding-m);
     border-top-right-radius: var(--padding-m);
@@ -30,13 +30,13 @@
 
   .show {
     bottom: 0;
-
   }
 
   .modalHeader {
     display: flex;
     justify-content: center;
     align-items: center;
+
     .title {
       font: var(--font-main-m);
     }

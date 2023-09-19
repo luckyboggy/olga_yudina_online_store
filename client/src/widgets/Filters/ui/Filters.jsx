@@ -25,7 +25,6 @@ const Filters = ({ closeModal }) => {
               checked={product.sortType.name === sortType.name}
               onChange={() => {
                 product.setSortType(sortType);
-                closeModal(false);
               }}
             >
               {sortType.name}
@@ -33,6 +32,8 @@ const Filters = ({ closeModal }) => {
           ))}
         </div>
       </div>
+      <hr />
+      <div className={cls.types}></div>
       <div className={cls.accceptBtn}>
         <CustomButton fontSize={"m"}>Применить</CustomButton>
       </div>

@@ -6,7 +6,7 @@ import { Context } from "index.js";
 import { observer } from "mobx-react-lite";
 import { fetchTypes, fetchProducts } from "http/productAPI.js";
 import { Pagination } from "shared/ui/search/pagination/Pagination.jsx";
-import {Modal} from "shared/ui/modal/Modal";
+import { Modal } from "shared/ui/modal/Modal";
 import cls from "./Shop.module.scss";
 
 const Shop = observer(() => {
