@@ -1,6 +1,7 @@
-import React, { useContext } from "react";
+import React, { useState, useContext } from "react";
 import { Context } from "index.js";
 import { CheckBox } from "shared/ui/checkbox/CheckBox";
+import { ReactComponent as Arrow } from "shared/assets/img/svg/arrow.svg";
 import cls from "./Filters.module.scss";
 import { CustomButton } from "shared/ui/button/CustomButton";
 
@@ -10,6 +11,8 @@ const Filters = ({ closeModal }) => {
     { name: "Дешевле", value: ["price", "ASC"] },
     { name: "Дороже", value: ["price", "DESC"] },
   ];
+
+  const [types, setTypes] = useState(false);
 
   const { product } = useContext(Context);
 
@@ -33,9 +36,23 @@ const Filters = ({ closeModal }) => {
         </div>
       </div>
       <hr />
-      <div className={cls.types}></div>
+      <div className={cls.types}>
+        <div className={cls.typesTitle} onClick={() => setTypes(!types)}>
+          <div>Категории</div>
+          <Arrow className={`${cls.dropArrow} ${types ? cls.active : ""}`} />
+        </div>
+        {types &&
+          product.types.map((type) => (
+            <CheckBox key={type.name} type={"checkbox"}>
+              {type.name}
+            </CheckBox>
+          ))}
+      </div>
+      <hr />
       <div className={cls.accceptBtn}>
-        <CustomButton fontSize={"m"}>Применить</CustomButton>
+        <CustomButton fontSize={"m"} onClick={() => closeModal(false)}>
+          Применить
+        </CustomButton>
       </div>
     </div>
   );
