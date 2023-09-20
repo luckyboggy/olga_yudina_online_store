@@ -5,13 +5,13 @@ export class ProductStore {
     this._types = [];
     this._collections = [];
     this._items = [];
-    this._selectedType = {};
+    this._selectedType = [];
     this._selectedCollection = {};
     this._page = 1;
     this._totalCount = 0;
     this._limit = 8;
     this._pageCount = 0;
-    this._sortType = { name: "сортировка", value: '' };
+    this._sortType = { name: "По умолчанию", value: ["updatedAt", "DESC"] };
     makeAutoObservable(this);
   }
 
@@ -29,8 +29,23 @@ export class ProductStore {
 
   setSelectedType(selectedType) {
     this.setPage(1);
-    this._selectedType = selectedType;
+    this._selectedType = [selectedType.id];
   }
+
+  addSelectedType(selectedType) {
+    this.setPage(1);
+    const oldArr = [...this._selectedType];
+    oldArr.push(selectedType);
+    this._selectedType = [...oldArr];
+  }
+
+  deleteFromSelectedType(type) {
+    this.setPage(1);
+    const oldArr = [...this._selectedType];
+    const newArr = oldArr.filter(item => item !== type);
+    this._selectedType = [...newArr];
+  }
+
 
   setSelectedCollection(selectedCollection) {
     this.setPage(1);

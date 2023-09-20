@@ -2,6 +2,7 @@ import { Product, ProductInfo, ProductSize } from "../models/models.js";
 import { v4 } from "uuid";
 import path from "path";
 import { ApiError } from "../error/ApiError.js";
+import { Op } from "sequelize";
 
 const __dirname = path.resolve();
 
@@ -167,25 +168,25 @@ class ProductController {
   }
 
   async getAll(req, res) {
-    let { typeId, collectionId, limit, page, sortType } = req.query;
+    let { typeIds, collectionId, limit, page, sortType } = req.query;
 
-    console.log('st', sortType);
+    console.log('t', typeIds)
 
     sortType = sortType || ["updatedAt", "ASC"];
     limit = limit || 8;
     page = page || 1;
     let offset = limit * page - limit;
     let products;
-    if (typeId && collectionId) {
+    if (typeIds && collectionId) {
       products = await Product.findAndCountAll({
-        where: { typeId, collectionId },
+        where: { typeId: { [Op.in]: typeIds }, collectionId },
         order: [sortType],
         limit,
         offset,
       });
-    } else if (typeId) {
+    } else if (typeIds) {
       products = await Product.findAndCountAll({
-        where: { typeId },
+        where: { typeId: { [Op.in]: typeIds } },
         order: [sortType],
         limit,
         offset,

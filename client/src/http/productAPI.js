@@ -49,10 +49,10 @@ const updateProduct = async (updProduct, id) => {
   return data;
 }
 
-const fetchProducts = async (typeId, collectionId, limit, page, sortType) => {
+const fetchProducts = async (typeIds, collectionId, limit, page, sortType) => {
   const { data } = await $host.get("api/product", {
     params: {
-      typeId,
+      typeIds,
       collectionId,
       limit,
       page,

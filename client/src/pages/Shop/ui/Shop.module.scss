@@ -10,6 +10,10 @@
     .selected {
       font: var(--font-main-m);
       color: var(--primary-color);
+      display: grid;
+
+      .selectedType {
+      }
     }
 
     .filter {

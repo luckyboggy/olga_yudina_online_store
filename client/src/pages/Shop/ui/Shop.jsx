@@ -26,7 +26,7 @@ const Shop = observer(() => {
 
   useEffect(() => {
     fetchProducts(
-      product.selectedType.id,
+      product.selectedType,
       null,
       product.limit,
       product.page,
@@ -48,6 +48,15 @@ const Shop = observer(() => {
 
       <div className={cls.toolbar}>
         <div className={cls.selected}>
+          {product.selectedType.map((item) => (
+            <div key={item} className={cls.selectedType}>
+              {`${
+                product.types.find((type) => {
+                  return type.id === item;
+                }).name
+              }`}
+            </div>
+          ))}
           {product.selectedType.name /* .toLowerCase() */}
         </div>
         <div
@@ -56,16 +65,10 @@ const Shop = observer(() => {
             setSort(!sort);
           }}
         >
-          {product.sortType.name === "сортировка" ? (
-            <div className={cls.filterTitle}>
-              <div className={cls.filterName}>Фильтры</div>
-              <Sort className={cls.filterIcon} />
-            </div>
-          ) : (
-            <div className={cls.sortType}>
-              {product.sortType.name.toLowerCase()}
-            </div>
-          )}
+          <div className={cls.filterTitle}>
+            <div className={cls.filterName}>Фильтры</div>
+            <Sort className={cls.filterIcon} />
+          </div>
         </div>
       </div>
       <ProductList />
