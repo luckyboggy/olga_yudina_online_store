@@ -9,21 +9,25 @@ import { fetchTypes, fetchProducts } from "http/productAPI.js";
 import { Pagination } from "shared/ui/search/pagination/Pagination.jsx";
 import { Modal } from "shared/ui/modal/Modal";
 import cls from "./Shop.module.scss";
+import { Preloader } from "shared/ui/preloader/Preloader";
 
 const Shop = observer(() => {
   const [sort, setSort] = useState(false);
   const [selectedTypesList, setSelectedTypesList] = useState([]);
   const { product } = useContext(Context);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     fetchTypes().then((data) => product.setTypes(data));
-    fetchProducts(null, null, product.limit, 1, product.sortType.value).then(
-      (data) => {
+    fetchProducts(null, null, product.limit, 1, product.sortType.value)
+      .then((data) => {
         product.setItems(data.rows);
         product.setTotalCount(data.count);
         product.setPageCount();
-      }
-    );
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
   }, []);
 
   useEffect(() => {
@@ -49,17 +53,22 @@ const Shop = observer(() => {
           );
         });
         setSelectedTypesList(st);
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   }, [product.page, product.selectedType, product.sortType.value]);
 
   return (
     <div className={cls.shop}>
+      {/* Модальное окно с фильтрами */}
       {sort && (
         <Modal type={"lower"} title={"Фильтры"} close={setSort}>
           <Filters closeModal={setSort} />
         </Modal>
       )}
 
+      {/* тулбар */}
       <div className={cls.toolbar}>
         <div className={cls.selected}></div>
         <div
@@ -74,21 +83,28 @@ const Shop = observer(() => {
           </div>
         </div>
       </div>
-      {selectedTypesList && (
-        <div className={cls.selectedTypes}>
-          {selectedTypesList.map((item) => (
-            <div
-              className={cls.selectedType}
-              key={item.name}
-              onClick={() => product.deleteFromSelectedType(item.id)}
-            >
-              <Close className={cls.delete} />
-              <div className={cls.typeName}>{item.name}</div>
-            </div>
-          ))}
-        </div>
-      )}
-      <ProductList />
+
+      {/* Выбранные категории */}
+      <div className={cls.selectedTypes}>
+        {selectedTypesList.map(
+          (item) =>
+            item && (
+              <div
+                className={cls.selectedType}
+                key={item.name}
+                onClick={() => product.deleteFromSelectedType(item.id)}
+              >
+                <Close className={cls.delete} />
+                <div className={cls.typeName}>{item.name}</div>
+              </div>
+            )
+        )}
+      </div>
+
+      {/* Сптсок товаров */}
+      {isLoading ? <Preloader /> : <ProductList />}
+
+      {/* Пагинация */}
       {product.pageCount > 1 && <Pagination />}
     </div>
   );

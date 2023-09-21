@@ -8,6 +8,7 @@ import {
 import { ReactComponent as Like } from "shared/assets/img/svg/like.svg";
 import { observer } from "mobx-react-lite";
 import cls from "./ProductItem.module.scss";
+import { PhotoLoader } from "shared/ui/photoLoader/PhotoLoader";
 
 const ProductItem = observer(({ item }) => {
   const { id, name, price, img } = item;
@@ -30,7 +31,11 @@ const ProductItem = observer(({ item }) => {
     >
       <div className={cls.wrapper}>
         <div className={cls.productImg}>
-          <img src={process.env.REACT_APP_API_URL + img[0]} alt={name} />
+          {img[0] ? (
+            <img src={process.env.REACT_APP_API_URL + img[0]} alt={name} />
+          ) : (
+            <PhotoLoader />
+          )}
         </div>
         <div
           className={cls.like}

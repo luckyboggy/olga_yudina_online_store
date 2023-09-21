@@ -33,7 +33,7 @@ const MobileMenu = observer(({ mobileMenu, setMobileMenu }) => {
         {/* dd */}
         <div className={cls.item} onClick={() => setCollection(!collection)}>
           <div className={cls.title}>
-            <div>collection</div>
+            <div>магазин</div>
             <Arrow
               className={`${cls.dropArrow} ${collection ? cls.active : ""}`}
             />
@@ -44,11 +44,11 @@ const MobileMenu = observer(({ mobileMenu, setMobileMenu }) => {
                 className={cls.ddItem}
                 to="shop"
                 onClick={() => {
-                  product.setSelectedType({});
+                  product.setSelectedType([]);
                   setMobileMenu(false);
                 }}
               >
-                watch all
+                посмотреть всё
               </Link>
               {product.types.map((type) => (
                 <Link
@@ -73,7 +73,7 @@ const MobileMenu = observer(({ mobileMenu, setMobileMenu }) => {
             to="favorites"
             onClick={() => setMobileMenu(false)}
           >
-            favorites
+            избранное
           </Link>
         </div>
         <div className={cls.item}>
@@ -82,7 +82,7 @@ const MobileMenu = observer(({ mobileMenu, setMobileMenu }) => {
             to="workshops"
             onClick={() => setMobileMenu(false)}
           >
-            workshops
+            мастер-классы
           </Link>
         </div>
         <div className={cls.item}>
@@ -91,7 +91,7 @@ const MobileMenu = observer(({ mobileMenu, setMobileMenu }) => {
             to="about"
             onClick={() => setMobileMenu(false)}
           >
-            about
+            о нас
           </Link>
         </div>
         <div className={cls.item}>
@@ -100,7 +100,7 @@ const MobileMenu = observer(({ mobileMenu, setMobileMenu }) => {
             to="delivery"
             onClick={() => setMobileMenu(false)}
           >
-            delivery
+            доставка
           </Link>
         </div>
 

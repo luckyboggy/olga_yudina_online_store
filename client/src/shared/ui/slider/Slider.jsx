@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Context } from "index.js";
 import { fetchTypes } from "http/productAPI.js";
 import cls from "./Slider.module.scss";
+import { PhotoLoader } from "shared/ui/photoLoader/PhotoLoader";
 
 const Slider = ({ images, isDescription }) => {
   const { product } = useContext(Context);
@@ -28,11 +29,16 @@ const Slider = ({ images, isDescription }) => {
                 product.setSelectedType(slide.type);
               }}
             >
-              <img
-                src={slide.img}
-                alt={slide.type.name.name}
-                className={cls.image}
-              />
+              {slide.img ? (
+                <img
+                  src={slide.img}
+                  alt={slide.type.name.name}
+                  className={cls.image}
+                />
+              ) : (
+                <PhotoLoader />
+              )}
+
               <div className={cls.content}>
                 <div className={cls.title}>{slide.type.name}</div>
                 {isDescription && (
