@@ -14,8 +14,12 @@ import { Preloader } from "shared/ui/preloader/Preloader";
 const Shop = observer(() => {
   const [sort, setSort] = useState(false);
   const [selectedTypesList, setSelectedTypesList] = useState([]);
-  const { product } = useContext(Context);
+  const { product, user } = useContext(Context);
   const [isLoading, setIsLoading] = useState(true);
+
+  const toLogin = (state) => {
+    user.setToLogin(state);
+  };
 
   useEffect(() => {
     fetchTypes().then((data) => product.setTypes(data));
@@ -65,6 +69,12 @@ const Shop = observer(() => {
       {sort && (
         <Modal type={"lower"} title={"Фильтры"} close={setSort}>
           <Filters closeModal={setSort} />
+        </Modal>
+      )}
+      {/* Модальное окно с напоминанием зарегистрироваться */}
+      {user.toLogin && (
+        <Modal type={"central"} title={"Фильтры"} close={toLogin}>
+          dfgddsf
         </Modal>
       )}
 

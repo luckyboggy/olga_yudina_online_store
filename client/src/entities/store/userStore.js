@@ -11,6 +11,7 @@ export class UserStore {
     this._favoriteId = 0;
     this._favoritesCount = 0;
     this._favoritesItems = [];
+    this._toLogin = false;
     //local basket
     this._localBasket = [];
     this._localFavorites = [];
@@ -34,6 +35,9 @@ export class UserStore {
   setBasketItems(basketItems) {
     this._basketItems = basketItems;
   }
+  setToLogin(state) {
+    this._toLogin = state;
+  }
 
   // favorite
   setFavoriteId(favoriteId) {
@@ -48,8 +52,16 @@ export class UserStore {
 
   // local basket
   addToLocalBasket(productId, selectedSize) {
-    if (!this._localBasket.find((item) => item.productId === productId && item.selectedSize === selectedSize)) {
-      this._localBasket.push({ productId: productId, selectedSize: selectedSize });
+    if (
+      !this._localBasket.find(
+        (item) =>
+          item.productId === productId && item.selectedSize === selectedSize
+      )
+    ) {
+      this._localBasket.push({
+        productId: productId,
+        selectedSize: selectedSize,
+      });
     }
   }
   parseLocalBasket(localBasket) {
@@ -96,6 +108,9 @@ export class UserStore {
   }
   get favoritesItems() {
     return this._favoritesItems;
+  }
+  get toLogin() {
+    return this._toLogin;
   }
   get localBasket() {
     return this._localBasket;

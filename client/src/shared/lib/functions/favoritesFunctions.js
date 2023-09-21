@@ -6,6 +6,11 @@ import {
 } from "http/favoritesProductAPI.js";
 
 const handleAddToFavorites = (id) => {
+  if (!window.localStorage.getItem("alreadyliked")) {
+    user.setToLogin(true);
+  }
+    window.localStorage.setItem("alreadyliked", true);
+
   if (user.isAuth) {
     addToFavorites({ favoriteId: user.favoriteId, productId: id });
     fetchFavoritesProduct(user.favoriteId).then((data) => {
@@ -62,4 +67,9 @@ const toggleFavorite = async (event, id, favorite) => {
   }
 };
 
-export { handleAddToFavorites, handleRemoveFromFavorites, isInFavorites, toggleFavorite };
+export {
+  handleAddToFavorites,
+  handleRemoveFromFavorites,
+  isInFavorites,
+  toggleFavorite,
+};

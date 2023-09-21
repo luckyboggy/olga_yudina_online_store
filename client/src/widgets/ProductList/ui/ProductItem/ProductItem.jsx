@@ -10,10 +10,13 @@ import { observer } from "mobx-react-lite";
 import cls from "./ProductItem.module.scss";
 import { PhotoLoader } from "shared/ui/photoLoader/PhotoLoader";
 
+
 const ProductItem = observer(({ item }) => {
+
   const { id, name, price, img } = item;
   const navigate = useNavigate();
   const favorite = isInFavorites(id);
+
 
   return (
     <div
@@ -40,6 +43,7 @@ const ProductItem = observer(({ item }) => {
         <div
           className={cls.like}
           onClick={(event) => {
+ 
             toggleFavorite(event, id, favorite);
           }}
         >
