@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { ReactComponent as Close } from "shared/assets/img/svg/close.svg";
 import cl from "./Modal.module.scss";
 
-const Modal = ({ children, type, title = "", close }) => {
+const Modal = ({ children, type, img, title = "", close }) => {
   const [show, setShow] = useState("");
 
   const handleClose = (event) => {
@@ -29,6 +29,20 @@ const Modal = ({ children, type, title = "", close }) => {
             <div className={cl.title}>{title}</div>
             <Close
               className={cl.close}
+              onClick={() => {
+                setShow("");
+                setTimeout(() => {
+                  close(false);
+                }, 200);
+              }}
+            />
+          </div>
+        )}
+        {img && (
+          <div className={cl.modalHeaderLogo}>
+            <img src={img} alt="logo" className={cl.headerLogo} />
+            <Close
+              className={cl.closeLogo}
               onClick={() => {
                 setShow("");
                 setTimeout(() => {

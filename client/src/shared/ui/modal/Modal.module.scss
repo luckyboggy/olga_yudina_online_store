@@ -40,9 +40,24 @@
     .title {
       font: var(--font-main-m);
     }
+
     .close {
       position: absolute;
       right: var(--padding-m);
+      height: 30px;
+      width: 30px;
+    }
+  }
+
+  .modalHeaderLogo {
+    display: flex;
+    justify-content: center;
+    .headerLogo {
+      height: 100px;
+    }
+    .closeLogo {
+      position: absolute;
+      right: calc(2 * var(--padding-m));
       height: 30px;
       width: 30px;
     }

@@ -7,9 +7,13 @@ import { Context } from "index.js";
 import { observer } from "mobx-react-lite";
 import { fetchTypes, fetchProducts } from "http/productAPI.js";
 import { Pagination } from "shared/ui/search/pagination/Pagination.jsx";
+import { ToLogin } from "widgets/ToLogin/ui/ToLogin";
+import { CustomButton } from "shared/ui/button/CustomButton.jsx";
 import { Modal } from "shared/ui/modal/Modal";
 import cls from "./Shop.module.scss";
 import { Preloader } from "shared/ui/preloader/Preloader";
+
+import logo from "shared/assets/img/png/logo.png";
 
 const Shop = observer(() => {
   const [sort, setSort] = useState(false);
@@ -73,8 +77,16 @@ const Shop = observer(() => {
       )}
       {/* Модальное окно с напоминанием зарегистрироваться */}
       {user.toLogin && (
-        <Modal type={"central"} title={"Фильтры"} close={toLogin}>
-          dfgddsf
+        <Modal type={"central"} img={logo} close={toLogin}>
+          <ToLogin close={toLogin}/>
+          <CustomButton
+            fontSize={"m"}
+            theme={"inverted"}
+            margins={"mt1"}
+            onClick={() => toLogin(false)}
+          >
+            Продолжить без регистрации
+          </CustomButton>
         </Modal>
       )}
 

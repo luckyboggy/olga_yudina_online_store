@@ -1,32 +1,23 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Context } from "index.js";
 import { Link } from "react-router-dom";
 import { ReactComponent as Arrow } from "shared/assets/img/svg/arrow.svg";
-import { CustomButton } from "shared/ui/button/CustomButton.jsx";
-import { Text } from "shared/ui/text/Text";
+import { ToLogin } from "widgets/ToLogin/ui/ToLogin";
+import { observer } from "mobx-react-lite";
 import cls from "./Favorites.module.scss";
+import { FavoritesList } from "widgets/FavoritesList/ui/FavoritesList/ui/FavoritesList";
 
-const Favorites = () => {
+const Favorites = observer(() => {
   const { user } = useContext(Context);
+
+  useEffect(() => {}, [user.localFavorites, user.favoritesItems]);
+
   return (
     <div className={cls.favorites}>
-      {user.isAuth ? (
-        <div className={cls.authorized}>a</div>
-      ) : (
+      {!user.isAuth && (
         <div className={cls.unauthorized}>
-          <div className={cls.toAuth}>
-            <Text size={"m"} position={"left"} padding={"pv1"}>
-              Избранное
-            </Text>
-            <Text size={"s"} position={"left"} padding={"pv1"}>
-              Войдите в аккаунт, чтобы смотреть избранное на любом устройстве
-            </Text>
-
-            <Link to="../login">
-              <CustomButton fontSize={"m"}>Войти</CustomButton>
-            </Link>
-          </div>
-          <div>
+          <ToLogin />
+          {/* <div>
             <div className={cls.emptySpace}>
               <div className={cls.toShop}>
                 <Link className={cls.link} to="../shop">
@@ -35,11 +26,17 @@ const Favorites = () => {
                 </Link>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
       )}
+      <FavoritesList />
+
+      {/* <div className={cls.favoritesList}>
+        <div className={cls.title}>Вам понравилось</div>
+        <FavoritesList />
+      </div> */}
     </div>
   );
-};
+});
 
 export { Favorites };

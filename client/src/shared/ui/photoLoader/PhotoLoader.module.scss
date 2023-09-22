@@ -13,6 +13,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: #eeeeee;
     .loader {
       position: relative;
       width: 48px;
@@ -20,11 +21,7 @@
       border-radius: 50%;
       display: inline-block;
 
-      background: linear-gradient(
-        0deg,
-        var(--secondary-color) 33%,
-        var(--primary-color) 100%
-      );
+      background: linear-gradient(0deg, #eeeeee 33%, var(--primary-color) 100%);
       box-sizing: border-box;
       animation: rotation 1s linear infinite;
     }
@@ -38,7 +35,7 @@
       width: 44px;
       height: 44px;
       border-radius: 50%;
-      background: var(--secondary-color);
+      background: #eeeeee;
     }
     @keyframes rotation {
       0% {

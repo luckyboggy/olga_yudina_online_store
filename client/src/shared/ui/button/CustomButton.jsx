@@ -1,11 +1,11 @@
 import React from "react";
 import cl from "./CustomButton.module.scss";
 
-const CustomButton = ({ children, fontSize, theme, ...props }) => {
+const CustomButton = ({ children, fontSize, margins, theme, ...props }) => {
   return (
     <button
       {...props}
-      className={`${cl.customButton} ${cl[fontSize]} ${cl[theme]}`}
+      className={`${cl.customButton} ${cl[fontSize]} ${cl[theme]} ${cl[margins]}`}
     >
       {children}
     </button>
