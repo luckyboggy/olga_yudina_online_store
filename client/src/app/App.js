@@ -31,11 +31,10 @@ const App = observer(() => {
       setHeaderTheme("");
     }
     if (location.pathname.match(/^\/product\/\d+$/)) {
-      setFooterTheme('product')
+      setFooterTheme("product");
     } else {
-      setFooterTheme("")
+      setFooterTheme("");
     }
-
   }, [location]);
 
   useEffect(() => {
@@ -73,6 +72,11 @@ const App = observer(() => {
             JSON.parse(localStorage.getItem("localBasket"))
           );
         }
+        if (localStorage.getItem("localFavorites")) {
+          user.parseLocalFavorites(
+            JSON.parse(localStorage.getItem("localFavorites"))
+          );
+        }
       })
       .finally(() => {
         setLoading(false);
@@ -80,7 +84,7 @@ const App = observer(() => {
   }, []);
 
   return (
-    <div className='app'>
+    <div className="app">
       <MobileMenu mobileMenu={mobileMenu} setMobileMenu={setMobileMenu} />
       <Header
         setMobileMenu={setMobileMenu}

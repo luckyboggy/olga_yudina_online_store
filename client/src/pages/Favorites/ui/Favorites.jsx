@@ -29,12 +29,12 @@ const Favorites = observer(() => {
           </div> */}
         </div>
       )}
-      <FavoritesList />
 
-      {/* <div className={cls.favoritesList}>
+
+      <div className={cls.favoritesList}>
         <div className={cls.title}>Вам понравилось</div>
         <FavoritesList />
-      </div> */}
+      </div>
     </div>
   );
 });

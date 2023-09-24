@@ -85,7 +85,7 @@ const Shop = observer(() => {
             margins={"mt1"}
             onClick={() => toLogin(false)}
           >
-            Продолжить без регистрации
+            Без регистрации
           </CustomButton>
         </Modal>
       )}

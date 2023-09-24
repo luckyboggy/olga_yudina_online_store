@@ -12,7 +12,7 @@ const User = sequelize.define("user", {
   // address_id
 });
 
-const Address = sequelize.define('address', {
+const Address = sequelize.define("address", {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
   region: { type: DataTypes.STRING },
   city: { type: DataTypes.STRING },
@@ -20,7 +20,7 @@ const Address = sequelize.define('address', {
   house: { type: DataTypes.STRING },
   flat: { type: DataTypes.STRING },
   zipcode: { type: DataTypes.STRING },
-})
+});
 
 const Basket = sequelize.define("basket", {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
@@ -29,6 +29,7 @@ const Basket = sequelize.define("basket", {
 
 const Order = sequelize.define("order", {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+  number: { type: DataTypes.INTEGER, unique: true },
   time: { type: DataTypes.TIME },
   status: { type: DataTypes.STRING },
   // user_id
@@ -48,7 +49,8 @@ const BasketProduct = sequelize.define("basket_product", {
 
 const OrderProduct = sequelize.define("order_product", {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
-  // basket_id
+  selectedSize: { type: DataTypes.STRING, defaultValue: "unified" },
+  // order_id
   // product_id
 });
 

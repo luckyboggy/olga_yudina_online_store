@@ -5,8 +5,6 @@ import cls from "./FavoritesList.module.scss";
 
 const FavoritesList = () => {
   const { user } = useContext(Context);
-  console.log(user.favoritesItems);
-  console.log(user.localFavorites);
 
   return (
     <div className={cls.favoritesList}>
