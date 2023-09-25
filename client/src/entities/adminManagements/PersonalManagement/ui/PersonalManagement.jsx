@@ -12,6 +12,10 @@ const PersonalManagement = () => {
   const exit = () => {
     user.setUser({});
     user.setIsAuth(false);
+    window.localStorage.removeItem("jsonWebToken");
+    window.localStorage.removeItem("alreadyliked");
+    window.localStorage.removeItem("localFavorites");
+    window.localStorage.removeItem("localBasket");
     navigate("../" + LOGIN_ROUTE);
   };
 

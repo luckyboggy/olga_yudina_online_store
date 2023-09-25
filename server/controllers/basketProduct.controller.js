@@ -32,7 +32,9 @@ class BasketProductController {
         where: { basketId },
       });
       return res.json(basketProduct);
-    } catch (error) {}
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   async delete(req, res) {

@@ -7,6 +7,7 @@ import path from "path";
 
 import { sequelize } from "./db.js";
 import {
+  Address,
   User,
   Basket,
   Order,
@@ -15,6 +16,7 @@ import {
   OrderProduct,
   FavoritesProduct,
   Product,
+  ProductSize,
   ProductInfo,
   Type,
   Collection,

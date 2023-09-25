@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { CustomSelect } from "shared/ui/select/CustomSelect.jsx";
 import { IsMobil } from "shared/lib/hooks/IsMobil.js";
 import { UserPersonal } from "entities/userManagement/UserPersonal";
+import { UserOrders } from "entities/userManagement/UserOrders/ui/UserOrders";
 import { observer } from "mobx-react-lite";
 import cls from "./User.module.scss";
 
@@ -23,6 +24,7 @@ const User = observer(() => {
         )}
       </div>
       {currentManagement === "personal" && <UserPersonal />}
+      {currentManagement === "orders" && <UserOrders />}
     </div>
   );
 });

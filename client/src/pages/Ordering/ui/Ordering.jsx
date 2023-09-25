@@ -139,10 +139,10 @@ const Ordering = () => {
       <CustomButton
         onClick={(event) => {
           event.preventDefault();
-          console.log(customerData);
-          console.log(customerAddress);
-          console.log(suggestionCity);
-          console.log(suggestionStreet);
+          // console.log(customerData);
+          // console.log(customerAddress);
+          // console.log(suggestionCity);
+          // console.log(suggestionStreet);
         }}
       >
         Оформить
