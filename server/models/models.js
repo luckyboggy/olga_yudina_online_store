@@ -30,7 +30,6 @@ const Basket = sequelize.define("basket", {
 const Order = sequelize.define("order", {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
   number: { type: DataTypes.INTEGER, unique: true },
-  time: { type: DataTypes.TIME },
   status: { type: DataTypes.STRING },
   // user_id
 });

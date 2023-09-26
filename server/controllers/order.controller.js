@@ -1,64 +1,92 @@
-import { Order, Basket, BasketProduct, OrderProduct } from "../models/models.js";
+import {
+  Order,
+  Basket,
+  BasketProduct,
+  OrderProduct,
+  ProductSize,
+} from "../models/models.js";
+import { sequelize } from "../db.js";
 import { orderProductController } from "./orderProduct.controller.js";
 
-
 class OrderController {
-    async create(req, res) {
-        const { userId } = req.body;
-        const order = await Order.create({ userId: userId, status: 'issured' })
-        return res.json(order)
-    }
+  async create(req, res) {
+    console.log(req.body);
+    const { userId } = req.body;
+    const order = await Order.create({ userId: userId, status: "issured" });
+    return res.json(order);
+  }
 
-    async fromBasketToOrder(req, res) {
-        const { userId } = req.body;
+  async fromBasketToOrder(req, res) {
+    console.log(req.body);
+    const { userId } = req.body;
+    console.log(userId);
 
-        const orders = await Order.findAndCountAll({
-            where: { userId },
-            order: [["updatedAt", "DESC"]]
-        });
+    // получаем все заказы пользователя в хронологическом порядке
+    const orders = await Order.findAndCountAll({
+      where: { userId },
+      order: [["updatedAt", "DESC"]],
+    });
 
-        console.log(orders)
-        const newOrder = orders.rows[0];
+    // выделяем последний созданный (только что созданный)
+    const newOrder = orders.rows[0];
 
-        const basket = await Basket.findOne({ where: { userId } });
+    // корзина пользователя
+    const basket = await Basket.findOne({ where: { userId } });
 
-        const basketProduct = await BasketProduct.findAndCountAll({
-            where: { basketId: basket.id }
-        })
+    // содержимое корзины
+    const basketProduct = await BasketProduct.findAndCountAll({
+      where: { basketId: basket.id },
+    });
 
-        basketProduct.rows.forEach(bp => {
-            const orderProduct = OrderProduct.create({
-                productId: bp.productId,
-                orderId: newOrder.id,
-                selectedSize: bp.selectedSize
-            })
-        })
-
-        return res.json([newOrder])
-
-    }
-
-
-    async getByUser(req, res) {
-        try {
-            const { userId } = req.query;
-            const orders = await Order.findAndCountAll({ where: { userId } });
-            return res.json(orders)
-        } catch (error) {
-            console.log(error)
+    // перенос содержимого корзины в заказ / удаление из корзины / изменеие количества
+    basketProduct.rows.forEach((bp) => {
+      OrderProduct.create({
+        productId: bp.productId,
+        orderId: newOrder.id,
+        selectedSize: bp.selectedSize,
+      });
+      BasketProduct.destroy({
+        where: {
+          productId: bp.productId,
+          selectedSize: bp.selectedSize,
+        },
+      });
+      ProductSize.update(
+        {
+          quantity: sequelize.literal("quantity - 1"),
+        },
+        {
+          where: {
+            productId: bp.productId,
+            size: bp.selectedSize,
+          },
         }
-    }
+      );
+    });
 
-    async getAll(req, res) {
-        const orders = await Order.findAll();
-        return res.json(orders)
-    }
+    return res.json([]);
+  }
 
-    async delete(req, res) {
-        const { id } = req.params;
-        const order = await Order.destroy({ where: { id } });
-        return res.json(order);
+  async getByUser(req, res) {
+    try {
+      const { userId } = req.query;
+      const orders = await Order.findAndCountAll({ where: { userId } });
+      return res.json(orders);
+    } catch (error) {
+      console.log(error);
     }
+  }
+
+  async getAll(req, res) {
+    const orders = await Order.findAll();
+    return res.json(orders);
+  }
+
+  async delete(req, res) {
+    const { id } = req.params;
+    const order = await Order.destroy({ where: { id } });
+    return res.json(order);
+  }
 }
 
 const orderController = new OrderController();

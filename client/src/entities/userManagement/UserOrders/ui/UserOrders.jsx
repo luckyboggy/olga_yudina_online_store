@@ -8,7 +8,6 @@ const UserOrders = () => {
 
   useEffect(() => {
     getOrdersByUser(user.user.id).then((data) => {
-      console.log(user.user.id);
       console.log(data);
       user.setOrderIds();
     });

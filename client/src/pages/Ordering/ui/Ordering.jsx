@@ -7,6 +7,7 @@ import {
   fetchStreet,
 } from "shared/lib/functions/autocompleteFunctions.js";
 import cls from "./Ordering.module.scss";
+import { handleFromBasketToOrder } from "shared/lib/functions/orderFunctions";
 
 const Ordering = () => {
   const { user } = useContext(Context);
@@ -143,6 +144,7 @@ const Ordering = () => {
           // console.log(customerAddress);
           // console.log(suggestionCity);
           // console.log(suggestionStreet);
+          handleFromBasketToOrder();
         }}
       >
         Оформить
