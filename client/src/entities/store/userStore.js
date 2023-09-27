@@ -11,7 +11,7 @@ export class UserStore {
     this._favoriteId = 0;
     this._favoritesCount = 0;
     this._favoritesItems = [];
-    this._orderIds = [];
+    this._orderItems = [];
     this._toLogin = false;
     //local basket
     this._localBasket = [];
@@ -36,8 +36,8 @@ export class UserStore {
   setBasketItems(basketItems) {
     this._basketItems = basketItems;
   }
-  setOrderIds(orderIds) {
-    this._orderIds = orderIds;
+  setOrderItems(orderItems) {
+    this._orderItems = orderItems;
   }
   setToLogin(state) {
     this._toLogin = state;
@@ -113,8 +113,8 @@ export class UserStore {
   get favoritesItems() {
     return this._favoritesItems;
   }
-  get orderIds() {
-    return this._orderIds;
+  get orderItems() {
+    return this._orderItems;
   }
   get toLogin() {
     return this._toLogin;
