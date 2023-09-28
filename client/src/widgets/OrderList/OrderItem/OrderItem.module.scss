@@ -1,8 +1,16 @@
 .orderItem {
-  .title {
+  .orderInfo {
+    .title {
+      font: var(--font-main-s);
+    }
+    .number {
+      font: var(--font-main-m);
+    }
+    .status {
+      font: var(--font-main-s);
+    }
   }
-  .number {
-  }
-  .status {
+
+  .orderProducts {
   }
 }

@@ -10,11 +10,36 @@ import { orderProductController } from "./orderProduct.controller.js";
 
 class OrderController {
   async create(req, res) {
-    console.log(req.body);
     const { userId } = req.body;
     const order = await Order.create({ userId: userId, status: "issured" });
     return res.json(order);
   }
+
+  async setNumber(req, res) {
+    const { userId } = req.body;
+
+    // получаем все заказы пользователя в хронологическом порядке
+    const orders = await Order.findAndCountAll({
+      where: { userId },
+      order: [["updatedAt", "DESC"]],
+    });
+
+    // выделяем последний созданный (только что созданный)
+    const newOrder = orders.rows[0];
+
+    const newOrderId = newOrder.id;
+    const newOrderNumber = `${userId.toString().padStart(4, 0)}-${newOrderId.toString().padStart(4, 0)}`
+
+    await Order.update({
+      number: newOrderNumber
+    },
+      {
+        where: { id: newOrderId }
+      }
+    );
+
+    return res.json([]);
+  };
 
   async fromBasketToOrder(req, res) {
     console.log(req.body);

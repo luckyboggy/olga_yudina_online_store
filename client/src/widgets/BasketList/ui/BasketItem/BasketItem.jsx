@@ -20,7 +20,7 @@ const BasketItem = ({ item }) => {
       <div className={cls.content}>
         <div
           className={cls.basketProductImg}
-          onClick={(event) => {
+          onClick={() => {
             navigate("../" + PRODUCT_ROUTE + "/" + productId);
           }}
         >

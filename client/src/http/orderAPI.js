@@ -5,6 +5,11 @@ const createOrder = async (userId) => {
   return data;
 };
 
+const setOrderNumber = async (userId) => {
+  const { data } = await $authHost.post("api/order/setNumber", { userId });
+  return data;
+}
+
 const getOrdersByUser = async (userId) => {
   const { data } = await $authHost.get("api/order", {
     params: { userId },
@@ -17,4 +22,4 @@ const fromBasketToOrder = async (userId) => {
   return data;
 };
 
-export { createOrder, getOrdersByUser, fromBasketToOrder };
+export { createOrder, setOrderNumber, getOrdersByUser, fromBasketToOrder };
