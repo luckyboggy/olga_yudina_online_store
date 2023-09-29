@@ -40,6 +40,7 @@ const OrderProduct = ({ productId, selectedSize }) => {
           )}
         </div>
       </div>
+      
     </div>
   );
 };

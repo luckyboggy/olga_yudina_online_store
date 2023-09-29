@@ -3,15 +3,16 @@ import {
   Basket,
   BasketProduct,
   OrderProduct,
+  Product,
   ProductSize,
 } from "../models/models.js";
 import { sequelize } from "../db.js";
-import { orderProductController } from "./orderProduct.controller.js";
+
 
 class OrderController {
   async create(req, res) {
     const { userId } = req.body;
-    const order = await Order.create({ userId: userId, status: "issured" });
+    const order = await Order.create({ userId: userId, status: "issued" });
     return res.json(order);
   }
 
@@ -42,12 +43,12 @@ class OrderController {
   };
 
   async fromBasketToOrder(req, res) {
-    console.log(req.body);
     const { userId } = req.body;
-    console.log(userId);
 
+    console.log(1)
     // получаем все заказы пользователя в хронологическом порядке
     const orders = await Order.findAndCountAll({
+
       where: { userId },
       order: [["updatedAt", "DESC"]],
     });
@@ -63,31 +64,52 @@ class OrderController {
       where: { basketId: basket.id },
     });
 
+    let totalPrice = 0;
+
     // перенос содержимого корзины в заказ / удаление из корзины / изменеие количества
-    basketProduct.rows.forEach((bp) => {
-      OrderProduct.create({
-        productId: bp.productId,
-        orderId: newOrder.id,
-        selectedSize: bp.selectedSize,
-      });
-      BasketProduct.destroy({
-        where: {
+    await basketProduct.rows.forEach((bp) => {
+      console.log("pr", bp)
+
+      Product.findOne({
+        where: { id: bp.productId }
+      }).then((product) => {
+        totalPrice += product.price;
+        OrderProduct.create({
           productId: bp.productId,
+          orderId: newOrder.id,
           selectedSize: bp.selectedSize,
-        },
-      });
-      ProductSize.update(
-        {
-          quantity: sequelize.literal("quantity - 1"),
-        },
-        {
+          price: product.price,
+        });
+        BasketProduct.destroy({
           where: {
             productId: bp.productId,
-            size: bp.selectedSize,
+            selectedSize: bp.selectedSize,
           },
-        }
-      );
+        });
+        ProductSize.update(
+          {
+            quantity: sequelize.literal("quantity - 1"),
+          },
+          {
+            where: {
+              productId: bp.productId,
+              size: bp.selectedSize,
+            },
+          }
+        );
+
+      })
+
+
     });
+
+    Order.update({
+      totalPrice: totalPrice
+    },
+      {
+        where: { id: newOrder.id }
+      }
+    );
 
     return res.json([]);
   }

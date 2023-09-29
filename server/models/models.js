@@ -31,6 +31,7 @@ const Order = sequelize.define("order", {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
   number: { type: DataTypes.STRING, unique: true },
   status: { type: DataTypes.STRING },
+  totalPrice: { type: DataTypes.INTEGER },
   // user_id
 });
 
@@ -48,6 +49,7 @@ const BasketProduct = sequelize.define("basket_product", {
 
 const OrderProduct = sequelize.define("order_product", {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+  price: { type: DataTypes.INTEGER },
   selectedSize: { type: DataTypes.STRING, defaultValue: "unified" },
   // order_id
   // product_id
@@ -75,7 +77,7 @@ const Product = sequelize.define("product", {
 const ProductSize = sequelize.define("product_size", {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
   size: { type: DataTypes.STRING, allowNull: false },
-  quantity: { type: DataTypes.INTEGER, allowNull: false },
+  quantity: { type: DataTypes.INTEGER },
 });
 
 const ProductInfo = sequelize.define("product_info", {

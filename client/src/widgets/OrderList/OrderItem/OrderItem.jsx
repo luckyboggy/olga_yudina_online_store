@@ -1,11 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { fetchOrderProducts } from "http/orderProductAPI";
-import cls from "./OrderItem.module.scss";
 import { OrderProduct } from "../OrderProduct/OrderProduct";
+import { ReactComponent as Arrow } from "shared/assets/img/svg/arrow.svg";
+import cls from "./OrderItem.module.scss";
 
 const OrderItem = ({ order }) => {
   const [orderProducts, setOrderProducts] = useState([]);
   const [showOrderProducts, setShowOrderProducts] = useState(false);
+
+  const orderStatus = {
+    issued: "оформлен",
+    inProcessy: "в обработке",
+    delivery: "доставка",
+    delivered: "доставлен",
+    received: "получен",
+    canceled: "отменен",
+  };
 
   const formattedDate = (d) => {
     const date = new Date(d);
@@ -25,20 +35,24 @@ const OrderItem = ({ order }) => {
     });
   }, []);
 
-  console.log(orderProducts);
-
   return (
     <div className={cls.orderItem}>
       <div className={cls.orderInfo}>
         <div className={cls.title}>
-          Заказ от {formattedDate(order.createdAt)}
+          <div className={cls.number}>Заказ № {order.number}</div>
+
+          <div className={cls.status}>{orderStatus[order.status]}</div>
         </div>
-        <div className={cls.number}># {order.number}</div>
-        <div className={cls.status}>{order.status}</div>
-        <div onClick={() => setShowOrderProducts(!showOrderProducts)}>
-          Показать товары
+        <div className={cls.orderDate}>
+          <div>Дата оформления</div>
+          <div>{formattedDate(order.createdAt)}</div>
+        </div>
+        <div className={cls.priceQuantity}>
+          <div className={cls.quantity}>Товаров: {orderProducts.length}</div>
+          <div className={cls.totalPrice}>xxx р</div>
         </div>
       </div>
+      <hr />
       {showOrderProducts && (
         <div className={cls.orderProducts}>
           {orderProducts.map((product) => (
@@ -47,10 +61,20 @@ const OrderItem = ({ order }) => {
                 productId={product.productId}
                 selectedSize={product.selectedSize}
               />
+              <hr />
             </div>
           ))}
         </div>
       )}
+      <div
+        className={cls.showBtn}
+        onClick={() => setShowOrderProducts(!showOrderProducts)}
+      >
+        <div>{showOrderProducts ? "Скрыть" : "Показать товары"}</div>
+        <Arrow
+          className={`${cls.dropArrow} ${showOrderProducts ? cls.active : ""}`}
+        />
+      </div>
     </div>
   );
 };
