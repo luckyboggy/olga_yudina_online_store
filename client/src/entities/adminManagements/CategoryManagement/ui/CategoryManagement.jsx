@@ -46,6 +46,21 @@ const CategoryManagement = observer(() => {
 
   return (
     <div className={cls.category}>
+      
+      <div className={cls.categoryLIst}>
+        {product.types.map((type) => (
+          <div key={type.name} className={cls.categoryItem}>
+            <Text size={"m"} position={"left"}>
+              {type.name}
+            </Text>
+
+            <Remove
+              className={cls.removeBtn}
+              onClick={() => removeType(type)}
+            />
+          </div>
+        ))}
+      </div>
       {!creation && (
         <div className={cls.addCategory}>
           <Add
@@ -59,7 +74,7 @@ const CategoryManagement = observer(() => {
       {creation && (
         <form className={cls.newCategory}>
           <div className={cls.input}>
-            <Text size={"m"} position={"left"}>
+            <Text size={"s"} position={"left"}>
               Новая категория
             </Text>
             <CustomInput
@@ -83,20 +98,6 @@ const CategoryManagement = observer(() => {
         </form>
       )}
 
-      <div className={cls.categoryLIst}>
-        {product.types.map((type) => (
-          <div key={type.name} className={cls.categoryItem}>
-            <Text size={"m"} position={"left"}>
-              {type.name}
-            </Text>
-
-            <Remove
-              className={cls.removeBtn}
-              onClick={() => removeType(type)}
-            />
-          </div>
-        ))}
-      </div>
     </div>
   );
 });

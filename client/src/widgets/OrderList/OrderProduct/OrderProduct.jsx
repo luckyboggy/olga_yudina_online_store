@@ -4,13 +4,15 @@ import { PRODUCT_ROUTE } from "app/utils/consts.js";
 import { fetchOneProduct } from "http/productAPI.js";
 import cls from "./OrderProduct.module.scss";
 
-const OrderProduct = ({ productId, selectedSize }) => {
-  const [orderProduct, setOrderProduct] = useState({});
+const OrderProduct = ({ orderProduct }) => {
+  const [product, setProduct] = useState({});
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetchOneProduct(productId).then((data) => setOrderProduct(data));
+    fetchOneProduct(orderProduct.productId).then((data) => setProduct(data));
   }, []);
+
+  console.log(orderProduct)
 
   return (
     <div className={cls.orderProduct}>
@@ -18,25 +20,25 @@ const OrderProduct = ({ productId, selectedSize }) => {
         <div
           className={cls.orderProductImg}
           onClick={() => {
-            navigate("../" + PRODUCT_ROUTE + "/" + productId);
+            navigate("../" + PRODUCT_ROUTE + "/" + orderProduct.productId);
           }}
         >
-          {orderProduct.img && (
+          {product.img && (
             <img
-              src={process.env.REACT_APP_API_URL + orderProduct.img[0]}
-              key={orderProduct.img[0]}
+              src={process.env.REACT_APP_API_URL + product.img[0]}
+              key={product.img[0]}
             />
           )}
         </div>
         <div className={cls.info}>
           <div className={cls.title}>
-            <div className={cls.name}>{orderProduct.name}</div>
+            <div className={cls.name}>{product.name}</div>
           </div>
           <div className={cls.price}>
             {orderProduct.price && orderProduct.price.toLocaleString()} р
           </div>
-          {selectedSize !== "unified" && (
-            <div className={cls.size}>Размер: {selectedSize}</div>
+          {orderProduct.selectedSize !== "unified" && (
+            <div className={cls.size}>Размер: {orderProduct.selectedSize}</div>
           )}
         </div>
       </div>

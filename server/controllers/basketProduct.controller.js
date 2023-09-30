@@ -3,7 +3,7 @@ import { BasketProduct } from "../models/models.js";
 class BasketProductController {
   async addToBasket(req, res) {
     try {
-      const { productId, basketId, selectedSize } = req.body;
+      const { productId, basketId, selectedSize, quantity } = req.body;
 
       // Проверка, есть ли данный товар в корзине
       const basketItem = await BasketProduct.findOne({
@@ -16,6 +16,7 @@ class BasketProductController {
           basketId,
           productId,
           selectedSize,
+          quantity,
         });
         return res.json(basketProduct);
       }
@@ -33,7 +34,7 @@ class BasketProductController {
       });
       return res.json(basketProduct);
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   }
 

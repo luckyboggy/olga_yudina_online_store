@@ -50,6 +50,20 @@ const CollectionManagement = observer(() => {
 
   return (
     <div className={cls.collection}>
+      <div className={cls.collectionList}>
+        {product.collections.map((collection) => (
+          <div key={collection.name} className={cls.collectionItem}>
+            <Text size={"m"} position={"left"}>
+              {collection.name}
+            </Text>
+            <Remove
+              className={cls.removeBtn}
+              onClick={() => removeCollection(collection)}
+            />
+          </div>
+        ))}
+      </div>
+
       {!creation && (
         <div className={cls.addCollection}>
           <Add
@@ -63,7 +77,7 @@ const CollectionManagement = observer(() => {
       {creation && (
         <form className={cls.newCollection}>
           <div className={cls.input}>
-            <Text size={"m"} position={"left"}>
+            <Text size={"s"} position={"left"}>
               Новая коллекция
             </Text>
             <CustomInput
@@ -86,20 +100,6 @@ const CollectionManagement = observer(() => {
           </div>
         </form>
       )}
-
-      <div className={cls.collectionList}>
-        {product.collections.map((collection) => (
-          <div key={collection.name} className={cls.collectionItem}>
-            <Text size={"m"} position={"left"}>
-              {collection.name}
-            </Text>
-            <Remove
-              className={cls.removeBtn}
-              onClick={() => removeCollection(collection)}
-            />
-          </div>
-        ))}
-      </div>
     </div>
   );
 });

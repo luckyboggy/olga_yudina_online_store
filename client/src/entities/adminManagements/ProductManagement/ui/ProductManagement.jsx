@@ -222,9 +222,21 @@ const ProductManagement = observer(() => {
               })
             }
           />
+          {/* Материалы */}
+          <CustomTextArea
+            placeholder="материалы"
+            size={"s"}
+            value={newProduct.materials}
+            onChange={(event) =>
+              setNewProduct({
+                ...newProduct,
+                materials: event.target.value,
+              })
+            }
+          />
 
           <div className={cls.sizes}>
-            <Text size={"s"} position={"left"}>
+            <Text size={"s"} position={"left"} padding="pv1">
               Размеры
             </Text>
             {sizes.map((size, index) => (

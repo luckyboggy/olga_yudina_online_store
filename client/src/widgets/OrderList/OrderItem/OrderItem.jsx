@@ -49,17 +49,16 @@ const OrderItem = ({ order }) => {
         </div>
         <div className={cls.priceQuantity}>
           <div className={cls.quantity}>Товаров: {orderProducts.length}</div>
-          <div className={cls.totalPrice}>xxx р</div>
+          <div className={cls.totalPrice}>{order.totalPrice} р</div>
         </div>
       </div>
       <hr />
       {showOrderProducts && (
         <div className={cls.orderProducts}>
-          {orderProducts.map((product) => (
-            <div key={product.productId}>
+          {orderProducts.map((orderProduct) => (
+            <div key={orderProduct.productId+orderProduct.selectedSize}>
               <OrderProduct
-                productId={product.productId}
-                selectedSize={product.selectedSize}
+                orderProduct={orderProduct}
               />
               <hr />
             </div>

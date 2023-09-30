@@ -43,6 +43,12 @@ const Favorites = sequelize.define("favorites", {
 const BasketProduct = sequelize.define("basket_product", {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
   selectedSize: { type: DataTypes.STRING, defaultValue: "unified" },
+  quantity: {
+    type: DataTypes.INTEGER,
+    validate: {
+      min: 0,
+    },
+  },
   // basket_id
   // product_id
 });
@@ -51,6 +57,12 @@ const OrderProduct = sequelize.define("order_product", {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
   price: { type: DataTypes.INTEGER },
   selectedSize: { type: DataTypes.STRING, defaultValue: "unified" },
+  quantity: {
+    type: DataTypes.INTEGER,
+    validate: {
+      min: 0,
+    },
+  },
   // order_id
   // product_id
 });
@@ -66,7 +78,7 @@ const Product = sequelize.define("product", {
   name: { type: DataTypes.STRING, unique: true, allowNull: false },
   price: { type: DataTypes.INTEGER, allowNull: false },
   img: { type: DataTypes.ARRAY(DataTypes.STRING) },
-  description: { type: DataTypes.STRING },
+  description: { type: DataTypes.TEXT },
   materials: { type: DataTypes.STRING },
   // type_id
   // collection_id
@@ -77,7 +89,12 @@ const Product = sequelize.define("product", {
 const ProductSize = sequelize.define("product_size", {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
   size: { type: DataTypes.STRING, allowNull: false },
-  quantity: { type: DataTypes.INTEGER },
+  quantity: {
+    type: DataTypes.INTEGER,
+    validate: {
+      min: 0,
+    },
+  },
 });
 
 const ProductInfo = sequelize.define("product_info", {

@@ -8,7 +8,6 @@ import {
 } from "../models/models.js";
 import { sequelize } from "../db.js";
 
-
 class OrderController {
   async create(req, res) {
     const { userId } = req.body;
@@ -29,26 +28,28 @@ class OrderController {
     const newOrder = orders.rows[0];
 
     const newOrderId = newOrder.id;
-    const newOrderNumber = `${userId.toString().padStart(4, 0)}-${newOrderId.toString().padStart(4, 0)}`
+    const newOrderNumber = `${userId.toString().padStart(4, 0)}-${newOrderId
+      .toString()
+      .padStart(4, 0)}`;
 
-    await Order.update({
-      number: newOrderNumber
-    },
+    await Order.update(
       {
-        where: { id: newOrderId }
+        number: newOrderNumber,
+      },
+      {
+        where: { id: newOrderId },
       }
     );
 
     return res.json([]);
-  };
+  }
 
   async fromBasketToOrder(req, res) {
     const { userId } = req.body;
 
-    console.log(1)
+    console.log(1);
     // получаем все заказы пользователя в хронологическом порядке
     const orders = await Order.findAndCountAll({
-
       where: { userId },
       order: [["updatedAt", "DESC"]],
     });
@@ -68,48 +69,50 @@ class OrderController {
 
     // перенос содержимого корзины в заказ / удаление из корзины / изменеие количества
     await basketProduct.rows.forEach((bp) => {
-      console.log("pr", bp)
+      console.log("pr", bp);
 
       Product.findOne({
-        where: { id: bp.productId }
-      }).then((product) => {
-        totalPrice += product.price;
-        OrderProduct.create({
-          productId: bp.productId,
-          orderId: newOrder.id,
-          selectedSize: bp.selectedSize,
-          price: product.price,
-        });
-        BasketProduct.destroy({
-          where: {
+        where: { id: bp.productId },
+      })
+        .then((product) => {
+          totalPrice += product.price;
+          OrderProduct.create({
             productId: bp.productId,
+            orderId: newOrder.id,
             selectedSize: bp.selectedSize,
-          },
-        });
-        ProductSize.update(
-          {
-            quantity: sequelize.literal("quantity - 1"),
-          },
-          {
+            quantity: bp.quantity,
+            price: product.price,
+          });
+          ProductSize.update(
+            {
+              quantity: sequelize.literal(`quantity - ${bp.quantity}`),
+            },
+            {
+              where: {
+                productId: bp.productId,
+                size: bp.selectedSize,
+              },
+            }
+          );
+
+          BasketProduct.destroy({
             where: {
               productId: bp.productId,
-              size: bp.selectedSize,
+              selectedSize: bp.selectedSize,
             },
-          }
-        );
-
-      })
-
-
+          });
+        })
+        .then(() => {
+          Order.update(
+            {
+              totalPrice: totalPrice,
+            },
+            {
+              where: { id: newOrder.id },
+            }
+          );
+        });
     });
-
-    Order.update({
-      totalPrice: totalPrice
-    },
-      {
-        where: { id: newOrder.id }
-      }
-    );
 
     return res.json([]);
   }

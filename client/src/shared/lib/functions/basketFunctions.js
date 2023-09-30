@@ -6,12 +6,17 @@ import {
 } from "http/basketProductAPI.js";
 import { fetchOneProduct } from "http/productAPI.js";
 
-const handleAddToBasket = async (id, selectedSize = "unified") => {
+const handleAddToBasket = async (
+  id,
+  selectedSize = "unified",
+  quantity = 1
+) => {
   if (user.isAuth) {
     addToBasket({
       basketId: user.basketId,
       productId: id,
       selectedSize: selectedSize,
+      quantity: quantity,
     });
     await fetchBasketProduct(user.basketId).then((data) => {
       user.setBasketCount(data.count);
