@@ -169,9 +169,7 @@ class ProductController {
 
   async getAll(req, res) {
     let { typeIds, collectionId, limit, page, sortType } = req.query;
-
-    console.log('t', typeIds)
-
+    console.log(typeIds)
     sortType = sortType || ["updatedAt", "ASC"];
     limit = limit || 8;
     page = page || 1;

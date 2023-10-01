@@ -3,19 +3,11 @@ import { fetchOrderProducts } from "http/orderProductAPI";
 import { OrderProduct } from "../OrderProduct/OrderProduct";
 import { ReactComponent as Arrow } from "shared/assets/img/svg/arrow.svg";
 import cls from "./OrderItem.module.scss";
+import { orderStatus } from "app/utils/consts.js";
 
 const OrderItem = ({ order }) => {
   const [orderProducts, setOrderProducts] = useState([]);
   const [showOrderProducts, setShowOrderProducts] = useState(false);
-
-  const orderStatus = {
-    issued: "оформлен",
-    inProcessy: "в обработке",
-    delivery: "доставка",
-    delivered: "доставлен",
-    received: "получен",
-    canceled: "отменен",
-  };
 
   const formattedDate = (d) => {
     const date = new Date(d);

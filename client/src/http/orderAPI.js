@@ -8,11 +8,18 @@ const createOrder = async (userId) => {
 const setOrderNumber = async (userId) => {
   const { data } = await $authHost.post("api/order/setNumber", { userId });
   return data;
-}
+};
 
 const getOrdersByUser = async (userId) => {
   const { data } = await $authHost.get("api/order", {
     params: { userId },
+  });
+  return data;
+};
+
+const fetchOrdersByStatus = async (statuses) => {
+  const { data } = await $authHost.get("api/order", {
+    params: { statuses },
   });
   return data;
 };
@@ -22,4 +29,10 @@ const fromBasketToOrder = async (userId) => {
   return data;
 };
 
-export { createOrder, setOrderNumber, getOrdersByUser, fromBasketToOrder };
+export {
+  createOrder,
+  setOrderNumber,
+  getOrdersByUser,
+  fromBasketToOrder,
+  fetchOrdersByStatus,
+};

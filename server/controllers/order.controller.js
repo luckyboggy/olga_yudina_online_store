@@ -7,6 +7,7 @@ import {
   ProductSize,
 } from "../models/models.js";
 import { sequelize } from "../db.js";
+import { Op } from "sequelize";
 
 class OrderController {
   async create(req, res) {
@@ -69,8 +70,6 @@ class OrderController {
 
     // перенос содержимого корзины в заказ / удаление из корзины / изменеие количества
     await basketProduct.rows.forEach((bp) => {
-      console.log("pr", bp);
-
       Product.findOne({
         where: { id: bp.productId },
       })
@@ -128,7 +127,16 @@ class OrderController {
   }
 
   async getAll(req, res) {
-    const orders = await Order.findAll();
+    let { statuses } = req.query;
+    let orders;
+    if (statuses) {
+      orders = await Order.findAndCountAll({
+        where: { status: { [Op.in]: statuses } },
+      });
+    } else {
+      orders = await Order.findAndCountAll();
+    }
+
     return res.json(orders);
   }
 

@@ -16,3 +16,12 @@ export const WORKSHOPS_ROUTE = "workshops";
 export const DELIVERY_ROUTE = "delivery";
 
 export const NOPAGE_ROUTE = "*";
+
+export const orderStatus = {
+    issued: "оформлен",
+    inProcess: "в обработке",
+    delivery: "доставка",
+    delivered: "доставлен",
+    received: "получен",
+    canceled: "отменен",
+  };

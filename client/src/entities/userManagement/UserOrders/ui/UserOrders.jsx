@@ -11,7 +11,6 @@ const UserOrders = () => {
   useEffect(() => {
     getOrdersByUser(user.user.id)
       .then((data) => {
-        console.log(data);
         user.setOrderItems(data);
       })
       .finally(() => {
