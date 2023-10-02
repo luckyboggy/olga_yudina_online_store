@@ -7,5 +7,6 @@ const userRouter = new Router();
 userRouter.post('/registration', userController.registration);
 userRouter.post('/login', userController.login);
 userRouter.get('/auth', authMiddlewere, userController.check);
+userRouter.get("/:id", userController.getOne);
 
 export { userRouter };

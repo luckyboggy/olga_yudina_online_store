@@ -6,7 +6,7 @@ import { CheckBox } from "shared/ui/checkbox/CheckBox";
 import { Modal } from "shared/ui/modal/Modal";
 import { CustomButton } from "shared/ui/button/CustomButton";
 import cls from "./OrderManagement.module.scss";
-import { OrderItem } from "widgets/OrderList/OrderItem/OrderItem";
+import { OrderItemAdmin } from "widgets/OrderList/OrderItemAdmin/OrderItemAdmin";
 
 const OrderManagement = () => {
   const [filters, setFilters] = useState(false);
@@ -27,7 +27,6 @@ const OrderManagement = () => {
 
   useEffect(() => {
     fetchOrdersByStatus(null).then((data) => {
-      console.log(data);
       setOrders(data.rows);
     });
   }, []);
@@ -87,10 +86,9 @@ const OrderManagement = () => {
       </div>
       <div className={cls.orderList}>
         {orders.map((order) => (
-          <OrderItem order={order} key={order.id} />
+          <OrderItemAdmin order={order} key={order.id} />
         ))}
       </div>
-
     </div>
   );
 };

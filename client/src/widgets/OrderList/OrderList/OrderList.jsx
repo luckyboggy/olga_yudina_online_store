@@ -5,6 +5,7 @@ import { OrderItem } from "../OrderItem/OrderItem";
 
 const OrderList = () => {
   const { user } = useContext(Context);
+  console.log(user.orderItems);
   return (
     <div className={cls.orderList}>
       {user.orderItems.map((order) => (

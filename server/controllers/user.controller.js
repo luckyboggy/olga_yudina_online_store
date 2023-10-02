@@ -86,6 +86,14 @@ class UserController {
 
     return res.json({ jsonWebToken });
   }
+
+  async getOne(req, res) {
+    const { id } = req.params;
+    const user = await User.findOne({
+      where: { id }
+    })
+    return res.json(user)
+  }
 }
 
 const userController = new UserController();

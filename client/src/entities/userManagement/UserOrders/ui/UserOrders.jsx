@@ -11,7 +11,7 @@ const UserOrders = () => {
   useEffect(() => {
     getOrdersByUser(user.user.id)
       .then((data) => {
-        user.setOrderItems(data);
+        user.setOrderItems(data.rows);
       })
       .finally(() => {
         setLoading(false);

@@ -10,10 +10,15 @@ const setOrderNumber = async (userId) => {
   return data;
 };
 
-const getOrdersByUser = async (userId) => {
-  const { data } = await $authHost.get("api/order", {
-    params: { userId },
+const changeOrderStatus = async (id, status) => {
+  const { data } = await $authHost.get("api/order/changeStatus", {
+    id, status
   });
+  return data;
+}
+
+const getOrdersByUser = async (userId) => {
+  const { data } = await $authHost.get(`api/order/${userId}`);
   return data;
 };
 
@@ -25,6 +30,7 @@ const fetchOrdersByStatus = async (statuses) => {
 };
 
 const fromBasketToOrder = async (userId) => {
+  console.log('fbto')
   const { data } = await $authHost.post("api/order/basketToOrder", { userId });
   return data;
 };
@@ -34,5 +40,6 @@ export {
   setOrderNumber,
   getOrdersByUser,
   fromBasketToOrder,
+  changeOrderStatus,
   fetchOrdersByStatus,
 };

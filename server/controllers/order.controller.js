@@ -16,6 +16,21 @@ class OrderController {
     return res.json(order);
   }
 
+  async changeStatus(req, res) {
+    const { id, status } = req.body;
+
+    await Order.update(
+      {
+        status: status,
+      },
+      {
+        where: { id: id },
+      }
+    );
+
+    return res.json([]);
+  }
+
   async setNumber(req, res) {
     const { userId } = req.body;
 
@@ -46,9 +61,10 @@ class OrderController {
   }
 
   async fromBasketToOrder(req, res) {
-    const { userId } = req.body;
 
-    console.log(1);
+    const { userId } = req.body;
+    console.log(userId);
+
     // получаем все заказы пользователя в хронологическом порядке
     const orders = await Order.findAndCountAll({
       where: { userId },
@@ -61,6 +77,8 @@ class OrderController {
     // корзина пользователя
     const basket = await Basket.findOne({ where: { userId } });
 
+    console.log(basket)
+
     // содержимое корзины
     const basketProduct = await BasketProduct.findAndCountAll({
       where: { basketId: basket.id },
@@ -68,8 +86,11 @@ class OrderController {
 
     let totalPrice = 0;
 
+    console.log(basketProduct)
+
     // перенос содержимого корзины в заказ / удаление из корзины / изменеие количества
     await basketProduct.rows.forEach((bp) => {
+      console.log('tut4')
       Product.findOne({
         where: { id: bp.productId },
       })
@@ -118,7 +139,8 @@ class OrderController {
 
   async getByUser(req, res) {
     try {
-      const { userId } = req.query;
+      const { userId } = req.params;
+      console.log(userId)
       const orders = await Order.findAndCountAll({ where: { userId } });
       return res.json(orders);
     } catch (error) {
