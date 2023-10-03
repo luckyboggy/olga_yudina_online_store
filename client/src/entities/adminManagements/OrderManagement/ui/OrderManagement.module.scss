@@ -4,6 +4,7 @@
     justify-content: space-between;
     align-items: center;
     height: 40px;
+    margin: var(--margin-m) 0;
 
     .selected {
       font: var(--font-main-m);

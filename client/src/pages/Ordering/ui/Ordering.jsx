@@ -138,6 +138,7 @@ const Ordering = () => {
         </div>
       </div>
       <CustomButton
+        fontSize={"s"}
         onClick={(event) => {
           event.preventDefault();
           // console.log(customerData);

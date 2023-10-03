@@ -3,13 +3,17 @@
   .orderInfo {
     .title {
       font: var(--font-main-s);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+
       padding: 0.25rem 0;
       .number {
         font: var(--font-main-m);
+        margin-bottom: 0.5rem;
       }
+    }
+    .statusBar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       .status {
         font: var(--font-main-s);
         background-color: rgb(170, 170, 170);
@@ -18,17 +22,26 @@
         border-radius: 13px;
       }
     }
+
+    .cancelBtn {
+      font: var(--font-main-ь);
+      padding: 0.25rem 0;
+      text-decoration: underline;
+      
+      // display: flex;
+      // justify-content: end;
+    }
     .orderDate {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 0.5rem 0;
+      padding: 0.25rem 0;
     }
     .priceQuantity {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 0.5rem 0;
+      padding: 1.5rem 0 0.5rem 0;
       .quantity {
       }
       .totalPrice {
@@ -40,7 +53,7 @@
     display: flex;
     justify-content: end;
     align-items: center;
-    font: var(--font-main-m);
+    font: var(--font-main-s);
     .dropArrow {
       margin-left: 0.5rem;
       width: 18px;

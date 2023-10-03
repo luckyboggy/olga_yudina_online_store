@@ -42,8 +42,13 @@ const UserPersonal = () => {
         size={"m"}
         //value={}
       />
-      <CustomButton>Сохранить</CustomButton>
-      <CustomButton onClick={() => exit()} theme={"inverted"} margins={"mt1"}>
+      <CustomButton fontSize={"s"}>Сохранить</CustomButton>
+      <CustomButton
+        onClick={() => exit()}
+        fontSize={"s"}
+        theme={"inverted"}
+        margins={"mt1"}
+      >
         Выход
       </CustomButton>
     </div>

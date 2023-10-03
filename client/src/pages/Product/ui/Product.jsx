@@ -126,7 +126,7 @@ const Product = observer(() => {
         <div className={`${cls.btns} ${btnsShow ? "" : cls.hide}`}>
           {isOneSize ? (
             <CustomButton
-              fontSize={"m"}
+              fontSize={"s"}
               theme={isInBasket(item.id, selectedSize) ? "inverted" : ""}
               onClick={() => {
                 isInBasket(item.id, selectedSize)
@@ -140,7 +140,7 @@ const Product = observer(() => {
             </CustomButton>
           ) : (
             <CustomButton
-              fontSize={"m"}
+              fontSize={"s"}
               theme={
                 sizeChosen || isInBasket(item.id, selectedSize)
                   ? "inverted"

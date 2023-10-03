@@ -80,7 +80,7 @@ const Shop = observer(() => {
         <Modal type={"central"} img={logo} close={toLogin}>
           <ToLogin close={toLogin}/>
           <CustomButton
-            fontSize={"m"}
+            fontSize={"s"}
             theme={"inverted"}
             margins={"mt1"}
             onClick={() => toLogin(false)}

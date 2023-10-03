@@ -7,7 +7,7 @@ const CustomButton = ({ children, fontSize, margins, theme, ...props }) => {
       {...props}
       className={`${cl.customButton} ${cl[fontSize]} ${cl[theme]} ${cl[margins]}`}
     >
-      {children}
+      {children.toUpperCase()}
     </button>
   );
 };

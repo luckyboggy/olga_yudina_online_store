@@ -33,7 +33,7 @@ const MobileMenu = observer(({ mobileMenu, setMobileMenu }) => {
         {/* dd */}
         <div className={cls.item} onClick={() => setCollection(!collection)}>
           <div className={cls.title}>
-            <div>магазин</div>
+            <div>Магазин</div>
             <Arrow
               className={`${cls.dropArrow} ${collection ? cls.active : ""}`}
             />
@@ -48,7 +48,7 @@ const MobileMenu = observer(({ mobileMenu, setMobileMenu }) => {
                   setMobileMenu(false);
                 }}
               >
-                посмотреть всё
+                смотреть все 
               </Link>
               {product.types.map((type) => (
                 <Link
@@ -73,7 +73,7 @@ const MobileMenu = observer(({ mobileMenu, setMobileMenu }) => {
             to="favorites"
             onClick={() => setMobileMenu(false)}
           >
-            избранное
+            Избранное
           </Link>
         </div>
         <div className={cls.item}>
@@ -82,7 +82,7 @@ const MobileMenu = observer(({ mobileMenu, setMobileMenu }) => {
             to="workshops"
             onClick={() => setMobileMenu(false)}
           >
-            мастер-классы
+            Мастер-классы
           </Link>
         </div>
         <div className={cls.item}>
@@ -91,7 +91,7 @@ const MobileMenu = observer(({ mobileMenu, setMobileMenu }) => {
             to="about"
             onClick={() => setMobileMenu(false)}
           >
-            о нас
+            О бренде
           </Link>
         </div>
         <div className={cls.item}>
@@ -100,7 +100,7 @@ const MobileMenu = observer(({ mobileMenu, setMobileMenu }) => {
             to="delivery"
             onClick={() => setMobileMenu(false)}
           >
-            доставка
+            Доставка и оплата
           </Link>
         </div>
 
@@ -111,7 +111,7 @@ const MobileMenu = observer(({ mobileMenu, setMobileMenu }) => {
               className={cls.title}
               onClick={() => setMobileMenu(false)}
             >
-              администрирование
+              Администрирование
             </Link>
           )}
           {user.isAuth && user.user.role === "USER" && (
@@ -120,7 +120,7 @@ const MobileMenu = observer(({ mobileMenu, setMobileMenu }) => {
               className={cls.title}
               onClick={() => setMobileMenu(false)}
             >
-              личный кабинет
+              Личный кабинет
             </Link>
           )}
 
@@ -130,7 +130,7 @@ const MobileMenu = observer(({ mobileMenu, setMobileMenu }) => {
               className={cls.title}
               onClick={() => setMobileMenu(false)}
             >
-              войти
+              Войти
             </Link>
           )}
         </div>

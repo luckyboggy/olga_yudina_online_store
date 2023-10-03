@@ -28,7 +28,11 @@ const Admin = observer(() => {
     <div className={cls.admin}>
       <div className={cls.menu}>
         {isMobile && (
-          <CustomSelect options={management} onChange={setCurrentManagement} />
+          <CustomSelect
+            margins={"mv1"}
+            options={management}
+            onChange={setCurrentManagement}
+          />
         )}
       </div>
       <div className={cls.content}>

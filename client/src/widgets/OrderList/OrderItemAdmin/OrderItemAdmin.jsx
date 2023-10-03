@@ -6,21 +6,22 @@ import { ReactComponent as Arrow } from "shared/assets/img/svg/arrow.svg";
 import { orderStatus } from "app/utils/consts.js";
 import { fetchUser } from "http/userAPI";
 import cls from "./OrderItemAdmin.module.scss";
+import { changeOrderStatus } from "http/orderAPI";
 
 const OrderItemAdmin = ({ order }) => {
   const [orderProducts, setOrderProducts] = useState([]);
   const [user, setUser] = useState();
   const [showOrderProducts, setShowOrderProducts] = useState(false);
-  const [currentStatus, setCurrentStatus] = useState();
 
-  let statuses = [];
+ 
 
   const makeStatusList = () => {
+    let statuses = [];
     Object.entries(orderStatus).map(([key, value]) => {
-      statuses.push({ value: key, name: value });
+      if (key !== "canceled" && key !== order.status)
+        statuses.push({ value: key, name: value });
     });
-
-    console.log(statuses);
+    return statuses;
   };
 
   const formattedDate = (d) => {
@@ -35,6 +36,10 @@ const OrderItemAdmin = ({ order }) => {
       .padStart(2, 0)}.${year}`;
   };
 
+  const changeStatus = (status) => {
+    changeOrderStatus(order.id, status)
+  }
+
   useEffect(() => {
     makeStatusList();
     fetchOrderProducts(order.id)
@@ -48,18 +53,16 @@ const OrderItemAdmin = ({ order }) => {
       });
   }, []);
 
-  console.log(user);
-  console.log(statuses);
-
   return (
     <div className={cls.orderItemAdmin}>
       <div className={cls.orderInfo}>
         <div className={cls.title}>
-          <div className={cls.number}>Заказ № {order.number}</div>
+          <div className={cls.number} >Заказ № {order.number}</div>
           <div className={cls.status}>
             <CustomSelect
-              options={statuses}
+              options={makeStatusList()}
               defValue={orderStatus[order.status]}
+              onChange={changeStatus}
             />
           </div>
         </div>

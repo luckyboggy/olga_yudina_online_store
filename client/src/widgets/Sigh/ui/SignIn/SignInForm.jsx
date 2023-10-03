@@ -1,6 +1,7 @@
 import React from "react";
 import { CustomInput } from "shared/ui/input/CustomInput";
 import { CustomButton } from "shared/ui/button/CustomButton";
+import cls from "./SignInForm.module.scss";
 
 const SignInForm = ({ authUser, setAuthUser, signClick }) => {
   return (
@@ -24,8 +25,9 @@ const SignInForm = ({ authUser, setAuthUser, signClick }) => {
         }
       />
       <CustomButton
+        margins={"mt2"}
         type="submit"
-        fontSize={"m"}
+        fontSize={"s"}
         onClick={(event) => {
           event.preventDefault();
           signClick(authUser.email, authUser.password);
@@ -33,6 +35,7 @@ const SignInForm = ({ authUser, setAuthUser, signClick }) => {
       >
         Войти
       </CustomButton>
+      <div className={cls.resetPass}></div>
       <a href="/#">Восстановить пароль</a>
     </form>
   );

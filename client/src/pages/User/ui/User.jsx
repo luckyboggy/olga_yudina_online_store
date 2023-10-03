@@ -20,7 +20,11 @@ const User = observer(() => {
     <div className={cls.user}>
       <div className={cls.menu}>
         {isMobile && (
-          <CustomSelect options={management} onChange={setCurrentManagement} />
+          <CustomSelect
+            margins={"mv1"}
+            options={management}
+            onChange={setCurrentManagement}
+          />
         )}
       </div>
       {currentManagement === "personal" && <UserPersonal />}

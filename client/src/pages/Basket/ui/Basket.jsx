@@ -20,22 +20,21 @@ const Basket = observer(() => {
     <div className={cls.basket}>
       {(user.isAuth && user.basketCount === 0) ||
       (!user.isAuth && user.localBasket.length === 0) ? (
-        <Text size={"m"} position={"center"}>
-          Ваша корзина пуста
-        </Text>
+        <div className={cls.empty}>Ваша корзина пуста</div>
       ) : (
         <div>
           <div className={cls.check}>
             <div className={cls.title}>Корзина</div>
             <div className={cls.products}>
               <BasketList />
+              <div className={cls.totalPrice}>СУММА: {totalPrice.toLocaleString()} Р</div>
             </div>
 
             <div className={cls.confirm}>
-              <div className={cls.totalPrice}>итого: {totalPrice.toLocaleString()} р</div>
+             
               <div className={cls.order}>
                 <Link to="/ordering">
-                  <CustomButton fontSize={"m"}>Оформить заказ</CustomButton>
+                  <CustomButton fontSize={"s"}>Оформить заказ</CustomButton>
                 </Link>
               </div>
             </div>

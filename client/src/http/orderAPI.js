@@ -11,7 +11,7 @@ const setOrderNumber = async (userId) => {
 };
 
 const changeOrderStatus = async (id, status) => {
-  const { data } = await $authHost.get("api/order/changeStatus", {
+  const { data } = await $authHost.post("api/order/changeStatus", {
     id, status
   });
   return data;

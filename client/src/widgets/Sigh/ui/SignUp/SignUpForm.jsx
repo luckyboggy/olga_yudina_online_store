@@ -26,19 +26,19 @@ const SignUpForm = ({ authUser, setAuthUser, signClick }) => {
       />
       <CustomInput
         type="password"
-        placeholder="поддвердите пароль"
+        placeholder="подтвердите пароль"
         size={"m"}
       />
 
       <CustomButton
         type="submit"
-        fontSize={"m"}
+        fontSize={"s"}
         onClick={(event) => {
           event.preventDefault();
           signClick(authUser.email, authUser.password);
         }}
       >
-        Зарегестрироваться
+        Зарегистрироваться
       </CustomButton>
     </form>
   );

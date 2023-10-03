@@ -13,7 +13,7 @@
     margin: auto;
     width: 90%;
     padding: var(--padding-m);
-    border-radius: var(--padding-m);
+    border-radius: 0.5rem;
     background-color: var(--secondary-color);
   }
   .lower {
@@ -53,6 +53,7 @@
     display: flex;
     justify-content: center;
     .headerLogo {
+      margin-top: 2rem;
       height: 100px;
     }
     .closeLogo {

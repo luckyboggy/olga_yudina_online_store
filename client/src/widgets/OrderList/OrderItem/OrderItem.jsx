@@ -16,9 +16,14 @@ const OrderItem = ({ order }) => {
     const month = date.getMonth() + 1;
     const day = date.getDate();
 
+    const hours = date.getHours();
+    const minutes = date.getMinutes();
+
     return `${day.toString().padStart(2, 0)}.${month
       .toString()
-      .padStart(2, 0)}.${year}`;
+      .padStart(2, 0)}.${year}  ${hours.toString().padStart(2, 0)}:${minutes
+      .toString()
+      .padStart(2, 0)}`;
   };
 
   useEffect(() => {
@@ -32,9 +37,13 @@ const OrderItem = ({ order }) => {
       <div className={cls.orderInfo}>
         <div className={cls.title}>
           <div className={cls.number}>Заказ № {order.number}</div>
-
+        </div>
+        <div className={cls.cancelBtn}>Отменить заказ</div>
+        <div className={cls.statusBar}>
+          <div>Статус заказа:</div>
           <div className={cls.status}>{orderStatus[order.status]}</div>
         </div>
+
         <div className={cls.orderDate}>
           <div>Дата оформления</div>
           <div>{formattedDate(order.createdAt)}</div>
@@ -48,10 +57,8 @@ const OrderItem = ({ order }) => {
       {showOrderProducts && (
         <div className={cls.orderProducts}>
           {orderProducts.map((orderProduct) => (
-            <div key={orderProduct.productId+orderProduct.selectedSize}>
-              <OrderProduct
-                orderProduct={orderProduct}
-              />
+            <div key={orderProduct.productId + orderProduct.selectedSize}>
+              <OrderProduct orderProduct={orderProduct} />
               <hr />
             </div>
           ))}
