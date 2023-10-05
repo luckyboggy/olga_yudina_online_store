@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { CustomSelect } from "shared/ui/select/CustomSelect";
+import { Select } from "shared/ui/select2/Select";
 import { IsMobil } from "shared/lib/hooks/IsMobil.js";
 import { CategoryManagement } from "entities/adminManagements/CategoryManagement";
 import { CollectionManagement } from "entities/adminManagements/CollectionsManagement";
@@ -28,10 +29,10 @@ const Admin = observer(() => {
     <div className={cls.admin}>
       <div className={cls.menu}>
         {isMobile && (
-          <CustomSelect
-            margins={"mv1"}
+          <Select
+            selected={currentManagement}
+            setSelected={setCurrentManagement}
             options={management}
-            onChange={setCurrentManagement}
           />
         )}
       </div>

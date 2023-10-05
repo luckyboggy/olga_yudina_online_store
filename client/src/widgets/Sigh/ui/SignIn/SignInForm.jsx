@@ -5,7 +5,7 @@ import cls from "./SignInForm.module.scss";
 
 const SignInForm = ({ authUser, setAuthUser, signClick }) => {
   return (
-    <form>
+    <form className={cls.signInForm}>
       <CustomInput
         type="email"
         placeholder="email"
@@ -24,19 +24,23 @@ const SignInForm = ({ authUser, setAuthUser, signClick }) => {
           setAuthUser({ ...authUser, password: event.target.value })
         }
       />
-      <CustomButton
-        margins={"mt2"}
-        type="submit"
-        fontSize={"s"}
-        onClick={(event) => {
-          event.preventDefault();
-          signClick(authUser.email, authUser.password);
-        }}
-      >
-        Войти
-      </CustomButton>
-      <div className={cls.resetPass}></div>
-      <a href="/#">Восстановить пароль</a>
+      <div className={cls.resetPass}>
+        <a href="/#">Восстановить пароль</a>
+      </div>
+
+      <div className={cls.btns}>
+        <CustomButton
+          margins={"mt2"}
+          type="submit"
+          fontSize={"s"}
+          onClick={(event) => {
+            event.preventDefault();
+            signClick(authUser.email, authUser.password);
+          }}
+        >
+          Войти
+        </CustomButton>
+      </div>
     </form>
   );
 };

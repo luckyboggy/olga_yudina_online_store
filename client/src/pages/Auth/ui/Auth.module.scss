@@ -1,5 +1,6 @@
 .auth {
   padding: var(--padding-m);
+  min-height: calc(100vh - var(--header-height-md));
   .choose {
     display: flex;
     justify-content: space-between;
@@ -21,6 +22,5 @@
   }
 
   .authForm {
-    
   }
 }

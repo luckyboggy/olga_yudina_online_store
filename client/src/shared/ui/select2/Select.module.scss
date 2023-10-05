@@ -1,0 +1,44 @@
+.select {
+  margin: 1rem 0;
+  position: relative;
+  .opacity {
+    position: fixed;
+    top: 0;
+    left: 0;
+    min-width: 100vw;
+    min-height: 100vh;
+    background: var(--opacity-color);
+  }
+  .selectBtn {
+    width: 100%;
+    padding: 0.5rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font: var(--font-main-m);
+    background: var(--basic-bg-color);
+    //box-shadow: 3px 3px 10px 6px rgba(0, 0, 0, 0.1);
+  }
+  .options {
+    top: 110%;
+    position: absolute;
+    background: var(--basic-bg-color);
+    width: 100%;
+    //box-shadow: 3px 3px 10px 6px rgba(0, 0, 0, 0.1);
+    font: var(--font-main-m);
+    .option {
+      padding: 0.5rem 0;
+    }
+  }
+}
+
+.dropArrow {
+  margin-left: 1rem;
+  width: 18px;
+  height: 18px;
+  fill: var(--primary-color);
+  transform: rotate(180deg);
+}
+.dropping {
+  transform: rotate(0deg);
+}
