@@ -3,9 +3,20 @@
   padding: 12px;
   font-size: var(--font-main-m);
   margin: var(--margin-m) 0;
-  background: transparent;
-  border: none;
-  border-bottom: 1px solid var(--primary-color);
+  //background: transparent;
+  //border: none;
+  //
+  //border: 1px solid transparent;
+  //border-bottom: 1px solid var(--primary-color);
+  //
+  background: #f8f8f8;
+  border: 1px solid #cccccc;
+  outline: none;
+  transition: 0.3s;
+}
+
+.customInput:focus {
+  border: 1px solid var(--primary-color);
 }
 
 .s {

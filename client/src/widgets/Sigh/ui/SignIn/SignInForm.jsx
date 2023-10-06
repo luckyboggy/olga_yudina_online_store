@@ -30,7 +30,6 @@ const SignInForm = ({ authUser, setAuthUser, signClick }) => {
 
       <div className={cls.btns}>
         <CustomButton
-          margins={"mt2"}
           type="submit"
           fontSize={"s"}
           onClick={(event) => {

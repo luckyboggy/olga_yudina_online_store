@@ -1,10 +1,11 @@
 import React from "react";
 import { CustomInput } from "shared/ui/input/CustomInput";
 import { CustomButton } from "shared/ui/button/CustomButton";
+import cls from "./SignUpForm.module.scss";
 
 const SignUpForm = ({ authUser, setAuthUser, signClick }) => {
   return (
-    <form>
+    <form className={cls.signUnForm}>
       <CustomInput type="text" placeholder="логин" size={"m"} />
       <CustomInput
         type="email"
@@ -29,17 +30,18 @@ const SignUpForm = ({ authUser, setAuthUser, signClick }) => {
         placeholder="подтвердите пароль"
         size={"m"}
       />
-
-      <CustomButton
-        type="submit"
-        fontSize={"s"}
-        onClick={(event) => {
-          event.preventDefault();
-          signClick(authUser.email, authUser.password);
-        }}
-      >
-        Зарегистрироваться
-      </CustomButton>
+      <div className={cls.btns}>
+        <CustomButton
+          type="submit"
+          fontSize={"s"}
+          onClick={(event) => {
+            event.preventDefault();
+            signClick(authUser.email, authUser.password);
+          }}
+        >
+          Зарегистрироваться
+        </CustomButton>
+      </div>
     </form>
   );
 };
