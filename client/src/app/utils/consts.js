@@ -20,7 +20,7 @@ export const NOPAGE_ROUTE = "*";
 export const orderStatus = {
     issued: "оформлен",
     inProcess: "в обработке",
-    delivery: "доставка",
+    delivery: "в доставке",
     delivered: "доставлен",
     received: "получен",
     canceled: "отменен",

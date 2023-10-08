@@ -43,10 +43,17 @@
 
     .close {
       position: absolute;
-      right: var(--padding-m);
       height: 30px;
       width: 30px;
     }
+  }
+
+  .central .close {
+    right: calc(2 * var(--padding-m));
+  }
+
+  .lower .close {
+    right: var(--padding-m);
   }
 
   .modalHeaderLogo {

@@ -19,7 +19,10 @@ const UserPersonal = () => {
     window.localStorage.removeItem("localBasket");
     navigate("../" + LOGIN_ROUTE);
   };
-  console.log(user);
+
+  const changePersonal = () => {
+
+  }
 
   return (
     <div className={cls.personal}>
@@ -37,20 +40,23 @@ const UserPersonal = () => {
         value={user.user.surename}
       />
       <CustomInput
-        type="text"
+        type="date"
         placeholder="Дата рождения"
         size={"m"}
         //value={}
       />
-      <CustomButton fontSize={"s"}>Сохранить</CustomButton>
-      <CustomButton
-        onClick={() => exit()}
-        fontSize={"s"}
-        theme={"inverted"}
-        margins={"mt1"}
-      >
-        Выход
-      </CustomButton>
+
+      <div className={cls.btns}>
+        <CustomButton fontSize={"s"}>Сохранить</CustomButton>
+        <CustomButton
+          onClick={() => exit()}
+          fontSize={"s"}
+          theme={"inverted"}
+          margins={"mt1"}
+        >
+          Выход
+        </CustomButton>
+      </div>
     </div>
   );
 };

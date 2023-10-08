@@ -39,7 +39,7 @@ const OrderManagement = () => {
     <div className={cls.orders}>
       {/* Модальное окно с фильтрами */}
       {filters && (
-        <Modal type={"lower"} title={"Заказы"} close={setFilters}>
+        <Modal type={"lower"} title={"Статус заказа"} close={setFilters}>
           <div className={cls.filters}>
             <div className={cls.statusSelector}>
               {Object.entries(orderStatus).map(([key, value], index) => (
@@ -79,7 +79,7 @@ const OrderManagement = () => {
           }}
         >
           <div className={cls.filterTitle}>
-            <div className={cls.filterName}>Фильтры</div>
+            <div className={cls.filterName}>Статус заказа</div>
             <Sort className={cls.filterIcon} />
           </div>
         </div>

@@ -7,11 +7,11 @@ const Select = ({ options, selected, setSelected, size, margins }) => {
 
   return (
     <div className={cls.select}>
-      {dropping && (
+      {/* {dropping && (
         <div className={cls.opacity} onClick={() => setDropping(!dropping)}>
           >
         </div>
-      )}
+      )} */}
 
       <div className={cls.selectBtn} onClick={() => setDropping(!dropping)}>
         <div className={cls.selected}>

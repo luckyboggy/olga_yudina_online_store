@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { CustomSelect } from "shared/ui/select/CustomSelect";
 import { Select } from "shared/ui/select2/Select";
 import { IsMobil } from "shared/lib/hooks/IsMobil.js";
 import { CategoryManagement } from "entities/adminManagements/CategoryManagement";

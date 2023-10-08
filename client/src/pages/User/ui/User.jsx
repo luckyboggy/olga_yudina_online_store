@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { CustomSelect } from "shared/ui/select/CustomSelect.jsx";
+import { Select } from "shared/ui/select2/Select";
 import { IsMobil } from "shared/lib/hooks/IsMobil.js";
 import { UserPersonal } from "entities/userManagement/UserPersonal";
 import { UserOrders } from "entities/userManagement/UserOrders/ui/UserOrders";
@@ -20,10 +21,10 @@ const User = observer(() => {
     <div className={cls.user}>
       <div className={cls.menu}>
         {isMobile && (
-          <CustomSelect
-            margins={"mv1"}
+          <Select
+            selected={currentManagement}
+            setSelected={setCurrentManagement}
             options={management}
-            onChange={setCurrentManagement}
           />
         )}
       </div>

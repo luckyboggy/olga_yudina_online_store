@@ -1,6 +1,7 @@
 .select {
   margin: 1rem 0;
-  position: relative;
+ position: relative;
+ z-index: var(--select-z);
   .opacity {
     position: fixed;
     top: 0;
@@ -11,23 +12,26 @@
   }
   .selectBtn {
     width: 100%;
-    padding: 0.5rem 0;
+    padding: 0.5rem 0.5rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
     font: var(--font-main-m);
     background: var(--basic-bg-color);
     //box-shadow: 3px 3px 10px 6px rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid var(--primary-color);
   }
   .options {
     top: 110%;
     position: absolute;
     background: var(--basic-bg-color);
     width: 100%;
-    //box-shadow: 3px 3px 10px 6px rgba(0, 0, 0, 0.1);
-    font: var(--font-main-m);
+    //border-radius: 0.5rem;
+    box-shadow: 3px 3px 10px 6px rgba(0, 0, 0, 0.1);
+    z-index: var(--slelct-z);
+    font: var(--font-main-s);
     .option {
-      padding: 0.5rem 0;
+      padding: 1rem 1rem;
     }
   }
 }

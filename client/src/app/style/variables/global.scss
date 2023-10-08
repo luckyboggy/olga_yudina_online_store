@@ -53,8 +53,9 @@
   --margin-m: 1rem;
 
   // z-index
-  --header-z: 5;
-  --mobilSearch-z: 10;
+  --header-z: 10;
+  --select-z: 5;
+  --mobilSearch-z: 15;
 }
 
 $font: rgb(54, 62, 70);
