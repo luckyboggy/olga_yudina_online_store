@@ -23,9 +23,16 @@ const check = async () => {
   return jwt_decode(data.jsonWebToken);
 };
 
+const change = async (email, name, surename, phone) => {
+  const data = await $authHost.post("api/user/change", {
+    name, surename, email, phone
+  });
+  return data.data;
+}
+
 const fetchUser = async (id) => {
   const { data } = await $authHost.get(`api/user/${id}`);
   return data;
 }
 
-export { registration, login, check, fetchUser };
+export { registration, login, check, change, fetchUser };

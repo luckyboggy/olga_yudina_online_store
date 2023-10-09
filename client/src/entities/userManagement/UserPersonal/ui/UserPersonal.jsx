@@ -1,14 +1,21 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Context } from "index.js";
 import { useNavigate } from "react-router-dom";
 import { LOGIN_ROUTE } from "app/utils/consts";
+import { change, fetchUser, check } from "http/userAPI";
 import { CustomButton } from "shared/ui/button/CustomButton";
-import cls from "./UserPersonal.module.scss";
 import { CustomInput } from "shared/ui/input/CustomInput";
+import { observer } from "mobx-react-lite";
+import cls from "./UserPersonal.module.scss";
 
-const UserPersonal = () => {
+const UserPersonal = observer(() => {
   const { user } = useContext(Context);
   const navigate = useNavigate();
+  const [newPersonal, setNewPersonal] = useState({
+    name: "",
+    surename: "",
+    phone: "",
+  });
 
   const exit = () => {
     user.setUser({});
@@ -21,23 +28,38 @@ const UserPersonal = () => {
   };
 
   const changePersonal = () => {
+    change(
+      user.user.email,
+      newPersonal.name,
+      newPersonal.surename,
+      newPersonal.phone
+    ).then((data) => {
+      user.setUser(data);
+    });
+  };
 
-  }
+  console.log(user.user);
 
   return (
     <div className={cls.personal}>
       <CustomInput type="email" size={"m"} value={user.user.email} readonly />
       <CustomInput
         type="text"
-        placeholder="Имя"
+        placeholder={user.user.name ? user.user.name : "Имя"}
         size={"m"}
-        value={user.user.name}
+        value={newPersonal.name}
+        onChange={(event) =>
+          setNewPersonal({ ...newPersonal, name: event.target.value })
+        }
       />
       <CustomInput
         type="text"
-        placeholder="Фамилия"
+        placeholder={user.user.surename ? user.user.surename : "Фамилия"}
         size={"m"}
-        value={user.user.surename}
+        value={newPersonal.surename}
+        onChange={(event) =>
+          setNewPersonal({ ...newPersonal, surename: event.target.value })
+        }
       />
       <CustomInput
         type="date"
@@ -47,7 +69,9 @@ const UserPersonal = () => {
       />
 
       <div className={cls.btns}>
-        <CustomButton fontSize={"s"}>Сохранить</CustomButton>
+        <CustomButton fontSize={"s"} onClick={changePersonal}>
+          Сохранить
+        </CustomButton>
         <CustomButton
           onClick={() => exit()}
           fontSize={"s"}
@@ -59,6 +83,6 @@ const UserPersonal = () => {
       </div>
     </div>
   );
-};
+});
 
 export { UserPersonal };
