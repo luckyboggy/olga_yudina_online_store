@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import { Context } from "index.js";
 import { CustomButton } from "shared/ui/button/CustomButton.jsx";
 import { CustomInput } from "shared/ui/input/CustomInput.jsx";
+import { change } from "http/userAPI";
 import {
   fetchCity,
   fetchStreet,
@@ -11,10 +12,10 @@ import { handleFromBasketToOrder } from "shared/lib/functions/orderFunctions";
 
 const Ordering = () => {
   const { user } = useContext(Context);
-  const [customerData, SetCustomerData] = useState({
-    email: "",
+  const [newPersonal, setNewPersonal] = useState({
     name: "",
     surename: "",
+    phone: "",
   });
 
   const [customerAddress, setCustomerAddress] = useState({
@@ -25,41 +26,102 @@ const Ordering = () => {
     zipCode: 0,
   });
 
+  const changePersonal = () => {
+    change(
+      user.user.email,
+      newPersonal.name,
+      newPersonal.surename,
+      newPersonal.phone
+    ).then((data) => {
+      user.setUser(data);
+    });
+  };
+
   const [suggestionCity, setSuggestionCity] = useState([]);
   const [suggestionStreet, setSuggestionStreet] = useState([]);
 
   return (
     <div className={cls.ordering}>
-      <div className={cls.personal}>
-        <CustomInput
-          type="email"
-          placeholder="email"
-          value={customerData.email}
-          onChange={(event) => {
-            SetCustomerData({ ...customerData, email: event.target.value });
-          }}
-        />
-        <CustomInput
-          type="text"
-          placeholder="Name"
-          value={customerData.name}
-          onChange={(event) => {
-            SetCustomerData({ ...customerData, name: event.target.value });
-          }}
-        />
-        <CustomInput
-          type="text"
-          placeholder="Surename"
-          value={customerData.surename}
-          onChange={(event) => {
-            SetCustomerData({ ...customerData, surename: event.target.value });
-          }}
-        />
-      </div>
+      {user.isAuth ? (
+        <div className={cls.personal}>
+          <CustomInput
+            type="email"
+            size={"m"}
+            value={user.user.email}
+            readonly
+          />
+          <CustomInput
+            type="text"
+            placeholder={user.user.name ? user.user.name : "Имя"}
+            size={"m"}
+            value={newPersonal.name}
+            onChange={(event) =>
+              setNewPersonal({ ...newPersonal, name: event.target.value })
+            }
+          />
+          <CustomInput
+            type="text"
+            placeholder={user.user.surename ? user.user.surename : "Фамилия"}
+            size={"m"}
+            value={newPersonal.surename}
+            onChange={(event) =>
+              setNewPersonal({ ...newPersonal, surename: event.target.value })
+            }
+          />
+        </div>
+      ) : (
+        <div className={cls.personal}></div>
+      )}
+
       <div className={cls.delivery}>
         <div className="fs20">Доставка</div>
 
         {/* выбор города */}
+        <CustomInput
+          type="text"
+          placeholder={"Город"}
+          size={"m"}
+          value={customerAddress.city}
+          onChange={(event) =>
+            setNewPersonal({ ...customerAddress, name: event.target.value })
+          }
+        />
+
+        {/* выбор улицы */}
+        <CustomInput
+          type="text"
+          placeholder={"Улица"}
+          size={"m"}
+          value={customerAddress.street}
+          onChange={(event) =>
+            setNewPersonal({ ...customerAddress, street: event.target.value })
+          }
+        />
+        <div className={cls.houseFlat}>
+          <CustomInput
+            type="text"
+            placeholder={"Дом"}
+            size={"m"}
+            value={customerAddress.house}
+            onChange={(event) =>
+              setNewPersonal({ ...customerAddress, house: event.target.value })
+            }
+          />
+          <CustomInput
+            type="text"
+            placeholder={"Картира"}
+            size={"m"}
+            value={customerAddress.flat}
+            onChange={(event) =>
+              setNewPersonal({ ...customerAddress, flat: event.target.value })
+            }
+          />
+        </div>
+      </div>
+
+      {/* Вариант с автозаполнением (не окончен) */}
+      {/*       <div className={cls.delivery}>
+        <div className="fs20">Доставка</div>
         <CustomInput
           type="text"
           placeholder="city"
@@ -86,8 +148,6 @@ const Ordering = () => {
             <option value={city.data.city} key={city.data.city}></option>
           ))}
         </datalist>
-
-        {/* выбор улицы */}
         <CustomInput
           type="text"
           placeholder="street"
@@ -136,7 +196,8 @@ const Ordering = () => {
             }}
           />
         </div>
-      </div>
+      </div> */}
+
       <CustomButton
         fontSize={"s"}
         onClick={(event) => {

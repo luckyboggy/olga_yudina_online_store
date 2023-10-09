@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { Context } from "index.js";
 import { useNavigate } from "react-router-dom";
 import { LOGIN_ROUTE } from "app/utils/consts";
-import { change, fetchUser, check } from "http/userAPI";
+import { change } from "http/userAPI";
 import { CustomButton } from "shared/ui/button/CustomButton";
 import { CustomInput } from "shared/ui/input/CustomInput";
 import { observer } from "mobx-react-lite";

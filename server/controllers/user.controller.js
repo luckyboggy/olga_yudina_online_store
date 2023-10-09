@@ -89,16 +89,23 @@ class UserController {
 
   async change(req, res, next) {
     const { name, surename, email, phone } = req.body;
+    const updateFields = {};
 
+    if (name) {
+      updateFields.name = name;
+    }
 
-    await User.update(
-      {
-        name, surename, phone
-      },
-      {
-        where: { email }
-      }
-    )
+    if (surename) {
+      updateFields.surename = surename;
+    }
+
+    if (phone) {
+      updateFields.phone = phone;
+    }
+
+    await User.update(updateFields, {
+      where: { email }
+    });
 
     const user = await User.findOne({ where: { email } })
     return res.json(user)
@@ -110,6 +117,10 @@ class UserController {
       where: { id }
     })
     return res.json(user)
+  }
+
+  async getAddress(req,res) {
+    
   }
 }
 
