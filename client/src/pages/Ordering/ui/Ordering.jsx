@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import { Context } from "index.js";
 import { CustomButton } from "shared/ui/button/CustomButton.jsx";
 import { CustomInput } from "shared/ui/input/CustomInput.jsx";
-import { change } from "http/userAPI";
+import { change, changeAddress } from "http/userAPI";
 import {
   fetchCity,
   fetchStreet,

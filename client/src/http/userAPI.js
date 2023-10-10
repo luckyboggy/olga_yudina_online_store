@@ -30,9 +30,16 @@ const change = async (email, name, surename, phone) => {
   return data.data;
 }
 
+const changeAddress = async (userId, region, city, street, house, flat, zipCode) => {
+  const data = await $authHost.post("api/user/changeAddres", {
+    userId, region, city, street, house, flat, zipCode
+  });
+  return data.data;
+}
+
 const fetchUser = async (id) => {
   const { data } = await $authHost.get(`api/user/${id}`);
   return data;
 }
 
-export { registration, login, check, change, fetchUser };
+export { registration, login, check, change, changeAddress, fetchUser };

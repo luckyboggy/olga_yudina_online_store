@@ -6,7 +6,8 @@ const userRouter = new Router();
 
 userRouter.post('/registration', userController.registration);
 userRouter.post('/login', userController.login);
-userRouter.post('/change', userController.change);
+userRouter.post('/change', authMiddlewere, userController.change);
+userRouter.post('/changeAddres', authMiddlewere, userController.changeAddres);
 userRouter.get('/auth', authMiddlewere, userController.check);
 userRouter.get("/:id", userController.getOne);
 
