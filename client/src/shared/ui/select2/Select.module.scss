@@ -1,7 +1,6 @@
 .select {
-  margin: 1rem 0;
- position: relative;
- z-index: var(--select-z);
+  position: relative;
+  z-index: var(--select-z);
   .opacity {
     position: fixed;
     top: 0;
@@ -35,6 +34,7 @@
     }
   }
 }
+
 
 .dropArrow {
   margin-left: 1rem;

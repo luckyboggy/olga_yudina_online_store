@@ -1,13 +1,14 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Context } from "index.js";
 import { useNavigate } from "react-router-dom";
 import { LOGIN_ROUTE } from "app/utils/consts";
-import { change } from "http/userAPI";
+import { change, changeAddress, fetchUserAddres } from "http/userAPI";
 import { CustomButton } from "shared/ui/button/CustomButton";
-
+import { UserAddress } from "widgets/UserAddress";
+import { UserData } from "widgets/UserData";
+import { Text } from "shared/ui/text/Text";
 import { observer } from "mobx-react-lite";
 import cls from "./UserPersonal.module.scss";
-import { UserData } from "widgets/UserData";
 
 const UserPersonal = observer(() => {
   const { user } = useContext(Context);
@@ -16,6 +17,15 @@ const UserPersonal = observer(() => {
     name: user.user.name,
     surename: user.user.surename,
     phone: user.user.phone,
+  });
+
+  const [newAddres, setNewAddres] = useState({
+    region: "",
+    city: "",
+    street: "",
+    house: "",
+    flat: "",
+    zipCode: 0,
   });
 
   const exit = () => {
@@ -38,15 +48,42 @@ const UserPersonal = observer(() => {
       user.setUser(data);
     });
   };
+  const changeAddres = () => {
+    changeAddress(
+      user.user.id,
+      newAddres.region,
+      newAddres.city,
+      newAddres.street,
+      newAddres.house,
+      newAddres.flat,
+      newAddres.zipCode
+    );
+  };
+
+  useEffect(() => {
+    fetchUserAddres(user.user.id).then((data) => console.log(data));
+  }, []);
 
   console.log(newPersonal);
 
   return (
     <div className={cls.personal}>
       <UserData personalData={newPersonal} setPersonalData={setNewPersonal} />
+      <div className={cls.address}>
+        <Text size="m" padding="pv1">
+          Адрес доставки
+        </Text>
+        <UserAddress address={newAddres} setAddress={setNewAddres} />
+      </div>
 
       <div className={cls.btns}>
-        <CustomButton fontSize={"s"} onClick={changePersonal}>
+        <CustomButton
+          fontSize={"s"}
+          onClick={() => {
+            changePersonal();
+            changeAddres();
+          }}
+        >
           Сохранить
         </CustomButton>
         <CustomButton

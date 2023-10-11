@@ -10,7 +10,9 @@
 
   .check {
     min-height: calc(100vh - var(--header-height-md) - 3 * var(--margin-m));
-    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     .title {
       margin-top: var(--margin-m);
       margin-bottom: calc(2 * var(--margin-m));
@@ -27,8 +29,7 @@
       }
     }
     .confirm {
-      position: absolute;
-      bottom: 0;
+      align-self: flex-end;
       width: 100%;
 
       .order {

@@ -75,48 +75,6 @@ const Ordering = () => {
 
       <div className={cls.delivery}>
         <div className="fs20">Доставка</div>
-
-        {/* выбор города */}
-        <CustomInput
-          type="text"
-          placeholder={"Город"}
-          size={"m"}
-          value={customerAddress.city}
-          onChange={(event) =>
-            setNewPersonal({ ...customerAddress, name: event.target.value })
-          }
-        />
-
-        {/* выбор улицы */}
-        <CustomInput
-          type="text"
-          placeholder={"Улица"}
-          size={"m"}
-          value={customerAddress.street}
-          onChange={(event) =>
-            setNewPersonal({ ...customerAddress, street: event.target.value })
-          }
-        />
-        <div className={cls.houseFlat}>
-          <CustomInput
-            type="text"
-            placeholder={"Дом"}
-            size={"m"}
-            value={customerAddress.house}
-            onChange={(event) =>
-              setNewPersonal({ ...customerAddress, house: event.target.value })
-            }
-          />
-          <CustomInput
-            type="text"
-            placeholder={"Картира"}
-            size={"m"}
-            value={customerAddress.flat}
-            onChange={(event) =>
-              setNewPersonal({ ...customerAddress, flat: event.target.value })
-            }
-          />
-        </div>
       </div>
 
       {/* Вариант с автозаполнением (не окончен) */}

@@ -42,4 +42,9 @@ const fetchUser = async (id) => {
   return data;
 }
 
-export { registration, login, check, change, changeAddress, fetchUser };
+const fetchUserAddres = async (userId) => {
+  const { data } = await $authHost.get(`api/user/getAddress`, { userId });
+  return data;
+}
+
+export { registration, login, check, change, changeAddress, fetchUser, fetchUserAddres };

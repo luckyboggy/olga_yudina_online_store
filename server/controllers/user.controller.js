@@ -153,6 +153,12 @@ class UserController {
     return res.json(address)
   }
 
+  async getAddress(req, res) {
+    const { userId } = req.body;
+    const address = await Address.findOne({ where: { userId } })
+    return res.json(address)
+  }
+
 
 }
 

@@ -1,9 +1,12 @@
 .signInForm {
-  position: relative;
-  min-height: calc(
-    100vh - var(--header-height-md) - 3 * var(--margin-m) - 26px
-  );
   width: 100%;
+  min-height: calc(
+    100vh - var(--header-height-md) - 3 * var(--margin-m) -
+      var(--auth-choose-height)
+  );
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 
   .resetPass {
     margin-top: 1rem;
@@ -11,7 +14,5 @@
 
   .btns {
     width: 100%;
-    position: absolute;
-    bottom: 0;
   }
 }

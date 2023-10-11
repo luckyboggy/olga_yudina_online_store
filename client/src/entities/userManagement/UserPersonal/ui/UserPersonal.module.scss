@@ -1,9 +1,14 @@
 .personal {
-  min-height: calc(100vh - var(--header-height-md) - 43px - 4rem);
-  position: relative;
+  min-height: calc(
+    100vh - var(--header-height-md) - var(--select-height-md) - 3 *
+      var(--padding-m)
+  );
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   .btns {
+    margin-top: 1rem;
     width: 100%;
-    position: absolute;
-    bottom: 0;
+    align-self: flex-end;
   }
 }

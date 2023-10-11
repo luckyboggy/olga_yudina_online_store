@@ -16,6 +16,8 @@ export class UserStore {
     //local basket
     this._localBasket = [];
     this._localFavorites = [];
+
+    this._address = {}
     makeAutoObservable(this);
   }
 

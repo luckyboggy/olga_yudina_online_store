@@ -10,5 +10,6 @@ userRouter.post('/change', authMiddlewere, userController.change);
 userRouter.post('/changeAddres', authMiddlewere, userController.changeAddres);
 userRouter.get('/auth', authMiddlewere, userController.check);
 userRouter.get("/:id", userController.getOne);
+userRouter.get("/getAddress", userController.getAddress);
 
 export { userRouter };
