@@ -122,24 +122,26 @@ class UserController {
   async changeAddres(req, res) {
     const { userId, region, city, street, house, flat, zipCode } = req.body;
 
+    console.log(userId, region, city, street, house, flat, zipCode);
+
     const updateFields = {};
 
     if (region) {
       updateFields.region = region;
     }
     if (city) {
-      updateFields.city = city;
+      updateFields.city = city
     }
     if (street) {
       updateFields.street = street;
     }
-    if (region) {
+    if (house) {
       updateFields.house = house;
     }
-    if (region) {
+    if (flat) {
       updateFields.flat = flat;
     }
-    if (region) {
+    if (zipCode) {
       updateFields.zipCode = zipCode;
     }
 
@@ -154,7 +156,7 @@ class UserController {
   }
 
   async getAddress(req, res) {
-    const { userId } = req.body;
+    const { userId } = req.query;
     const address = await Address.findOne({ where: { userId } })
     return res.json(address)
   }

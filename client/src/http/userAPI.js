@@ -31,6 +31,7 @@ const change = async (email, name, surename, phone) => {
 }
 
 const changeAddress = async (userId, region, city, street, house, flat, zipCode) => {
+  console.log(region, city, street, house, flat, zipCode)
   const data = await $authHost.post("api/user/changeAddres", {
     userId, region, city, street, house, flat, zipCode
   });
@@ -43,7 +44,10 @@ const fetchUser = async (id) => {
 }
 
 const fetchUserAddres = async (userId) => {
-  const { data } = await $authHost.get(`api/user/getAddress`, { userId });
+
+  const { data } = await $authHost.get(`api/user/getAddress`, {
+    params: { userId }
+  });
   return data;
 }
 

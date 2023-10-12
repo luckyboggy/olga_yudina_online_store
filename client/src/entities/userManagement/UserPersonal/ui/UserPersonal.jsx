@@ -20,12 +20,12 @@ const UserPersonal = observer(() => {
   });
 
   const [newAddres, setNewAddres] = useState({
-    region: "",
-    city: "",
-    street: "",
-    house: "",
-    flat: "",
-    zipCode: 0,
+    region: user.address.region,
+    city: user.address.city,
+    street: user.address.street,
+    house: user.address.house,
+    flat: user.address.flat,
+    zipCode: user.address.zipCode,
   });
 
   const exit = () => {
@@ -49,6 +49,7 @@ const UserPersonal = observer(() => {
     });
   };
   const changeAddres = () => {
+    console.log(newAddres);
     changeAddress(
       user.user.id,
       newAddres.region,
@@ -61,10 +62,11 @@ const UserPersonal = observer(() => {
   };
 
   useEffect(() => {
-    fetchUserAddres(user.user.id).then((data) => console.log(data));
+    fetchUserAddres(user.user.id).then((data) => {
+      user.setAddress(data);
+      setNewAddres({ ...data });
+    });
   }, []);
-
-  console.log(newPersonal);
 
   return (
     <div className={cls.personal}>

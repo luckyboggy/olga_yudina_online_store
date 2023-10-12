@@ -13,7 +13,7 @@ const UserAddress = ({ address, setAddress }) => {
         margin="mb1"
         value={address.city}
         onChange={(event) =>
-          setAddress({ ...address, name: event.target.value })
+          setAddress({ ...address, city: event.target.value })
         }
       />
 

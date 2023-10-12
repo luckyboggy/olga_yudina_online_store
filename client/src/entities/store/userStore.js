@@ -12,12 +12,12 @@ export class UserStore {
     this._favoritesCount = 0;
     this._favoritesItems = [];
     this._orderItems = [];
+    this._address = {};
     this._toLogin = false;
     //local basket
     this._localBasket = [];
     this._localFavorites = [];
 
-    this._address = {}
     makeAutoObservable(this);
   }
 
@@ -40,6 +40,9 @@ export class UserStore {
   }
   setOrderItems(orderItems) {
     this._orderItems = orderItems;
+  }
+  setAddress(address) {
+    this._address = address;
   }
   setToLogin(state) {
     this._toLogin = state;
@@ -117,6 +120,9 @@ export class UserStore {
   }
   get orderItems() {
     return this._orderItems;
+  }
+  get address() {
+    return this._address;
   }
   get toLogin() {
     return this._toLogin;
